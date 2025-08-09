@@ -25,8 +25,8 @@ function createInitialAiGreeting(characterId: string): ChatMessage {
   return {
     id: nanoid(),
     sender: "ai",
-    dialogue: `${character.name}가 인사합니다. 만나서 반가워요!`,
-    situation: `${character.novelTitle}의 세계에서 첫 만남.`,
+    dialogue: `Hello from ${character.name}! It's a pleasure to meet you.`,
+    situation: `First encounter in the world of '${character.novelTitle}'.`,
     timestamp: Date.now(),
   };
 }
@@ -39,6 +39,7 @@ export const useAppStore = create<AppState>()(
       characters: seedCharacters,
       sessionsByCharacterId: {},
       openCharacterIds: [],
+      sidebarWidth: 270,
 
       openChat: (characterId) => {
         const state = get();
@@ -80,8 +81,8 @@ export const useAppStore = create<AppState>()(
         const aiMsg: ChatMessage = {
           id: nanoid(),
           sender: "ai",
-          dialogue: `${character.name}: "${dialogue || "..."}"에 대한 내 생각은... 흥미롭네요!`,
-          situation: situation ? `상황을 이해했어요: ${situation}` : undefined,
+          dialogue: `${character.name}: My thoughts on "${dialogue || "..."}"... how interesting!`,
+          situation: situation ? `I understand the situation: ${situation}` : undefined,
           timestamp: Date.now() + 1,
         };
 
@@ -110,13 +111,13 @@ export const useAppStore = create<AppState>()(
         const names = new Set(state.registeredUsernames);
         // 현재 유저명을 제외하고 유니크 검사
         if (username !== current && names.has(username)) {
-          return { ok: false as const, reason: "이미 존재하는 유저명입니다." };
+          return { ok: false as const, reason: "This username is already taken." };
         }
         if (!username.trim()) {
-          return { ok: false as const, reason: "유저명을 입력해주세요." };
+          return { ok: false as const, reason: "Please enter a username." };
         }
         if (!password.trim()) {
-          return { ok: false as const, reason: "비밀번호를 입력해주세요." };
+          return { ok: false as const, reason: "Please enter a password." };
         }
         names.add(username);
         // 이전 이름은 목록에 남겨둘 수 있지만, 간단히 제거 후 현재만 등록
@@ -124,6 +125,8 @@ export const useAppStore = create<AppState>()(
         set({ currentUser: { username, password }, registeredUsernames: Array.from(names) });
         return { ok: true as const };
       },
+      
+      setSidebarWidth: (width) => set({ sidebarWidth: width }),
     }),
     {
       name: "aichat-store",
@@ -133,6 +136,7 @@ export const useAppStore = create<AppState>()(
         characters: state.characters,
         sessionsByCharacterId: state.sessionsByCharacterId,
         openCharacterIds: state.openCharacterIds,
+        sidebarWidth: state.sidebarWidth,
       }),
     }
   )

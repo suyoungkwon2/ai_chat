@@ -33,7 +33,7 @@ export default function CharacterCard({ character }: { character: Character }) {
           <Link to={`/chat/${character.id}`}
             onClick={() => openChat(character.id)}
             className="btn btn--primary">
-            대화 시작
+            Start Chat
           </Link>
         </div>
       </div>

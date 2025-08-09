@@ -18,7 +18,7 @@ export default function Chat() {
 
   if (!character) {
     return <div className="page">
-      <div className="page__header">존재하지 않는 캐릭터</div>
+      <div className="page__header">Character not found</div>
     </div>;
   }
 

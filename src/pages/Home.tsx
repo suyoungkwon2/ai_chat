@@ -6,8 +6,8 @@ export default function Home() {
   return (
     <div className="home">
       <div className="home__header">
-        <div className="home__title">AI 캐릭터 선택</div>
-        <div className="home__subtitle">관심 있는 캐릭터를 선택해 대화를 시작해 보세요.</div>
+        <div className="home__title">Select AI Character</div>
+        <div className="home__subtitle">Choose a character you're interested in and start a conversation.</div>
       </div>
       <div className="grid">
         {characters.map((c) => (

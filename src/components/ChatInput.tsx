@@ -30,14 +30,14 @@ export default function ChatInput({ onSend }: { onSend: (text: string) => void }
       <textarea
         ref={inputRef}
         className="chatInput__textarea"
-        placeholder="대사를 입력하세요. (+상황추가 버튼으로 상황을 함께 묘사할 수 있어요)"
+        placeholder="Enter a dialogue. You can also describe a situation with the (+Add Situation) button."
         value={value}
         onChange={(e) => setValue(e.target.value)}
         rows={2}
       />
       <div className="chatInput__actions">
-        <button className="btn" onClick={insertSituationDelimiter} title="상황 추가">(+상황추가)</button>
-        <button className="btn btn--primary" onClick={handleSend}>전송</button>
+        <button className="btn" onClick={insertSituationDelimiter} title="Add Situation">(+Add Situation)</button>
+        <button className="btn btn--primary" onClick={handleSend}>Send</button>
       </div>
     </div>
   );

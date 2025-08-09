@@ -35,10 +35,12 @@ export interface AppState {
   characters: Character[];
   sessionsByCharacterId: Record<string, ChatSession>;
   openCharacterIds: string[]; // 사이드바에 노출되는 열린 채팅 목록
+  sidebarWidth: number;
 
   // actions
   openChat: (characterId: string) => void;
   sendMessage: (characterId: string, inputText: string) => void;
   toggleLike: (characterId: string) => void;
   updateUserProfile: (username: string, password: string) => { ok: true } | { ok: false; reason: string };
+  setSidebarWidth: (width: number) => void;
 } 
