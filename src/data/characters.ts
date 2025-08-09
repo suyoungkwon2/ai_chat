@@ -1,0 +1,58 @@
+import type { Character } from "../types";
+
+export const characters: Character[] = [
+  {
+    id: "arthur",
+    name: "아서",
+    imageUrl: "https://api.dicebear.com/7.x/thumbs/svg?seed=Arthur",
+    novelTitle: "칼의 제왕",
+    genre: "판타지",
+    keywords: ["기사단", "왕도", "운명", "전설"],
+    likes: 128,
+  },
+  {
+    id: "luna",
+    name: "루나",
+    imageUrl: "https://api.dicebear.com/7.x/thumbs/svg?seed=Luna",
+    novelTitle: "달빛 요정",
+    genre: "로맨스 판타지",
+    keywords: ["마법", "달", "동맹", "비밀"],
+    likes: 342,
+  },
+  {
+    id: "nero",
+    name: "네로",
+    imageUrl: "https://api.dicebear.com/7.x/thumbs/svg?seed=Nero",
+    novelTitle: "검은 도시",
+    genre: "디스토피아",
+    keywords: ["도시", "음모", "추격", "복수"],
+    likes: 87,
+  },
+  {
+    id: "mia",
+    name: "미아",
+    imageUrl: "https://api.dicebear.com/7.x/thumbs/svg?seed=Mia",
+    novelTitle: "숲의 노래",
+    genre: "힐링",
+    keywords: ["숲", "정령", "치유", "노래"],
+    likes: 211,
+  },
+  {
+    id: "odin",
+    name: "오딘",
+    imageUrl: "https://api.dicebear.com/7.x/thumbs/svg?seed=Odin",
+    novelTitle: "신의 전쟁",
+    genre: "신화",
+    keywords: ["신화", "전쟁", "룬", "예언"],
+    likes: 503,
+  },
+  {
+    id: "sora",
+    name: "소라",
+    imageUrl: "https://api.dicebear.com/7.x/thumbs/svg?seed=Sora",
+    novelTitle: "하늘의 아이",
+    genre: "모험",
+    keywords: ["비행", "구름", "바람", "자유"],
+    likes: 154,
+  },
+]; 
