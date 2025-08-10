@@ -62,12 +62,14 @@ export const useAppStore = create<AppState>()(
         }));
       },
 
-      sendMessage: (characterId, inputText) => {
+      sendMessage: (characterId, inputText, username) => {
         const state = get();
         const session = state.sessionsByCharacterId[characterId];
         if (!session) return;
         const { dialogue, situation } = parseInputToParts(inputText);
         if (!dialogue && !situation) return;
+
+        console.log(`Sending message to ${characterId} from ${username}:`, { dialogue, situation });
 
         const userMsg: ChatMessage = {
           id: nanoid(),

@@ -9,6 +9,7 @@ export default function Chat() {
   const openChat = useAppStore((s) => s.openChat);
   const sendMessage = useAppStore((s) => s.sendMessage);
   const sessions = useAppStore((s) => s.sessionsByCharacterId);
+  const currentUser = useAppStore((s) => s.currentUser);
 
   const character = allCharacters.find((c) => c.id === characterId);
 
@@ -46,7 +47,7 @@ export default function Chat() {
       <div className="chat__input">
         <ChatInput
           characterName={character.name}
-          onSend={(text) => sendMessage(characterId, text)}
+          onSend={(text) => sendMessage(characterId, text, currentUser.username)}
         />
       </div>
     </div>

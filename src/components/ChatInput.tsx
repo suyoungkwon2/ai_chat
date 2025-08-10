@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import ReactGA from "react-ga4";
 
+
 export default function ChatInput({ characterName, onSend }: { characterName: string, onSend: (text: string) => void }) {
   const [value, setValue] = useState("");
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
