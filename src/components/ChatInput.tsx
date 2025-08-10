@@ -4,14 +4,14 @@ import ReactGA from "react-ga4";
 
 export default function ChatInput({ characterName, onSend }: { characterName: string, onSend: (text: string) => void }) {
   const [value, setValue] = useState("");
-  const inputRef = useRef<HTMLTextAreaElement | null>(null);
+  const input = useRef<HTMLTextAreaElement | null>(null);
 
   const insertSituationDelimiter = () => {
-    const el = inputRef.current;
+    const el = input.current;
     if (!el) return;
     const start = el.selectionStart ?? value.length;
     const end = el.selectionEnd ?? value.length;
-    const next = value.slice(0, start) + " ** " + value.slice(end);
+    const next = `${value.slice(0, start)}**${value.slice(end)}`;
     setValue(next);
 
     ReactGA.event({
@@ -22,7 +22,7 @@ export default function ChatInput({ characterName, onSend }: { characterName: st
 
     requestAnimationFrame(() => {
       el.focus();
-      const pos = start + 4; // space + ** + space
+      const pos = start + 1; // * 와 * 사이
       el.setSelectionRange(pos, pos);
     });
   };
@@ -43,7 +43,7 @@ export default function ChatInput({ characterName, onSend }: { characterName: st
   return (
     <div className="chatInput">
       <textarea
-        ref={inputRef}
+        ref={input}
         className="chatInput__textarea"
         placeholder="Enter a dialogue. You can also describe a situation with the (+Add Situation) button."
         value={value}
@@ -51,7 +51,7 @@ export default function ChatInput({ characterName, onSend }: { characterName: st
         rows={2}
       />
       <div className="chatInput__actions">
-        <button className="btn" onClick={insertSituationDelimiter} title="Add Situation">(+Add Situation)</button>
+        <button className="btn" onClick={insertSituationDelimiter} title="Add Situation">+Add Situation</button>
         <button className="btn btn--primary" onClick={handleSend}>Send</button>
       </div>
     </div>

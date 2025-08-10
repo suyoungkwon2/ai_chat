@@ -32,7 +32,6 @@ function MobileHeader({ onMenuToggle }: { onMenuToggle: () => void }) {
 
 function AppShell() {
   usePageViews();
-  const sidebarWidth = useAppStore((s) => s.sidebarWidth);
   const isMobile = useIsMobile();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -53,7 +52,7 @@ function AppShell() {
   }
 
   return (
-    <div className="layout" style={{ gridTemplateColumns: `${sidebarWidth}px 1fr` }}>
+    <div className="layout">
       <Sidebar />
       <main className="content">
         <Routes>

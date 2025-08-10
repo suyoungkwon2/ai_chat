@@ -69,7 +69,10 @@ export default function Sidebar() {
   }, [openCharacterIds]);
 
   return (
-    <aside className={classnames("sidebar", { "is-collapsed": isCollapsed })} style={{ width: `${sidebarWidth}px` }}>
+    <aside
+      className={classnames("sidebar", { "is-collapsed": isCollapsed })}
+      style={{ flexBasis: `${sidebarWidth}px` }}
+    >
       <div className="sidebar__inner">
         <div className="sidebar__top">
           <button className="btn btn--home" onClick={handleHomeClick}>
