@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
+import ReactGA from "react-ga4";
 
-export default function ChatInput({ onSend }: { onSend: (text: string) => void }) {
+export default function ChatInput({ characterName, onSend }: { characterName: string, onSend: (text: string) => void }) {
   const [value, setValue] = useState("");
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
 
@@ -11,6 +12,13 @@ export default function ChatInput({ onSend }: { onSend: (text: string) => void }
     const end = el.selectionEnd ?? value.length;
     const next = value.slice(0, start) + " ** " + value.slice(end);
     setValue(next);
+
+    ReactGA.event({
+      category: "Chat",
+      action: "add_situation",
+      label: characterName,
+    });
+
     requestAnimationFrame(() => {
       el.focus();
       const pos = start + 4; // space + ** + space
@@ -23,6 +31,12 @@ export default function ChatInput({ onSend }: { onSend: (text: string) => void }
     if (!text) return;
     onSend(text);
     setValue("");
+
+    ReactGA.event({
+      category: "Chat",
+      action: "send_message",
+      label: characterName,
+    });
   };
 
   return (

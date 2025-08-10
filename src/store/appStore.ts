@@ -1,6 +1,7 @@
 import { nanoid } from "nanoid";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import ReactGA from "react-ga4";
 import type { AppState, ChatMessage } from "../types";
 import { characters as seedCharacters } from "../data/characters";
 
@@ -123,6 +124,15 @@ export const useAppStore = create<AppState>()(
         // 이전 이름은 목록에 남겨둘 수 있지만, 간단히 제거 후 현재만 등록
         names.delete(current);
         set({ currentUser: { username, password }, registeredUsernames: Array.from(names) });
+        
+        // GA User ID 업데이트
+        ReactGA.set({ userId: username });
+        ReactGA.event({
+          category: "Profile",
+          action: "save_profile_changes",
+          label: username,
+        });
+
         return { ok: true as const };
       },
       

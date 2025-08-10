@@ -44,7 +44,10 @@ export default function Chat() {
       </div>
 
       <div className="chat__input">
-        <ChatInput onSend={(text) => sendMessage(characterId, text)} />
+        <ChatInput
+          characterName={character.name}
+          onSend={(text) => sendMessage(characterId, text)}
+        />
       </div>
     </div>
   );

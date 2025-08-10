@@ -1,4 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import ReactGA from "react-ga4";
 import { useAppStore } from "../store/appStore";
 import { characters as allCharacters } from "../data/characters";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -13,6 +14,22 @@ export default function Sidebar() {
   const setSidebarWidth = useAppStore((s) => s.setSidebarWidth);
   const [showProfile, setShowProfile] = useState(false);
   const isResizing = useRef(false);
+
+  const handleHomeClick = () => {
+    navigate("/");
+    ReactGA.event({
+      category: "Navigation",
+      action: "click_home_sidebar",
+    });
+  };
+
+  const handleProfileClick = () => {
+    setShowProfile(true);
+    ReactGA.event({
+      category: "Navigation",
+      action: "open_profile_modal",
+    });
+  };
 
   const isCollapsed = sidebarWidth < 100;
 
@@ -55,7 +72,7 @@ export default function Sidebar() {
     <aside className={classnames("sidebar", { "is-collapsed": isCollapsed })} style={{ width: `${sidebarWidth}px` }}>
       <div className="sidebar__inner">
         <div className="sidebar__top">
-          <button className="btn btn--home" onClick={() => navigate("/")}>
+          <button className="btn btn--home" onClick={handleHomeClick}>
             <span className="icon">🏠</span> <span className="text">Home</span>
           </button>
         </div>
@@ -75,7 +92,7 @@ export default function Sidebar() {
           </div>
         </div>
 
-        <div className="sidebar__bottom" onClick={() => setShowProfile(true)}>
+        <div className="sidebar__bottom" onClick={handleProfileClick}>
           <img className="avatar avatar--sm" src={`https://api.dicebear.com/7.x/thumbs/svg?seed=${currentUser.username}`} alt="me" />
           <div className="sidebar__user">
             <div className="sidebar__userId">{currentUser.username}</div>
