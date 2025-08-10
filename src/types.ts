@@ -41,7 +41,7 @@ export interface AppState {
 
   // actions
   openChat: (characterId: string) => void;
-  sendMessage: (characterId: string, inputText: string) => void;
+  sendMessage: (characterId: string, inputText: string, sender: string) => void;
   toggleLike: (characterId: string) => void;
   updateUserProfile: (username: string, password: string) => { ok: true } | { ok: false; reason: string };
   setSidebarWidth: (width: number) => void;
