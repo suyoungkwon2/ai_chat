@@ -3,7 +3,9 @@ export type Sender = "ai" | "user";
 export interface Character {
   id: string;
   name: string;
-  imageUrl: string;
+  imageCardUrl: string;
+  imageProfileUrl: string;
+  imageIconUrl: string;
   novelTitle: string;
   genre: string;
   keywords: string[];

@@ -10,7 +10,7 @@ export default function CharacterCard({ character }: { character: Character }) {
   return (
     <div className="card">
       <div className="card__imageWrap">
-        <img className="card__image" src={character.imageUrl} alt={character.name} />
+        <img className="card__image" src={character.imageCardUrl} alt={character.name} />
       </div>
       <div className="card__body">
         <div className="card__titleRow">

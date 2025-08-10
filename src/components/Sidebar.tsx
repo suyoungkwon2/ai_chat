@@ -68,7 +68,7 @@ export default function Sidebar() {
             )}
             {openCharacters.map((c) => (
               <Link key={c.id} to={`/chat/${c.id}`} className={`sidebar__item ${pathname.includes(`/chat/${c.id}`) ? "is-active" : ""}`}>
-                <img src={c.imageUrl} alt={c.name} className="avatar avatar--sm" />
+                <img src={c.imageIconUrl} alt={c.name} className="avatar avatar--sm" />
                 <div className="sidebar__itemText">{c.name}</div>
               </Link>
             ))}
