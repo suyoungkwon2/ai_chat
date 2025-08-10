@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useAppStore } from "../store/appStore";
 import ChatInput from "../components/ChatInput";
 import { characters as allCharacters } from "../data/characters";
+import { EndOfChatsModal, UserRegistrationModal, WatchAdModal } from "../components/FeatureModals";
+import classnames from "classnames";
 
 export default function Chat() {
   const { characterId = "" } = useParams();
@@ -10,12 +12,47 @@ export default function Chat() {
   const sendMessage = useAppStore((s) => s.sendMessage);
   const sessions = useAppStore((s) => s.sessionsByCharacterId);
   const currentUser = useAppStore((s) => s.currentUser);
+  const modalStates = useAppStore((s) => s.modalStates);
+  const activeModal = useAppStore((s) => s.activeModal);
+  const setActiveModal = useAppStore((s) => s.setActiveModal);
+  const handleModalAction = useAppStore((s) => s.handleModalAction);
+  const isRegistered = useAppStore((s) => s.isRegistered);
+  const globalMessageCount = useAppStore((s) => s.globalMessageCount);
 
   const character = allCharacters.find((c) => c.id === characterId);
+  const modalState = modalStates[characterId];
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
     if (characterId) openChat(characterId);
   }, [characterId, openChat]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [sessions[characterId]?.messages]);
+
+  useEffect(() => {
+    if (!modalState) return;
+
+    const { messageCount, adViewsToday, isChatLocked } = modalState;
+
+    if (isChatLocked) {
+      return;
+    }
+
+    if (!isRegistered && globalMessageCount >= 5) {
+      setActiveModal("userRegistration");
+    } else if (isRegistered && messageCount >= 10 && adViewsToday < 5) {
+      setActiveModal("watchAd");
+    } else if (isRegistered && messageCount >= 10 && adViewsToday >= 5) {
+      setActiveModal("endOfChats");
+    }
+  }, [modalState, isRegistered, globalMessageCount, setActiveModal]);
+
 
   if (!character) {
     return <div className="page">
@@ -24,6 +61,7 @@ export default function Chat() {
   }
 
   const session = sessions[characterId];
+  const isBlur = activeModal && session && session.messages.length > 1;
 
   return (
     <div className="chat">
@@ -36,8 +74,13 @@ export default function Chat() {
       </div>
 
       <div className="chat__messages">
-        {session?.messages.map((m) => (
-          <div key={m.id} className={`message-row message-row--${m.sender}`}>
+        {session?.messages.map((m, index) => (
+          <div
+            key={m.id}
+            className={classnames(`message-row message-row--${m.sender}`, {
+              "is-blurred": isBlur && index === session.messages.length - 1,
+            })}
+          >
             {m.sender === 'ai' && character && (
               <img src={character.imageIconUrl} alt={character.name} className="avatar avatar--chat" />
             )}
@@ -47,14 +90,32 @@ export default function Chat() {
             </div>
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </div>
 
       <div className="chat__input">
         <ChatInput
           characterName={character.name}
           onSend={(text) => sendMessage(characterId, text, currentUser.username)}
+          disabled={modalState?.isChatLocked}
         />
       </div>
+
+      {activeModal === "userRegistration" && (
+        <UserRegistrationModal
+          characterId={characterId}
+          onClose={() => handleModalAction(characterId, "lockChat")}
+        />
+      )}
+      {activeModal === "watchAd" && (
+        <WatchAdModal
+          characterId={characterId}
+          onClose={() => handleModalAction(characterId, "lockChat")}
+        />
+      )}
+      {activeModal === "endOfChats" && (
+        <EndOfChatsModal onClose={() => setActiveModal(null)} />
+      )}
     </div>
   );
 }

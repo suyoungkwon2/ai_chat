@@ -12,6 +12,8 @@ export default function Sidebar() {
   const currentUser = useAppStore((s) => s.currentUser);
   const sidebarWidth = useAppStore((s) => s.sidebarWidth);
   const setSidebarWidth = useAppStore((s) => s.setSidebarWidth);
+  const resetUserRegistration = useAppStore((s) => s.resetUserRegistration);
+  const resetAdViews = useAppStore((s) => s.resetAdViews);
   const [showProfile, setShowProfile] = useState(false);
   const isResizing = useRef(false);
 
@@ -77,6 +79,12 @@ export default function Sidebar() {
         <div className="sidebar__top">
           <button className="btn btn--home" onClick={handleHomeClick}>
             <span className="icon">🏠</span> <span className="text">Home</span>
+          </button>
+          <button className="btn" onClick={() => resetUserRegistration()} title="Reset User">
+            <span className="icon">🔄</span>
+          </button>
+          <button className="btn" onClick={() => resetAdViews()} title="Reset Ads">
+            <span className="icon">📺</span>
           </button>
         </div>
 

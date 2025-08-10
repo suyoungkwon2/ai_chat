@@ -2,7 +2,15 @@ import { useRef, useState } from "react";
 import ReactGA from "react-ga4";
 
 
-export default function ChatInput({ characterName, onSend }: { characterName: string, onSend: (text: string) => void }) {
+export default function ChatInput({
+  characterName,
+  onSend,
+  disabled,
+}: {
+  characterName: string;
+  onSend: (text: string) => void;
+  disabled?: boolean;
+}) {
   const [value, setValue] = useState("");
   const input = useRef<HTMLTextAreaElement | null>(null);
 
@@ -40,6 +48,13 @@ export default function ChatInput({ characterName, onSend }: { characterName: st
     });
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  };
+
   return (
     <div className="chatInput">
       <textarea
@@ -48,11 +63,13 @@ export default function ChatInput({ characterName, onSend }: { characterName: st
         placeholder="Enter a dialogue. You can also describe a situation with the (+Add Situation) button."
         value={value}
         onChange={(e) => setValue(e.target.value)}
+        onKeyDown={handleKeyDown}
         rows={2}
+        disabled={disabled}
       />
       <div className="chatInput__actions">
-        <button className="btn" onClick={insertSituationDelimiter} title="Add Situation">+Add Situation</button>
-        <button className="btn btn--primary" onClick={handleSend}>Send</button>
+        <button className="btn" onClick={insertSituationDelimiter} title="Add Situation" disabled={disabled}>+Add Situation</button>
+        <button className="btn btn--primary" onClick={handleSend} disabled={disabled}>Send</button>
       </div>
     </div>
   );
