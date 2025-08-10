@@ -97,7 +97,7 @@ export default function Chat() {
         <ChatInput
           characterName={character.name}
           onSend={(text) => sendMessage(characterId, text, currentUser.username)}
-          disabled={modalState?.isChatLocked}
+          disabled={modalState?.isChatLocked || !!activeModal}
           onUnlockWithAd={() => setActiveModal("actualAd")}
         />
       </div>

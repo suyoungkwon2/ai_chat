@@ -15,6 +15,7 @@ export default function ChatInput({
 }) {
   const [value, setValue] = useState("");
   const input = useRef<HTMLTextAreaElement | null>(null);
+  const isSending = useRef(false);
 
   const insertSituationDelimiter = () => {
     const el = input.current;
@@ -38,16 +39,24 @@ export default function ChatInput({
   };
 
   const handleSend = () => {
+    if (isSending.current) return;
+
     const text = value.trim();
     if (!text) return;
+
+    isSending.current = true;
     onSend(text);
-    setValue("");
 
     ReactGA.event({
       category: "Chat",
       action: "send_message",
       label: characterName,
     });
+
+    setTimeout(() => {
+      setValue("");
+      isSending.current = false;
+    }, 0);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
