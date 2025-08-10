@@ -212,7 +212,7 @@ body {
   min-width: 0; /* flex 아이템의 너비가 콘텐츠보다 작아질 수 있도록 */
 }
 .avatar { width: 40px; height: 40px; border-radius: 12px; background: var(--chip); border: 1px solid var(--border); }
-.avatar--sm { width: 28px; height: 28px; border-radius: 8px; }
+.avatar--sm { width: 28px; height: 28px; border-radius: 50%; }
 .btn { background: var(--panel-2); color: var(--text); border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px; cursor: pointer; }
 .btn:hover { background: var(--chip); }
 .btn--icon { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; }

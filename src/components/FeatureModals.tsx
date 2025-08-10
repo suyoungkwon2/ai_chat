@@ -10,11 +10,18 @@ interface ModalProps {
 export function UserRegistrationModal({ characterId, onClose }: ModalProps) {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
   const handleModalAction = useAppStore((s) => s.handleModalAction);
+  const updateUserProfile = useAppStore((s) => s.updateUserProfile);
 
   const handleSave = () => {
-    // TODO: 유저 등록 API 연동
-    handleModalAction(characterId, "register");
+    setError(null);
+    const result = updateUserProfile(id, password);
+    if (result.ok) {
+      handleModalAction(characterId, "register");
+    } else {
+      setError(result.reason);
+    }
   };
 
   return (
@@ -47,6 +54,7 @@ export function UserRegistrationModal({ characterId, onClose }: ModalProps) {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter a password"
           />
+          {error && <div className="form__error">{error}</div>}
         </div>
         <div className="modal__footer">
           <button className="btn" onClick={onClose}>

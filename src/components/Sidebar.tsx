@@ -4,6 +4,7 @@ import { useAppStore } from "../store/appStore";
 import { characters as allCharacters } from "../data/characters";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import classnames from 'classnames';
+import userIcon from '../assets/images/img_icon_user.svg';
 
 export default function Sidebar() {
   const navigate = useNavigate();
@@ -104,10 +105,9 @@ export default function Sidebar() {
         </div>
 
         <div className="sidebar__bottom" onClick={handleProfileClick}>
-          <img className="avatar avatar--sm" src={`https://api.dicebear.com/7.x/thumbs/svg?seed=${currentUser.username}`} alt="me" />
+          <img className="avatar avatar--sm" src={userIcon} alt="me" />
           <div className="sidebar__user">
             <div className="sidebar__userId">{currentUser.username}</div>
-            <div className="sidebar__userHint">Click to edit profile</div>
           </div>
         </div>
       </div>
