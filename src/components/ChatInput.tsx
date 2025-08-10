@@ -1,6 +1,11 @@
 import { useRef, useState } from "react";
 
-export default function ChatInput({ onSend }: { onSend: (text: string) => void }) {
+export default function ChatInput({ 
+  onSend 
+}: { 
+  username: string;
+  onSend: (text: string) => void 
+}) {
   const [value, setValue] = useState("");
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
 
