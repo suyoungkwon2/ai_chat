@@ -36,9 +36,14 @@ export default function Chat() {
 
       <div className="chat__messages">
         {session?.messages.map((m) => (
-          <div key={m.id} className={`bubble ${m.sender === "ai" ? "bubble--ai" : "bubble--user"}`}>
-            {m.situation && <div className="bubble__situation">{m.situation}</div>}
-            <div className="bubble__dialogue">{m.dialogue}</div>
+          <div key={m.id} className={`message-row message-row--${m.sender}`}>
+            {m.sender === 'ai' && character && (
+              <img src={character.imageIconUrl} alt={character.name} className="avatar avatar--chat" />
+            )}
+            <div className={`bubble bubble--${m.sender}`}>
+              {m.situation && <div className="bubble__situation">{m.situation}</div>}
+              <div className="bubble__dialogue">{m.dialogue}</div>
+            </div>
           </div>
         ))}
       </div>
@@ -51,4 +56,4 @@ export default function Chat() {
       </div>
     </div>
   );
-} 
+}

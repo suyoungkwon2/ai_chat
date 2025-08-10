@@ -188,7 +188,7 @@ body {
 .sidebar.is-collapsed .sidebar__itemText, .sidebar.is-collapsed .sidebar__user { display: none; }
 .sidebar.is-collapsed .sidebar__item { justify-content: center; }
 
-.sidebar__section { display: flex; flex-direction: column; gap: 8px; flex-grow: 1; overflow-y: auto; }
+.sidebar__section { display: flex; flex-direction: column; gap: 8px; flex-grow: 1; overflow-y: auto; border-top: 1px solid var(--border); margin-top: 12px; padding-top: 12px; }
 .sidebar__sectionTitle { color: var(--muted); font-size: 12px; letter-spacing: .4px; text-transform: uppercase; }
 .sidebar__list { display: flex; flex-direction: column; gap: 6px; }
 .sidebar__empty { color: var(--muted); font-size: 12px; padding: 8px; background: var(--panel-2); border: 1px dashed var(--border); border-radius: 8px; }
@@ -294,16 +294,34 @@ body {
 .card__actions { margin-top: 6px; display: flex; }
 
 /* 채팅 */
-.chat { display: grid; grid-template-rows: auto 1fr auto; height: calc(100vh - 40px); gap: 12px; }
+.chat { display: grid; grid-template-rows: auto 1fr auto; height: calc(100vh - 48px); gap: 12px; }
 .chat__header { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 10px; display: flex; gap: 12px; align-items: center; }
 .chat__meta { display: flex; flex-direction: column; }
 .chat__title { font-weight: 700; }
 .chat__subtitle { color: var(--muted); font-size: 13px; }
-.chat__messages { overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding-right: 4px; }
+.chat__messages { overflow-y: auto; display: flex; flex-direction: column; gap: 16px; padding: 0 8px; }
+
+.message-row {
+  display: flex;
+  gap: 12px;
+}
+.message-row--ai {
+  justify-content: flex-start;
+}
+.message-row--user {
+  justify-content: flex-end;
+}
+
+.avatar--chat {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
 
 .bubble { max-width: 80%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 14px; background: var(--panel); }
-.bubble--ai { align-self: flex-start; }
-.bubble--user { align-self: flex-end; background: #e7f5ff; }
+.bubble--ai { border-top-left-radius: 0; }
+.bubble--user { align-self: flex-end; background: #e7f5ff; border-top-right-radius: 0; }
 .bubble__situation { color: var(--muted); font-size: 12px; margin-bottom: 4px; }
 .bubble__dialogue { font-size: 15px; line-height: 1.5; }
 
