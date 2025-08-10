@@ -1,6 +1,7 @@
 import type { Character } from "../types";
 
 import riftanCard from "../assets/images/img_card_riftan.jpg";
+import riftanVideo from "../assets/videos/vid_card_riftan.mp4";
 import riftanProfile from "../assets/images/img_profile_riftan.jpg";
 import riftanIcon from "../assets/images/img_icon_riftan.jpg";
 
@@ -29,6 +30,7 @@ export const characters: Character[] = [
     keywords: ["Smut", "Jealousy", "Loyal", "Hot Guy", "Steamy"],
     likes: 382,
     imageCardUrl: riftanCard,
+    videoCardUrl: riftanVideo,
     imageProfileUrl: riftanProfile,
     imageIconUrl: riftanIcon,
   },

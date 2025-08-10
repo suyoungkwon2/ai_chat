@@ -2,11 +2,23 @@ import { Link } from "react-router-dom";
 import ReactGA from "react-ga4";
 import { useAppStore } from "../store/appStore";
 import type { Character } from "../types";
+import { useState, useRef, useEffect } from "react";
 
 export default function CharacterCard({ character }: { character: Character }) {
   const openChat = useAppStore((s) => s.openChat);
   const toggleLike = useAppStore((s) => s.toggleLike);
   const liked = (character as any)._liked;
+  const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (isHovered && videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(error => {
+        console.error("Video play was prevented:", error);
+      });
+    }
+  }, [isHovered]);
 
   const handleStartChat = () => {
     openChat(character.id);
@@ -26,10 +38,44 @@ export default function CharacterCard({ character }: { character: Character }) {
     });
   };
 
+  const handleMouseEnter = () => {
+    if (character.videoCardUrl) {
+      setIsHovered(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const handleVideoEnd = () => {
+    setIsHovered(false);
+  };
+
   return (
-    <div className="card">
+    <div
+      className="card"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className="card__imageWrap">
-        <img className="card__image" src={character.imageCardUrl} alt={character.name} />
+        {isHovered && character.videoCardUrl ? (
+          <video
+            ref={videoRef}
+            className="card__image"
+            src={character.videoCardUrl}
+            autoPlay
+            muted
+            playsInline
+            onEnded={handleVideoEnd}
+          />
+        ) : (
+          <img
+            className="card__image"
+            src={character.imageCardUrl}
+            alt={character.name}
+          />
+        )}
       </div>
       <div className="card__body">
         <div className="card__titleRow">

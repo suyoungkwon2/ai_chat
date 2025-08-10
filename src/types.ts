@@ -4,6 +4,7 @@ export interface Character {
   id: string;
   name: string;
   imageCardUrl: string;
+  videoCardUrl?: string;
   imageProfileUrl: string;
   imageIconUrl: string;
   novelTitle: string;
