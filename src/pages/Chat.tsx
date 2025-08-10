@@ -98,6 +98,7 @@ export default function Chat() {
           characterName={character.name}
           onSend={(text) => sendMessage(characterId, text, currentUser.username)}
           disabled={modalState?.isChatLocked}
+          onUnlockWithAd={() => setActiveModal("actualAd")}
         />
       </div>
 
@@ -113,7 +114,12 @@ export default function Chat() {
           onClose={() => handleModalAction(characterId, "lockChat")}
         />
       )}
-      {activeModal === "actualAd" && <ActualAdModal characterId={characterId} />}
+      {activeModal === "actualAd" && (
+        <ActualAdModal
+          characterId={characterId}
+          onClose={() => handleModalAction(characterId, "lockChat")}
+        />
+      )}
       {activeModal === "endOfChats" && (
         <EndOfChatsModal onClose={() => setActiveModal(null)} />
       )}

@@ -102,7 +102,7 @@ export function WatchAdModal({ characterId, onClose }: ModalProps) {
   );
 }
 
-export function ActualAdModal({ characterId }: { characterId: string }) {
+export function ActualAdModal({ characterId, onClose }: { characterId: string, onClose: () => void }) {
   const [countdown, setCountdown] = useState(15);
   const handleModalAction = useAppStore((s) => s.handleModalAction);
 
@@ -120,6 +120,7 @@ export function ActualAdModal({ characterId }: { characterId: string }) {
       <div className="modal modal--ad">
         <video src={adVideo} autoPlay loop muted playsInline className="ad-video" />
         <div className="ad-countdown">{countdown}s</div>
+        <button className="btn btn--icon ad-close-btn" onClick={onClose}>✖️</button>
       </div>
     </div>
   );
