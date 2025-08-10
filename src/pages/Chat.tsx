@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useAppStore } from "../store/appStore";
 import ChatInput from "../components/ChatInput";
 import { characters as allCharacters } from "../data/characters";
-import { EndOfChatsModal, UserRegistrationModal, WatchAdModal } from "../components/FeatureModals";
+import { ActualAdModal, EndOfChatsModal, UserRegistrationModal, WatchAdModal } from "../components/FeatureModals";
 import classnames from "classnames";
 
 export default function Chat() {
@@ -113,6 +113,7 @@ export default function Chat() {
           onClose={() => handleModalAction(characterId, "lockChat")}
         />
       )}
+      {activeModal === "actualAd" && <ActualAdModal characterId={characterId} />}
       {activeModal === "endOfChats" && (
         <EndOfChatsModal onClose={() => setActiveModal(null)} />
       )}

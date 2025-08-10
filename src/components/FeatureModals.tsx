@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppStore } from "../store/appStore";
+import adVideo from "../assets/videos/vid_book.mp4";
 
 interface ModalProps {
   characterId: string;
@@ -28,7 +29,7 @@ export function UserRegistrationModal({ characterId, onClose }: ModalProps) {
         <div className="modal__content">
           <p>
             Enter your ID and password to unlock 10 more chats, and your
-            character will remember your story.
+            character will remember your story 🩶.
           </p>
           <label className="form__label">ID</label>
           <input
@@ -62,20 +63,19 @@ export function UserRegistrationModal({ characterId, onClose }: ModalProps) {
 }
 
 export function WatchAdModal({ characterId, onClose }: ModalProps) {
-  const handleModalAction = useAppStore((s) => s.handleModalAction);
+  const setActiveModal = useAppStore((s) => s.setActiveModal);
   const modalState = useAppStore((s) => s.modalStates[characterId]);
   const adViewsLeft = 5 - (modalState?.adViewsToday || 0);
 
   const handleWatchAd = () => {
-    // TODO: Implement ad watching logic
-    handleModalAction(characterId, "watchAd");
+    setActiveModal("actualAd");
   };
 
   return (
     <div className="modal__backdrop" role="dialog" aria-modal="true">
       <div className="modal">
         <div className="modal__header">
-          <div className="modal__title">Watch an ad to unlock +10 chats</div>
+          <div className="modal__title">Watch an ad to unlock +10 chats 🎉</div>
           <button className="btn btn--icon" onClick={onClose}>
             ✖️
           </button>
@@ -102,12 +102,35 @@ export function WatchAdModal({ characterId, onClose }: ModalProps) {
   );
 }
 
+export function ActualAdModal({ characterId }: { characterId: string }) {
+  const [countdown, setCountdown] = useState(15);
+  const handleModalAction = useAppStore((s) => s.handleModalAction);
+
+  useEffect(() => {
+    if (countdown > 0) {
+      const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+      return () => clearTimeout(timer);
+    } else {
+      handleModalAction(characterId, "watchAd");
+    }
+  }, [countdown, characterId, handleModalAction]);
+
+  return (
+    <div className="modal__backdrop" role="dialog" aria-modal="true">
+      <div className="modal modal--ad">
+        <video src={adVideo} autoPlay loop muted playsInline className="ad-video" />
+        <div className="ad-countdown">{countdown}s</div>
+      </div>
+    </div>
+  );
+}
+
 export function EndOfChatsModal({ onClose }: { onClose: () => void }) {
   return (
     <div className="modal__backdrop" role="dialog" aria-modal="true">
       <div className="modal">
         <div className="modal__header">
-          <div className="modal__title">Today’s chats have ended</div>
+          <div className="modal__title">Today’s chats have ended 🥺</div>
           <button className="btn btn--icon" onClick={onClose}>
             ✖️
           </button>
