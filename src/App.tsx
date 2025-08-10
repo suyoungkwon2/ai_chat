@@ -1,11 +1,21 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import ReactGA from "react-ga4";
 import Sidebar from "./components/Sidebar";
 import Home from "./pages/Home";
 import Chat from "./pages/Chat";
 import { useAppStore } from "./store/appStore";
 import { useIsMobile } from "./hooks/useIsMobile";
-import MobileMenu from "./components/MobileMenu";
+import MobileMenu from "./components/MobileMenu.tsx";
+
+const GA_MEASUREMENT_ID = "G-K7NPXST4BM";
+
+function usePageViews() {
+  const location = useLocation();
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: location.pathname + location.search });
+  }, [location]);
+}
 
 function MobileHeader({ onMenuToggle }: { onMenuToggle: () => void }) {
   return (
@@ -21,6 +31,7 @@ function MobileHeader({ onMenuToggle }: { onMenuToggle: () => void }) {
 }
 
 function AppShell() {
+  usePageViews();
   const sidebarWidth = useAppStore((s) => s.sidebarWidth);
   const isMobile = useIsMobile();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -56,6 +67,10 @@ function AppShell() {
 }
 
 export default function App() {
+  useEffect(() => {
+    ReactGA.initialize(GA_MEASUREMENT_ID);
+  }, []);
+
   return (
     <BrowserRouter>
       <AppShell />
