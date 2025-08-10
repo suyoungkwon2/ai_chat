@@ -53,7 +53,7 @@ function AppShell() {
   }
 
   return (
-    <div className="layout" style={{ gridTemplateColumns: `${sidebarWidth}px 1fr` }}>
+    <div className="layout">
       <Sidebar />
       <main className="content">
         <Routes>
