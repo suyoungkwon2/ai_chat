@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAppStore } from "../store/appStore";
 import { characters as allCharacters } from "../data/characters";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
 export default function MobileMenu({ onClose }: { onClose: () => void }) {
   const navigate = useNavigate();
