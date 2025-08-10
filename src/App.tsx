@@ -67,9 +67,12 @@ function AppShell() {
 }
 
 export default function App() {
+  const currentUser = useAppStore((s) => s.currentUser);
+
   useEffect(() => {
     ReactGA.initialize(GA_MEASUREMENT_ID);
-  }, []);
+    ReactGA.set({ userId: currentUser.username });
+  }, [currentUser.username]);
 
   return (
     <BrowserRouter>
