@@ -33,3 +33,7 @@ dist-ssr
 
 # Do not commit stray Python backend entrypoint
 backend.py
+
+# Python cache
+__pycache__/
+*.pyc
