@@ -31,9 +31,6 @@ dist-ssr
 # Local databases and sensitive artifacts
 *.db
 
-# Do not commit stray Python backend entrypoint
-backend.py
-
 # Python cache
 __pycache__/
 *.pyc
