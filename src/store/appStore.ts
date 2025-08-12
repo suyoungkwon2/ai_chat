@@ -2,7 +2,7 @@ import { nanoid } from "nanoid";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import ReactGA from "react-ga4";
-import type { AppState, ChatMessage } from "../types";
+import type { AppState, ChatMessage, UserProfile } from "../types";
 import { characters as seedCharacters } from "../data/characters";
 
 function randomUsername() {
@@ -43,10 +43,14 @@ export const useAppStore = create<AppState>()(
       sidebarWidth: 270,
       modalStates: {},
       activeModal: null,
+      modalContextCharacterId: null,
       isRegistered: false,
       globalMessageCount: 0,
 
-      setActiveModal: (modal) => set({ activeModal: modal }),
+      setActiveModal: (modal, characterId) => set({ 
+        activeModal: modal,
+        modalContextCharacterId: characterId || null,
+      }),
 
       initModalState: (characterId) => {
         const state = get();
@@ -135,6 +139,7 @@ export const useAppStore = create<AppState>()(
 
       handleModalAction: (characterId, action) => {
         const state = get();
+        if (!characterId) return; // characterId가 없으면 아무 작업도 하지 않음
         const modalState = state.modalStates[characterId];
 
         const today = new Date().toISOString().split("T")[0];
@@ -229,6 +234,23 @@ export const useAppStore = create<AppState>()(
         });
 
         return { ok: true as const };
+      },
+
+      signInUser: (username: string, password: string) => {
+        const state = get();
+        const user = state.registeredUsernames.find(
+          (u) => u === username
+        );
+
+        // This is a simplified check. In a real app, you'd check a stored password hash.
+        if (user) {
+          const storedUser = state.currentUser; // In a real app, you'd fetch this user's data
+          if (storedUser.username === username && storedUser.password === password) {
+             set({ isRegistered: true, activeModal: null, modalContextCharacterId: null });
+            return { ok: true as const };
+          }
+        }
+        return { ok: false as const, reason: "Invalid username or password." };
       },
       
       setSidebarWidth: (width) => set({ sidebarWidth: width }),

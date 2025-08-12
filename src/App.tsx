@@ -7,6 +7,13 @@ import Chat from "./pages/Chat";
 import { useAppStore } from "./store/appStore";
 import { useIsMobile } from "./hooks/useIsMobile";
 import MobileMenu from "./components/MobileMenu.tsx";
+import {
+  ActualAdModal,
+  EndOfChatsModal,
+  SignInModal,
+  UserRegistrationModal,
+  WatchAdModal,
+} from "./components/FeatureModals.tsx";
 
 const GA_MEASUREMENT_ID = "G-K7NPXST4BM";
 
@@ -30,6 +37,38 @@ function MobileHeader({ onMenuToggle }: { onMenuToggle: () => void }) {
   );
 }
 
+function GlobalModals() {
+  const activeModal = useAppStore((s) => s.activeModal);
+  const characterId = useAppStore((s) => s.modalContextCharacterId);
+  const setActiveModal = useAppStore((s) => s.setActiveModal);
+  const handleModalAction = useAppStore((s) => s.handleModalAction);
+
+  if (!activeModal) return null;
+
+  const props = {
+    characterId: characterId || undefined,
+    onClose: () => {
+      if (characterId) handleModalAction(characterId, "lockChat");
+      setActiveModal(null);
+    }
+  };
+
+  switch (activeModal) {
+    case "userRegistration":
+      return <UserRegistrationModal {...props} />;
+    case "signIn":
+      return <SignInModal {...props} />;
+    case "watchAd":
+      return <WatchAdModal {...props} />;
+    case "actualAd":
+      return <ActualAdModal {...props} />;
+    case "endOfChats":
+      return <EndOfChatsModal onClose={() => setActiveModal(null)} />;
+    default:
+      return null;
+  }
+}
+
 function AppShell() {
   usePageViews();
   const isMobile = useIsMobile();
@@ -47,6 +86,7 @@ function AppShell() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
+        <GlobalModals />
       </div>
     );
   }
@@ -61,6 +101,7 @@ function AppShell() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
+      <GlobalModals />
     </div>
   );
 }

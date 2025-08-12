@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useAppStore } from "../store/appStore";
 import ChatInput from "../components/ChatInput";
 import { characters as allCharacters } from "../data/characters";
-import { ActualAdModal, EndOfChatsModal, UserRegistrationModal, WatchAdModal } from "../components/FeatureModals";
+import { ActualAdModal, EndOfChatsModal, UserRegistrationModal, WatchAdModal, SignInModal } from "../components/FeatureModals";
 import classnames from "classnames";
 
 export default function Chat() {
@@ -45,13 +45,13 @@ export default function Chat() {
     }
 
     if (!isRegistered && globalMessageCount >= 5) {
-      setActiveModal("userRegistration");
+      setActiveModal("userRegistration", characterId);
     } else if (isRegistered && messageCount >= 10 && adViewsToday < 5) {
-      setActiveModal("watchAd");
+      setActiveModal("watchAd", characterId);
     } else if (isRegistered && messageCount >= 10 && adViewsToday >= 5) {
-      setActiveModal("endOfChats");
+      setActiveModal("endOfChats", characterId);
     }
-  }, [modalState, isRegistered, globalMessageCount, setActiveModal]);
+  }, [modalState, isRegistered, globalMessageCount, setActiveModal, characterId]);
 
 
   if (!character) {
@@ -98,31 +98,12 @@ export default function Chat() {
           characterName={character.name}
           onSend={(text) => sendMessage(characterId, text, currentUser.username)}
           disabled={modalState?.isChatLocked || !!activeModal}
-          onUnlockWithAd={() => setActiveModal("actualAd")}
+          onUnlockWithAd={() => setActiveModal("actualAd", characterId)}
+          isRegistered={isRegistered}
         />
       </div>
 
-      {activeModal === "userRegistration" && (
-        <UserRegistrationModal
-          characterId={characterId}
-          onClose={() => handleModalAction(characterId, "lockChat")}
-        />
-      )}
-      {activeModal === "watchAd" && (
-        <WatchAdModal
-          characterId={characterId}
-          onClose={() => handleModalAction(characterId, "lockChat")}
-        />
-      )}
-      {activeModal === "actualAd" && (
-        <ActualAdModal
-          characterId={characterId}
-          onClose={() => handleModalAction(characterId, "lockChat")}
-        />
-      )}
-      {activeModal === "endOfChats" && (
-        <EndOfChatsModal onClose={() => setActiveModal(null)} />
-      )}
+      {/* The rest of the modals are rendered globally in App.tsx */}
     </div>
   );
 }

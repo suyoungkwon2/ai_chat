@@ -7,11 +7,13 @@ export default function ChatInput({
   onSend,
   disabled,
   onUnlockWithAd,
+  isRegistered,
 }: {
   characterName: string;
   onSend: (text: string) => void;
   disabled?: boolean;
   onUnlockWithAd?: () => void;
+  isRegistered?: boolean;
 }) {
   const [value, setValue] = useState("");
   const input = useRef<HTMLTextAreaElement | null>(null);
@@ -81,7 +83,7 @@ export default function ChatInput({
       <div className="chatInput__actions">
         <div className="chatInput__actionsLeft">
           <button className="btn" onClick={insertSituationDelimiter} title="Add Situation" disabled={disabled}>+Add Situation</button>
-          {disabled && onUnlockWithAd && (
+          {disabled && onUnlockWithAd && isRegistered &&(
             <button className="btn" onClick={onUnlockWithAd}>Unlock with Ad 🎉</button>
           )}
         </div>

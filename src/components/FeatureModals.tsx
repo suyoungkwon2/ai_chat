@@ -3,7 +3,7 @@ import { useAppStore } from "../store/appStore";
 import adVideo from "../assets/videos/vid_book.mp4";
 
 interface ModalProps {
-  characterId: string;
+  characterId?: string;
   onClose: () => void;
 }
 
@@ -13,12 +13,13 @@ export function UserRegistrationModal({ characterId, onClose }: ModalProps) {
   const [error, setError] = useState<string | null>(null);
   const handleModalAction = useAppStore((s) => s.handleModalAction);
   const updateUserProfile = useAppStore((s) => s.updateUserProfile);
+  const setActiveModal = useAppStore((s) => s.setActiveModal);
 
   const handleSave = () => {
     setError(null);
     const result = updateUserProfile(id, password);
     if (result.ok) {
-      handleModalAction(characterId, "register");
+      if (characterId) handleModalAction(characterId, "register");
     } else {
       setError(result.reason);
     }
@@ -57,8 +58,8 @@ export function UserRegistrationModal({ characterId, onClose }: ModalProps) {
           {error && <div className="form__error">{error}</div>}
         </div>
         <div className="modal__footer">
-          <button className="btn" onClick={onClose}>
-            Chat Again Tomorrow
+          <button className="btn" onClick={() => setActiveModal("signIn", characterId)}>
+            Already a user? Sign In
           </button>
           <button className="btn btn--primary" onClick={handleSave}>
             Save
@@ -70,13 +71,76 @@ export function UserRegistrationModal({ characterId, onClose }: ModalProps) {
   );
 }
 
+export function SignInModal({ characterId, onClose }: ModalProps) {
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const signInUser = useAppStore((s) => s.signInUser);
+  const handleModalAction = useAppStore((s) => s.handleModalAction);
+  const setActiveModal = useAppStore((s) => s.setActiveModal);
+
+  const handleSignIn = () => {
+    setError(null);
+    const result = signInUser(id, password);
+    if (result.ok) {
+      if (characterId) handleModalAction(characterId, "register"); // Re-using register logic for simplicity
+    } else {
+      setError(result.reason);
+    }
+  };
+
+  return (
+    <div className="modal__backdrop" role="dialog" aria-modal="true">
+      <div className="modal">
+        <div className="modal__header">
+          <div className="modal__title">Welcome back to your story</div>
+          <button className="btn btn--icon" onClick={onClose}>
+            ✖️
+          </button>
+        </div>
+        <div className="modal__content">
+          <p>
+            Enter your ID and password to step back into your world. Your
+            character still remembers every word.
+          </p>
+          <label className="form__label">ID</label>
+          <input
+            className="form__input"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+            placeholder="Enter your ID"
+          />
+
+          <label className="form__label">Password</label>
+          <input
+            className="form__input"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter your password"
+          />
+          {error && <div className="form__error">{error}</div>}
+        </div>
+        <div className="modal__footer">
+          <button className="btn" onClick={() => setActiveModal("userRegistration", characterId)}>
+            Back to Signup
+          </button>
+          <button className="btn btn--primary" onClick={handleSignIn}>
+            Resume Conversation
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function WatchAdModal({ characterId, onClose }: ModalProps) {
   const setActiveModal = useAppStore((s) => s.setActiveModal);
-  const modalState = useAppStore((s) => s.modalStates[characterId]);
+  const modalState = useAppStore((s) => s.modalStates[characterId!]);
   const adViewsLeft = 5 - (modalState?.adViewsToday || 0);
 
   const handleWatchAd = () => {
-    setActiveModal("actualAd");
+    setActiveModal("actualAd", characterId);
   };
 
   return (
@@ -110,7 +174,7 @@ export function WatchAdModal({ characterId, onClose }: ModalProps) {
   );
 }
 
-export function ActualAdModal({ characterId, onClose }: { characterId: string, onClose: () => void }) {
+export function ActualAdModal({ characterId, onClose }: { characterId?: string, onClose: () => void }) {
   const [countdown, setCountdown] = useState(15);
   const handleModalAction = useAppStore((s) => s.handleModalAction);
 
@@ -119,7 +183,7 @@ export function ActualAdModal({ characterId, onClose }: { characterId: string, o
       const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
       return () => clearTimeout(timer);
     } else {
-      handleModalAction(characterId, "watchAd");
+      if (characterId) handleModalAction(characterId, "watchAd");
     }
   }, [countdown, characterId, handleModalAction]);
 
@@ -129,6 +193,46 @@ export function ActualAdModal({ characterId, onClose }: { characterId: string, o
         <video src={adVideo} autoPlay loop muted playsInline className="ad-video" />
         <div className="ad-countdown">{countdown}s</div>
         <button className="btn btn--icon ad-close-btn" onClick={onClose}>✖️</button>
+      </div>
+    </div>
+  );
+}
+
+export function UserProfileModal({ onClose }: { onClose: () => void }) {
+  const currentUser = useAppStore((s) => s.currentUser);
+  const updateUserProfile = useAppStore((s) => s.updateUserProfile);
+  const [username] = useState(currentUser.username);
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+
+  const onSave = () => {
+    const result = updateUserProfile(username.trim(), password.trim());
+    if (!result.ok) {
+      setError(result.reason);
+      return;
+    }
+    onClose();
+  };
+
+  return (
+    <div className="modal__backdrop" role="dialog" aria-modal="true">
+      <div className="modal">
+        <div className="modal__header">
+          <div className="modal__title">Profile Settings</div>
+          <button className="btn btn--icon" onClick={onClose}>✖️</button>
+        </div>
+        <div className="modal__content">
+          <label className="form__label">Username</label>
+          <input className="form__input" value={username} disabled />
+
+          <label className="form__label">Password</label>
+          <input className="form__input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter a new password" />
+
+          {error && <div className="form__error">{error}</div>}
+        </div>
+        <div className="modal__footer">
+          <button className="btn" onClick={onSave}>Save Changes</button>
+        </div>
       </div>
     </div>
   );
