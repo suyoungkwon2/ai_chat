@@ -2,7 +2,7 @@ import { nanoid } from "nanoid";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import ReactGA from "react-ga4";
-import type { AppState, ChatMessage, UserProfile } from "../types";
+import type { AppState, ChatMessage } from "../types";
 import { characters as seedCharacters } from "../data/characters";
 
 function randomUsername() {

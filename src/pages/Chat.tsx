@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useAppStore } from "../store/appStore";
 import ChatInput from "../components/ChatInput";
 import { characters as allCharacters } from "../data/characters";
-import { ActualAdModal, EndOfChatsModal, UserRegistrationModal, WatchAdModal, SignInModal } from "../components/FeatureModals";
 import classnames from "classnames";
 
 export default function Chat() {
@@ -15,7 +14,6 @@ export default function Chat() {
   const modalStates = useAppStore((s) => s.modalStates);
   const activeModal = useAppStore((s) => s.activeModal);
   const setActiveModal = useAppStore((s) => s.setActiveModal);
-  const handleModalAction = useAppStore((s) => s.handleModalAction);
   const isRegistered = useAppStore((s) => s.isRegistered);
   const globalMessageCount = useAppStore((s) => s.globalMessageCount);
 
