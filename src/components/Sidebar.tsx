@@ -4,6 +4,8 @@ import { useAppStore } from "../store/appStore";
 import { characters as allCharacters } from "../data/characters";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import classnames from 'classnames';
+import userIcon from '../assets/images/img_icon_user.svg';
+import { UserProfileModal } from "./FeatureModals";
 
 export default function Sidebar() {
   const navigate = useNavigate();
@@ -12,7 +14,11 @@ export default function Sidebar() {
   const currentUser = useAppStore((s) => s.currentUser);
   const sidebarWidth = useAppStore((s) => s.sidebarWidth);
   const setSidebarWidth = useAppStore((s) => s.setSidebarWidth);
-  const [showProfile, setShowProfile] = useState(false);
+  const resetUserRegistration = useAppStore((s) => s.resetUserRegistration);
+  const resetAdViews = useAppStore((s) => s.resetAdViews);
+  const isRegistered = useAppStore((s) => s.isRegistered);
+  const setActiveModal = useAppStore((s) => s.setActiveModal);
+  const [showProfileModal, setShowProfileModal] = useState(false);
   const isResizing = useRef(false);
 
   const handleHomeClick = () => {
@@ -24,11 +30,15 @@ export default function Sidebar() {
   };
 
   const handleProfileClick = () => {
-    setShowProfile(true);
-    ReactGA.event({
-      category: "Navigation",
-      action: "open_profile_modal",
-    });
+    if (isRegistered) {
+      setShowProfileModal(true);
+      ReactGA.event({
+        category: "Navigation",
+        action: "open_profile_modal",
+      });
+    } else {
+      setActiveModal("userRegistration");
+    }
   };
 
   const isCollapsed = sidebarWidth < 100;
@@ -78,6 +88,12 @@ export default function Sidebar() {
           <button className="btn btn--home" onClick={handleHomeClick}>
             <span className="icon">🏠</span> <span className="text">Home</span>
           </button>
+          <button className="btn" onClick={() => resetUserRegistration()} title="Reset User">
+            <span className="icon">🔄</span>
+          </button>
+          <button className="btn" onClick={() => resetAdViews()} title="Reset Ads">
+            <span className="icon">📺</span>
+          </button>
         </div>
 
         <div className="sidebar__section">
@@ -96,57 +112,16 @@ export default function Sidebar() {
         </div>
 
         <div className="sidebar__bottom" onClick={handleProfileClick}>
-          <img className="avatar avatar--sm" src={`https://api.dicebear.com/7.x/thumbs/svg?seed=${currentUser.username}`} alt="me" />
+          <img className="avatar avatar--sm" src={userIcon} alt="me" />
           <div className="sidebar__user">
             <div className="sidebar__userId">{currentUser.username}</div>
-            <div className="sidebar__userHint">Click to edit profile</div>
           </div>
         </div>
       </div>
 
       <div className="sidebar__resizer" onMouseDown={handleMouseDown} />
 
-      {showProfile && <UserModal onClose={() => setShowProfile(false)} />}
+      {showProfileModal && <UserProfileModal onClose={() => setShowProfileModal(false)} />}
     </aside>
-  );
-}
-
-function UserModal({ onClose }: { onClose: () => void }) {
-  const currentUser = useAppStore((s) => s.currentUser);
-  const updateUserProfile = useAppStore((s) => s.updateUserProfile);
-  const [username, setUsername] = useState(currentUser.username);
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
-
-  const onSave = () => {
-    const result = updateUserProfile(username.trim(), password.trim());
-    if (!result.ok) {
-      setError(result.reason);
-      return;
-    }
-    onClose();
-  };
-
-  return (
-    <div className="modal__backdrop" role="dialog" aria-modal="true">
-      <div className="modal">
-        <div className="modal__header">
-          <div className="modal__title">Profile Settings</div>
-          <button className="btn btn--icon" onClick={onClose}>✖️</button>
-        </div>
-        <div className="modal__content">
-          <label className="form__label">Username</label>
-          <input className="form__input" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Enter a unique username" />
-
-          <label className="form__label">Password</label>
-          <input className="form__input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter a password" />
-
-          {error && <div className="form__error">{error}</div>}
-        </div>
-        <div className="modal__footer">
-          <button className="btn" onClick={onSave}>Save Changes</button>
-        </div>
-      </div>
-    </div>
   );
 } 

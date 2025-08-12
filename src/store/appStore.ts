@@ -126,9 +126,38 @@ export const useAppStore = create<AppState>()(
       sessionsByCharacterId: {},
       openCharacterIds: [],
       sidebarWidth: 270,
+      modalStates: {},
+      activeModal: null,
+      modalContextCharacterId: null,
+      isRegistered: false,
+      globalMessageCount: 0,
+
+      setActiveModal: (modal, characterId) => set({ 
+        activeModal: modal,
+        modalContextCharacterId: characterId || null,
+      }),
+
+      initModalState: (characterId) => {
+        const state = get();
+        if (state.modalStates[characterId]) return;
+
+        set((s) => ({
+          modalStates: {
+            ...s.modalStates,
+            [characterId]: {
+              messageCount: 0,
+              adViewsToday: 0,
+              lastAdViewDate: null,
+              isChatLocked: false,
+            },
+          },
+        }));
+      },
 
       openChat: async (characterId) => {
         const state = get();
+        state.initModalState(characterId); // Ensure modal state is initialized
+
         const exists = state.sessionsByCharacterId[characterId];
         if (!exists) {
           const sessionId = nanoid();
@@ -200,6 +229,14 @@ export const useAppStore = create<AppState>()(
               isTyping: true,
             },
           },
+          modalStates: {
+            ...s.modalStates,
+            [characterId]: {
+              ...s.modalStates[characterId],
+              messageCount: (s.modalStates[characterId]?.messageCount || 0) + 1,
+            },
+          },
+          globalMessageCount: get().isRegistered ? s.globalMessageCount : s.globalMessageCount + 1,
         }));
 
         // ensure backend chat exists before sending (handles race and server restarts)
@@ -348,6 +385,67 @@ export const useAppStore = create<AppState>()(
         }
       },
 
+      handleModalAction: (characterId, action) => {
+        const state = get();
+        if (!characterId) return; // characterId가 없으면 아무 작업도 하지 않음
+        const modalState = state.modalStates[characterId];
+
+        const today = new Date().toISOString().split("T")[0];
+
+        switch (action) {
+          case "register":
+            set((s) => ({
+              isRegistered: true,
+              globalMessageCount: 0,
+              activeModal: null,
+              modalStates: {
+                ...s.modalStates,
+                [characterId]: {
+                  ...s.modalStates[characterId],
+                  messageCount: 0,
+                  isChatLocked: false,
+                },
+              },
+            }));
+            break;
+          case "watchAd":
+            // Check if last ad view was today
+            if (modalState.lastAdViewDate !== today) {
+              modalState.adViewsToday = 0; // Reset counter if new day
+            }
+
+            if (modalState.adViewsToday < 5) {
+              set((s) => ({
+                modalStates: {
+                  ...s.modalStates,
+                  [characterId]: {
+                    ...modalState,
+                    adViewsToday: modalState.adViewsToday + 1,
+                    lastAdViewDate: today,
+                    messageCount: 0,
+                    isChatLocked: false,
+                  },
+                },
+                activeModal: null,
+              }));
+            }
+            break;
+          case "lockChat":
+            if (!modalState) return;
+            set((s) => ({
+              modalStates: {
+                ...s.modalStates,
+                [characterId]: {
+                  ...modalState,
+                  isChatLocked: true,
+                },
+              },
+              activeModal: null,
+            }));
+            break;
+        }
+      },
+
       toggleLike: (characterId) => {
         set((s) => ({
           characters: s.characters.map((c) =>
@@ -376,8 +474,49 @@ export const useAppStore = create<AppState>()(
         ReactGA.event({ category: "Profile", action: "save_profile_changes", label: username });
         return { ok: true as const };
       },
+
+      signInUser: (username: string, password: string) => {
+        const state = get();
+        const user = state.registeredUsernames.find(
+          (u) => u === username
+        );
+
+        // This is a simplified check. In a real app, you'd check a stored password hash.
+        if (user) {
+          const storedUser = state.currentUser; // In a real app, you'd fetch this user's data
+          if (storedUser.username === username && storedUser.password === password) {
+             set({ isRegistered: true, activeModal: null, modalContextCharacterId: null });
+            return { ok: true as const };
+          }
+        }
+        return { ok: false as const, reason: "Invalid username or password." };
+      },
       
       setSidebarWidth: (width) => set({ sidebarWidth: width }),
+
+      resetUserRegistration: () => {
+        set({
+          isRegistered: false,
+          globalMessageCount: 0,
+          sessionsByCharacterId: {},
+          modalStates: {},
+          activeModal: null,
+        });
+      },
+
+      resetAdViews: () => {
+        set((s) => {
+          const newModalStates = { ...s.modalStates };
+          for (const charId in newModalStates) {
+            newModalStates[charId] = {
+              ...newModalStates[charId],
+              adViewsToday: 0,
+              lastAdViewDate: null,
+            };
+          }
+          return { modalStates: newModalStates };
+        });
+      },
     }),
     {
       name: "aichat-store",
@@ -388,6 +527,10 @@ export const useAppStore = create<AppState>()(
         sessionsByCharacterId: state.sessionsByCharacterId,
         openCharacterIds: state.openCharacterIds,
         sidebarWidth: state.sidebarWidth,
+        modalStates: state.modalStates,
+        activeModal: state.activeModal,
+        isRegistered: state.isRegistered,
+        globalMessageCount: state.globalMessageCount,
       }),
     }
   )

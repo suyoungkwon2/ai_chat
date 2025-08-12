@@ -4,6 +4,7 @@ export interface Character {
   id: string;
   name: string;
   imageCardUrl: string;
+  videoCardUrl?: string;
   imageProfileUrl: string;
   imageIconUrl: string;
   novelTitle: string;
@@ -18,6 +19,13 @@ export interface ChatMessage {
   dialogue: string;
   situation?: string;
   timestamp: number;
+}
+
+export interface ModalState {
+  messageCount: number;
+  adViewsToday: number;
+  lastAdViewDate: string | null;
+  isChatLocked: boolean;
 }
 
 export interface ChatSession {
@@ -44,11 +52,22 @@ export interface AppState {
   sessionsByCharacterId: Record<string, ChatSession>;
   openCharacterIds: string[]; // 사이드바에 노출되는 열린 채팅 목록
   sidebarWidth: number;
+  modalStates: Record<string, ModalState>;
+  activeModal: "userRegistration" | "watchAd" | "endOfChats" | "actualAd" | "signIn" | null;
+  modalContextCharacterId: string | null;
+  isRegistered: boolean;
+  globalMessageCount: number;
 
   // actions
   openChat: (characterId: string) => void;
   sendMessage: (characterId: string, inputText: string, sender: string) => void;
   toggleLike: (characterId: string) => void;
   updateUserProfile: (username: string, password: string) => { ok: true } | { ok: false; reason: string };
+  signInUser: (username: string, password: string) => { ok: true } | { ok: false; reason: string };
   setSidebarWidth: (width: number) => void;
+  initModalState: (characterId: string) => void;
+  setActiveModal: (modal: "userRegistration" | "watchAd" | "endOfChats" | "actualAd" | "signIn" | null, characterId?: string) => void;
+  handleModalAction: (characterId: string | undefined, action: "register" | "watchAd" | "lockChat") => void;
+  resetUserRegistration: () => void;
+  resetAdViews: () => void;
 } 
