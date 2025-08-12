@@ -326,7 +326,7 @@ body {
 .bubble { max-width: 80%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 14px; background: var(--panel); }
 .bubble--ai { border-top-left-radius: 0; }
 .bubble--user { align-self: flex-end; background: #e7f5ff; border-top-right-radius: 0; }
-.bubble__situation { color: var(--muted); font-size: 12px; margin-bottom: 4px; }
+.bubble__situation { color: var(--muted); font-size: 15px; font-style: italic; margin-bottom: 6px; }
 .bubble__dialogue { font-size: 15px; line-height: 1.5; }
 
 .chat__input { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 10px; }

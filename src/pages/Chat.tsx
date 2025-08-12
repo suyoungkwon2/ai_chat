@@ -4,6 +4,7 @@ import { useAppStore } from "../store/appStore";
 import ChatInput from "../components/ChatInput";
 import { characters as allCharacters } from "../data/characters";
 import classnames from "classnames";
+import FormattedMessage from "../components/FormattedMessage";
 
 export default function Chat() {
   const { characterId = "" } = useParams();
@@ -72,22 +73,48 @@ export default function Chat() {
       </div>
 
       <div className="chat__messages">
-        {session?.messages.map((m, index) => (
-          <div
-            key={m.id}
-            className={classnames(`message-row message-row--${m.sender}`, {
-              "is-blurred": isBlur && index === session.messages.length - 1,
-            })}
-          >
-            {m.sender === 'ai' && character && (
-              <img src={character.imageIconUrl} alt={character.name} className="avatar avatar--chat" />
-            )}
-            <div className={`bubble bubble--${m.sender}`}>
-              {m.situation && <div className="bubble__situation">{m.situation}</div>}
-              <div className="bubble__dialogue">{m.dialogue}</div>
+        {session?.messages.map((m, index) => {
+          if (m.sender === "user") {
+            return (
+              <div
+                key={m.id}
+                className={classnames("message-row message-row--user", {
+                  "is-blurred": isBlur && index === session.messages.length - 1,
+                })}
+              >
+                <div className="bubble bubble--user">
+                  <FormattedMessage text={m.dialogue} />
+                </div>
+              </div>
+            );
+          }
+
+          // AI Message
+          return (
+            <div
+              key={m.id}
+              className={classnames("message-row message-row--ai", {
+                "is-blurred": isBlur && index === session.messages.length - 1,
+              })}
+            >
+              {character && (
+                <img
+                  src={character.imageIconUrl}
+                  alt={character.name}
+                  className="avatar avatar--chat"
+                />
+              )}
+              <div className="bubble bubble--ai">
+                {m.situation && (
+                  <div className="bubble__situation">{m.situation}</div>
+                )}
+                {m.dialogue && (
+                  <div className="bubble__dialogue">{m.dialogue}</div>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
         <div ref={messagesEndRef} />
       </div>
 
