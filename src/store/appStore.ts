@@ -214,8 +214,7 @@ export const useAppStore = create<AppState>()(
           sender_id: ensured.humanId, // in-memory flow uses this, persistent ignores
           content: dialogue + (situation ? `\n\n**SITUATION:** ${situation}` : ""),
           anon_id,
-          user_name: get().currentUser.username,
-          ai_name: ensured.aiName,
+          character_id: characterId,
         };
 
         try {
