@@ -29,9 +29,15 @@ export interface ModalState {
 }
 
 export interface ChatSession {
-  id: string; // session id
+  id: string; // session id (local)
   characterId: string;
   messages: ChatMessage[];
+  // Backend identifiers (optional)
+  backendChatId?: string;
+  humanId?: string;
+  aiId?: string;
+  aiName?: string;
+  isTyping?: boolean;
 }
 
 export interface UserProfile {

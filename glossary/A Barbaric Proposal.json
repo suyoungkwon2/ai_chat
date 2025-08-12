@@ -1,0 +1,497 @@
+{
+  "characters": {
+    "리에네 아르사크": {
+      "name": "Liene Arsac",
+      "korean_surname": "아르사크",
+      "korean_given_name": "리에네",
+      "surname": "Arsac",
+      "given_name": "Liene",
+      "gender": "female",
+      "role": "protagonist",
+      "age_group": "young_adult",
+      "personality_traits": [
+        "pragmatic",
+        "responsible",
+        "resilient",
+        "brave",
+        "easily_flustered"
+      ],
+      "speech_style": "formal",
+      "physical_description": [
+        "pale skin",
+        "green eyes",
+        "slender yet strong body"
+      ],
+      "relationships": {
+        "black": {
+          "type": "Forced Marriage / Enemies-to-Lovers",
+          "description": "A marriage born from conquest and desperation, this is a slow-burn, high-tension dynamic. He is the terrifying barbarian who holds her kingdom's fate in his calloused hands; she is the proud princess who must use her wits to survive him. Their relationship is a battlefield of power plays, mistrust, and a raw, undeniable physical attraction that threatens to consume them both. Every interaction is a test, every touch a question: is this possession or protection?"
+        },
+        "lapit_kleinfelter": {
+          "type": "Former Fiancé / Complicated Past",
+          "description": "The ghost of a past love, now a dangerous complication. What began as a political engagement blossomed into a one-sided, obsessive devotion on Lapit's part. He sees himself as Liene's true savior, unable to accept she has chosen a different path. His reappearance forces Liene to confront her past and creates a volatile love triangle where loyalty and obsession collide."
+        },
+        "mrs_flambard": {
+          "type": "Maternal Confidante",
+          "description": "More than a head lady-in-waiting, Mrs. Flambard is Liene's former nanny and the closest thing she has to a mother. She is fiercely loyal and protective, offering a rare source of unconditional support in a treacherous court, even if she doesn't always understand Liene's difficult choices."
+        },
+        "linden_kleinfelter": {
+          "type": "Political Adversary",
+          "description": "A venomous rivalry defines their relationship. Linden sees Liene as an obstacle to his family's ambition to usurp the throne. He is openly disrespectful and relentlessly schemes to undermine her authority, representing the corrupt, entrenched power Liene must overcome."
+        }
+      },
+      "name_variants": {
+        "nickname": "",
+        "title": "Princess (공주님)"
+      },
+      "honorifics_used": {},
+      "first_appearance": "Chapter 1, Part 1, crumpling a marriage proposal letter.",
+      "english": "Liene Arsac"
+    },
+    "블랙": {
+      "name": "Black",
+      "korean_surname": "",
+      "korean_given_name": "블랙",
+      "surname": "",
+      "given_name": "Black",
+      "gender": "male",
+      "role": "antagonist",
+      "age_group": "adult",
+      "personality_traits": [
+        "dominant",
+        "possessive",
+        "taciturn",
+        "observant",
+        "unpredictable"
+      ],
+      "speech_style": "blunt",
+      "physical_description": [
+        "tall",
+        "overwhelming physique",
+        "black hair",
+        "light blue eyes like a beast's",
+        "heavily scarred body"
+      ],
+      "relationships": {
+        "Liene_Arsac": {
+          "type": "Forced Marriage / Enemies-to-Lovers",
+          "description": "Liene is the object of his conquest, the woman he is determined to possess along with her kingdom. He is intrigued and captivated by her defiance and resilience. While he dominates her politically and physically, he also shows unexpected moments of protection and gentleness, creating a confusing and dangerous dynamic of power and burgeoning desire."
+        },
+        "fermos": {
+          "type": "Loyal Advisor",
+          "description": "Fermos is Black's intelligent and devoted right-hand man. He views Black as a god-like figure who saved him. While fiercely loyal, Fermos is also pragmatic, often questioning Black's seemingly reckless decisions concerning Liene and providing a crucial sounding board for his master's cryptic plans."
+        },
+        "lapit_kleinfelter": {
+          "type": "Rival",
+          "description": "Black sees Lapit as an annoyance and a pawn to be eliminated. He holds contempt for Lapit's weakness and his claim on Liene, viewing him as nothing more than an obstacle to his complete possession of both the princess and her kingdom."
+        }
+      },
+      "name_variants": {
+        "nickname": "Barbarian (야만인)",
+        "title": "Lord Tiwakan (로드 티와칸)"
+      },
+      "honorifics_used": {},
+      "first_appearance": "Chapter 1, Part 1, arriving at the military tent to meet Liene.",
+      "english": "Black"
+    },
+    "라피트 클라인펠터": {
+      "name": "Lapit Kleinfelter",
+      "korean_surname": "클라인펠터",
+      "korean_given_name": "라피트",
+      "surname": "Kleinfelter",
+      "given_name": "Lapit",
+      "gender": "male",
+      "role": "secondary_character",
+      "age_group": "young_adult",
+      "personality_traits": [
+        "devoted",
+        "intense",
+        "possessive",
+        "resolute",
+        "childish"
+      ],
+      "speech_style": "formal",
+      "physical_description": [
+        "eyes like blades when angry"
+      ],
+      "relationships": {
+        "Liene_Arsac": {
+          "type": "Unrequited / Obsessive Love",
+          "description": "He is Liene's former fiancé, consumed by the belief that she secretly loves him and was forced into her marriage with Black. His love has twisted into an obsession, making him a dangerously unpredictable element in the political landscape. He is determined to 'win her back,' blind to the fact that Liene's feelings and priorities have changed."
+        },
+        "linden_kleinfelter": {
+          "type": "Nephew / Pawn",
+          "description": "Lapit is both the nephew and illegitimate son of Linden, who uses him as a pawn in his political games. While Lapit opposes his uncle's cruder methods and disrespect for Liene, he is ultimately entangled in the family's web of ambition."
+        },
+        "black": {
+          "type": "Rival",
+          "description": "Lapit sees Black as a vile barbarian who has stolen his rightful place at Liene's side. His hatred fuels his determination to defeat Black and reclaim Liene, viewing their conflict as a battle between a true knight and a savage."
+        }
+      },
+      "name_variants": {
+        "nickname": "",
+        "title": "Lord/Sir Kleinfelter (클라인펠터 경)",
+        "alias": "Lopes Kleinfelter (로페스 클라인펠터)"
+      },
+      "honorifics_used": {
+        "linden_kleinfelter": "숙부님 (Uncle)"
+      },
+      "first_appearance": "Chapter 1, Part 1 (by mention).",
+      "english": "Lapit Kleinfelter"
+    },
+    "린든 클라인펠터": {
+      "name": "Linden Kleinfelter",
+      "korean_surname": "클라인펠터",
+      "korean_given_name": "린든",
+      "surname": "Kleinfelter",
+      "given_name": "Linden",
+      "gender": "male",
+      "role": "antagonist",
+      "age_group": "adult",
+      "personality_traits": [
+        "arrogant",
+        "hostile",
+        "greedy",
+        "ruthless",
+        "crude"
+      ],
+      "speech_style": "disrespectful",
+      "physical_description": [
+        "has a mustache that trembles when he's angry"
+      ],
+      "relationships": {
+        "Liene_Arsac": {
+          "type": "Political Rival",
+          "description": "He is Liene's primary internal antagonist, a man who despises her authority and has been actively undermining the royal family for years. He sees her as a weak girl playing at being a ruler and will use any means—intimidation, coercion, and violence—to wrest power from her."
+        },
+        "lapit_kleinfelter": {
+          "type": "Uncle / Master",
+          "description": "Linden holds his nephew/son in contempt, viewing him as a tool to achieve his ambitions. He shows no genuine affection, only frustration when Lapit's personal feelings for Liene interfere with his ruthless plans."
+        }
+      },
+      "name_variants": {
+        "nickname": "",
+        "title": "Lord/Sir (경), Chairman of the Council (대의장)"
+      },
+      "honorifics_used": {},
+      "first_appearance": "Chapter 1, Part 3 (by mention).",
+      "english": "Linden Kleinfelter"
+    },
+    "페르모스": {
+      "name": "Fermos",
+      "korean_surname": "",
+      "korean_given_name": "페르모스",
+      "surname": "",
+      "given_name": "Fermos",
+      "gender": "male",
+      "role": "supporting_character",
+      "age_group": "adult",
+      "personality_traits": [
+        "intelligent",
+        "loyal",
+        "pragmatic",
+        "curious"
+      ],
+      "speech_style": "formal",
+      "physical_description": [
+        "wears a monocle"
+      ],
+      "relationships": {
+        "black": {
+          "type": "Devoted Subordinate",
+          "description": "Fermos reveres Black as a god who saved him on the battlefield. This devotion translates into absolute loyalty, though his sharp intellect compels him to question Black's more emotional or seemingly illogical decisions. He is the perfect instrument for Black's will, capable of both subtle political maneuvering and ruthless efficiency."
+        }
+      },
+      "name_variants": {
+        "nickname": "",
+        "title": ""
+      },
+      "honorifics_used": {},
+      "first_appearance": "Chapter 2, approaching Black after Liene leaves.",
+      "english": "Fermos"
+    },
+    "웨로즈": {
+      "name": "Weroz",
+      "korean_surname": "웨로즈",
+      "korean_given_name": "",
+      "surname": "Weroz",
+      "given_name": "",
+      "gender": "male",
+      "role": "supporting",
+      "age_group": "middle_aged",
+      "personality_traits": [
+        "loyal",
+        "steadfast",
+        "old-fashioned",
+        "reliable"
+      ],
+      "speech_style": "formal",
+      "physical_description": [
+        "gray hair",
+        "over forty years old"
+      ],
+      "relationships": {
+        "Liene_Arsac": {
+          "type": "Loyal Subordinate",
+          "description": "Weroz is the epitome of the loyal knight, willing to lay down his life for his princess without hesitation. Liene considers him the most trustworthy person she knows, and her desire to prevent his certain death in a hopeless war is a primary motivator for her marriage to Black."
+        }
+      },
+      "name_variants": {
+        "nickname": "",
+        "title": "Lord Weroz (웨로즈 경)"
+      },
+      "honorifics_used": {},
+      "first_appearance": "Chapter 1, Part 1, in the meeting hall.",
+      "english": "Weroz"
+    },
+    "마실로우": {
+      "name": "Masilow",
+      "korean_surname": "",
+      "korean_given_name": "마실로우",
+      "surname": "",
+      "given_name": "Masilow",
+      "gender": "male",
+      "role": "supporting",
+      "age_group": "adult",
+      "personality_traits": [
+        "persistent",
+        "excitable",
+        "pragmatic"
+      ],
+      "speech_style": "formal",
+      "physical_description": [],
+      "relationships": {
+        "Liene_Arsac": {
+          "type": "Advisor",
+          "description": "He serves as Liene's advisor but often opposes her decisions, particularly her alliance with Tiwakan. His traditional views and political ties to the Kleinfelter family put him at odds with the princess's pragmatic survival instincts."
+        },
+        "linden_kleinfelter": {
+          "type": "Political Ally",
+          "description": "Masilow has a long-standing, strong relationship with the Kleinfelter family and firmly believes their power is essential for Nauk's future, creating a conflict of interest in his advisement to Liene."
+        }
+      },
+      "name_variants": {
+        "nickname": "",
+        "title": ""
+      },
+      "honorifics_used": {},
+      "first_appearance": "Chapter 1, Part 1, in the meeting hall.",
+      "english": "Masilow"
+    },
+    "플램바드 부인": {
+      "name": "Mrs. Flambard",
+      "korean_surname": "플램바드",
+      "korean_given_name": "",
+      "surname": "Flambard",
+      "given_name": "",
+      "gender": "female",
+      "role": "supporting_character",
+      "age_group": "older_adult",
+      "personality_traits": [
+        "loyal",
+        "protective",
+        "emotional"
+      ],
+      "speech_style": "formal_deferential",
+      "physical_description": [
+        "has trembling fingertips when distressed"
+      ],
+      "relationships": {
+        "Liene_Arsac": {
+          "type": "Ward and Confidante",
+          "description": "She was Liene's nanny and now serves as her closest aide, showing unwavering motherly affection and protection. She is Liene's primary confidante and a source of emotional support in the cold, political world of the court."
+        }
+      },
+      "name_variants": {
+        "nickname": "",
+        "title": "Mrs. (부인)"
+      },
+      "honorifics_used": {
+        "Liene_Arsac": "공주님 (Princess)"
+      },
+      "first_appearance": "Chapter 3, entering Liene's room after being summoned.",
+      "english": "Mrs. Flambard"
+    },
+    "클리마": {
+      "name": "Klima",
+      "korean_surname": "",
+      "korean_given_name": "클리마",
+      "surname": "",
+      "given_name": "Klima",
+      "gender": "male",
+      "role": "supporting_character",
+      "age_group": "young_adult",
+      "personality_traits": [
+        "stoic",
+        "loyal",
+        "pained",
+        "secretive"
+      ],
+      "speech_style": "subservient",
+      "physical_description": [
+        "wears a long robe with a hood",
+        "often injured"
+      ],
+      "relationships": {
+        "linden_kleinfelter": {
+          "type": "Abusive Master",
+          "description": "He serves Linden with absolute, almost bizarre loyalty, carrying out assassinations and enduring brutal physical abuse in return. He is a disposable tool, a secret weapon wielded by a cruel master."
+        },
+        "unnamed_woman": {
+          "type": "Motivation",
+          "description": "A thin, weary-looking woman living in an annex on the Kleinfelter estate is the secret reason for Klima's servitude. His pained observation of her suggests a deep, protective connection that fuels his endurance."
+        }
+      },
+      "name_variants": {
+        "nickname": "Errand Boy (심부름꾼)",
+        "title": "Jongje / Acolyte (종제)"
+      },
+      "honorifics_used": {},
+      "first_appearance": "Chapter 13, being beaten by Linden Kleinfelter.",
+      "english": "Klima"
+    }
+  },
+  "locations": {
+    "나우크": {
+      "name": "Nauk",
+      "type": "kingdom",
+      "description": "A small, southern kingdom on the brink of collapse. Once prosperous, it has been ravaged by a 20-year drought, leaving it impoverished and militarily weak. It is the homeland Princess Liene is desperately trying to save.",
+      "atmosphere": "desolate, declining, politically unstable",
+      "significance": "The central prize of the story. For Liene, it is her home and burden. For Black, it is a conquest with a mysterious personal connection. For the Kleinfelters, it is the throne they covet.",
+      "english": "Nauk"
+    },
+    "나우크 성": {
+      "name": "Nauk Castle",
+      "type": "castle",
+      "description": "The seat of the Arsark family. Its former opulence has faded, reflecting the kingdom's decline. After the siege, it becomes an occupied territory, filled with both loyal guards and Tiwakan mercenaries.",
+      "atmosphere": "tense, melancholic, occupied",
+      "significance": "Once a symbol of Arsark power, now a gilded cage. The atmosphere is thick with tension, a silent battleground where the old guard clashes with the new conquerors. It is Liene's home, her prison, and the center of all political and romantic intrigue.",
+      "english": "Nauk Castle"
+    },
+    "클라인펠터 가의 대저택": {
+      "name": "Kleinfelter Mansion",
+      "type": "residence",
+      "description": "The grand, opulent home of the Kleinfelter family, larger and more luxurious than the royal castle itself. It contains hidden passages and a separate annex, reflecting the family's secretive and treacherous nature.",
+      "atmosphere": "opulent, hostile, threatening",
+      "significance": "The rival seat of power in Nauk. It is a viper's nest where plots are hatched, and the site of Liene's harrowing confrontation and rescue, marking a major turning point in the story.",
+      "english": "Kleinfelter Mansion"
+    },
+    "리에네의 침실": {
+      "name": "Liene's Bedroom Suite",
+      "type": "room",
+      "description": "The traditional suite for the ruler of Nauk, consisting of two bedrooms connected by a shared bathroom. This unique structure, designed to prevent infidelity, becomes a key bargaining chip and a space of forced intimacy and mutual surveillance between Liene and Black.",
+      "atmosphere": "intimate, tense, claustrophobic",
+      "significance": "A private space that becomes a battleground for Liene's heart and mind. It is the site of secret meetings, tense confrontations, and the burgeoning, dangerous intimacy between her and Black.",
+      "english": "Liene's Bedroom Suite"
+    },
+    "신전": {
+      "name": "Temple",
+      "type": "religious_building",
+      "description": "The center of religious authority in Nauk, located atop Phillion Hill. It is connected to the world by a single, steep path known as the 'God's Staircase'.",
+      "atmosphere": "somber, politically charged, mysterious",
+      "significance": "More than a place of worship, the Temple is a political entity whose corrupt leadership and ancient rituals directly impact the power struggles of the kingdom. Its destruction and the murder of its High Priest become major catalysts in the plot.",
+      "english": "Temple"
+    }
+  },
+  "terms": {
+    "티와칸": {
+      "korean": "티와칸",
+      "english": "Tiwakan",
+      "category": "organization",
+      "context": "An infamous and powerful mercenary corps led by Lord Black. Feared across the continent as 'barbarians,' they possess overwhelming military strength and are now seeking to establish their own domain by conquering Nauk.",
+      "notes": "Their leader, Black, is revered as a god-like figure by his men."
+    },
+    "아르사크 가문": {
+      "korean": "아르사크 가문",
+      "english": "Arsac Family",
+      "category": "organization",
+      "context": "The royal family of Nauk, whose lineage holds the right to the throne. Princess Liene is the last of her line, making her marriage and potential heir critical for the kingdom's survival.",
+      "notes": ""
+    },
+    "클라인펠터 가문": {
+      "korean": "클라인펠터 가문",
+      "english": "Kleinfelter Family",
+      "category": "organization",
+      "context": "The most powerful and wealthy noble family in Nauk, led by the ambitious Linden Kleinfelter. They are the primary internal antagonists, constantly scheming to usurp the throne from the Arsark family.",
+      "notes": ""
+    },
+    "약탈혼": {
+      "korean": "약탈혼",
+      "english": "Plunder Marriage",
+      "category": "cultural",
+      "context": "A term used to describe a marriage secured through conquest or coercion. Black uses this term to describe his union with Liene, acknowledging its forceful nature.",
+      "notes": "Highlights the extreme power imbalance at the start of their relationship."
+    },
+    "종제": {
+      "korean": "종제",
+      "english": "Acolyte",
+      "category": "title",
+      "context": "A title for a junior member of the temple clergy, below a full deacon. Klima holds this title, using his religious position as a cover for his activities as an assassin.",
+      "notes": "Keep as 'Acolyte'."
+    }
+  },
+  "honorifics": {
+    "공주님": "Princess. A formal title used by nearly everyone when addressing Liene, reinforcing her royal status.",
+    "주군": "My Lord / Master. A title of absolute fealty used by Tiwakan mercenaries and Fermos when addressing Black, highlighting his status as their supreme commander and god-like leader.",
+    "경": "Lord / Sir. A title of nobility used for knights and noblemen like Linden Kleinfelter and Weroz.",
+    "부인": "Madam / Mrs. A respectful title for a married or senior woman, used for Mrs. Flambard.",
+    "예하": "Your Eminence. A highly formal title for a high-ranking religious figure, used for the High Priest Milord.",
+    "숙부님": "Uncle. The formal term Lapit uses for Linden, denoting family hierarchy.",
+    "님": "A formal honorific suffix. Translate the nuance through respectful titles (e.g., 'Lord Weroz' instead of 'Weroz-nim') or formal sentence structure. Do not romanize as '-nim'.",
+    "씨": "A polite address. Translate based on context, using the character's name, a simple 'Mr./Ms.', or reflect the politeness in the dialogue tone. Do not romanize as '-ssi'."
+  },
+  "style_guide": {
+    "name_format": "english_given_name english_surname",
+    "tone": "Tense, dramatic, and romantic, with an undercurrent of political suspense.",
+    "formality_level": "medium",
+    "themes": [
+      "Survival vs. Integrity",
+      "Power and Corruption",
+      "The Nature of Love and Possession",
+      "Deception as a Weapon"
+    ],
+    "genre": "Fantasy Romance",
+    "sub_genres": [
+      "Political Intrigue",
+      "Historical"
+    ],
+    "content_rating": "Mature",
+    "honorific_usage": "keep the original cultural and linguistic nuance of honorifics, endearments, suffixes and titles, but swap these terms out with english equivalents wherever possible like using just their name, or a joking title like newbie for hubae, etc or reflecting it in the sentence tone with vocabulary based on the context, character dynamics and the situation or tone the work is set in. Don't use the romanized version of the korean word such as seonsaeng-nim, sunbaenim, etc unless specified otherwise",
+    "formal_speech_level": "Match formality to Korean. Use formal English (e.g., 'I shall,' 'Will you not?') for high-ranking formal conversations and more standard English for less formal, though still polite, interactions.",
+    "dialogue_style": "Dialogue should reflect the character's status and personality. Liene's speech is formal and measured, Black's is blunt and commanding, and Linden's is laced with veiled (and unveiled) insults.",
+    "narrative_style": {
+      "point_of_view": "third-person limited, primarily following Liene but occasionally shifting to other key characters like Black or Lapit to reveal crucial information.",
+      "tense": "past",
+      "voice": "Introspective and atmospheric, focusing on the protagonist's internal struggles, sensory details, and the palpable tension of her environment.",
+      "common_expressions": [
+        "A dry laugh escaped her.",
+        "His eyes darkened.",
+        "Silence fell between them."
+      ],
+      "atmosphere_descriptors": [
+        "tense",
+        "suffocating",
+        "intimate",
+        "desolate",
+        "threatening"
+      ]
+    }
+  },
+  "recurring_phrases": {
+    "어쩔 수 없었다": "There was no other choice.",
+    "거슬려": "It's bothering me. / It gets on my nerves.",
+    "그 순간": "In that moment...",
+    "만져도 됩니까?": "May I touch you?",
+    "빌어먹을": "Damn it."
+  },
+  "world_building_notes": [
+    "The setting is a medieval fantasy continent with a feudal political system, where kingdoms rise and fall based on military strength and political alliances.",
+    "Political marriages are a primary tool for diplomacy, conquest, and securing succession. A ruler's marriage can determine the fate of their nation.",
+    "Powerful noble families, like the Kleinfelters, can wield more practical power than the monarchy through wealth and private armies, creating a constant state of internal political tension.",
+    "The kingdom of Nauk is in a state of severe decline due to a 20-year drought, making it a vulnerable target for conquest.",
+    "The Tiwakan are a feared mercenary group transitioning into a nation-building force, with a culture that reveres their leader, Black, as a living god.",
+    "A corrupt religious institution, led by a High Priest, plays a significant role in politics. Its authority can be bought, and its succession is a matter of political assassination and maneuvering.",
+    "There is a strong cultural divide and prejudice between the 'civilized' people of kingdoms like Nauk and the 'barbarian' Tiwakan.",
+    "Prophecy and divine signs (real or manufactured) are potent political weapons, capable of swaying public opinion and justifying actions."
+  ]
+}

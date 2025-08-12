@@ -346,8 +346,4 @@ body {
 .modal__header { display: flex; justify-content: space-between; align-items: center; padding: 12px; }
 .modal__title { font-weight: 700; }
 .modal__content { display: flex; flex-direction: column; gap: 10px; padding: 12px; }
-.modal__footer { padding: 12px; display: flex; justify-content: flex-end; gap: 8px; }
-.modal__subfooter { padding: 0 12px 12px; color: var(--muted); font-style: italic; font-size: 12px; text-align: left; }
-.form__label { display: block; margin: 12px 0 4px; font-weight: 500; font-size: 14px; }
-.form__input { background: var(--bg); border: 1px solid var(--border); color: var(--text); border-radius: 10px; padding: 8px; }
-.form__error { background: #ffeded; color: #d64040; padding: 12px; font-size: 14px; border-radius: 8px; margin-top: 12px; } 
+

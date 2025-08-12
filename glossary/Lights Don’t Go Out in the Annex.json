@@ -1,0 +1,316 @@
+{
+  "characters": {
+    "현이서": {
+      "name": "Iseo Hyeon",
+      "korean_surname": "현",
+      "korean_given_name": "이서",
+      "surname": "Hyeon",
+      "given_name": "Iseo",
+      "gender": "female",
+      "role": "protagonist",
+      "age_group": "young_adult",
+      "personality_traits": [
+        "resilient",
+        "proud",
+        "dutiful",
+        "introspective",
+        "defiant"
+      ],
+      "speech_style": "formal",
+      "physical_description": [
+        "Shorter than her father",
+        "Hair long enough to be put up"
+      ],
+      "relationships": {
+        "taegyeom_kwon": {
+          "type": "Volatile Enemies-to-Lovers",
+          "description": "A terrifying, magnetic pull defines their relationship. Taegyeom, her employer's son, initially treats her with vulgar contempt, viewing her as a plaything. Yet, he's drawn to her defiance, testing her limits with cruel games and moments of startling vulnerability. For Iseo, he is a source of fear and unwilling fascination, a dangerous man whose brokenness she can't help but see. Their dynamic is a high-stakes battle of wills, teetering on the edge of obsession and desire."
+        },
+        "jingyeom_kwon": {
+          "type": "Childhood Bully & Victim",
+          "description": "A long-standing, toxic connection. Jingyeom tormented Iseo throughout their school years, and now that she's staff, he revels in his perceived superiority. He's an immature antagonist who uses his status to belittle and provoke her, but Iseo's resilience and sharp tongue often leave him fuming. Their relationship is a constant, irritating thorn in her side, representing the class-based humiliation she's always endured."
+        },
+        "seosan_daek": {
+          "type": "Surrogate Mother Figure",
+          "description": "The warm, caring center in Iseo's turbulent life. Seosan-daek, a senior housekeeper, pulled Iseo from a deep depression and treats her with gruff, motherly affection. She provides comfort, food, and a sense of belonging, acting as Iseo's staunchest ally among the staff."
+        },
+        "gyucheol_hyeon": {
+          "type": "Estranged Father",
+          "description": "A source of deep pain and disappointment. Once a loving father, his descent into gambling addiction after his wife's death shattered their family and led to his imprisonment. Iseo feels a mixture of pity, anger, and lingering duty towards him, and his mysterious legal situation becomes a central plot point."
+        }
+      },
+      "name_variants": {
+        "nickname": "이서",
+        "title": ""
+      },
+      "honorifics_used": {},
+      "first_appearance": "Chapter 1, delivering a message to the annex.",
+      "english": "Iseo Hyeon"
+    },
+    "권태겸": {
+      "name": "Taegyeom Kwon",
+      "korean_surname": "권",
+      "korean_given_name": "태겸",
+      "surname": "Kwon",
+      "given_name": "Taegyeom",
+      "gender": "male",
+      "role": "major",
+      "age_group": "young_adult",
+      "personality_traits": [
+        "hostile",
+        "reclusive",
+        "vulgar",
+        "provocative",
+        "controlling",
+        "self-destructive"
+      ],
+      "speech_style": "curt_and_aggressive",
+      "physical_description": [
+        "Tall",
+        "Muscular build with a broad back and sturdy shoulders",
+        "Jet-black hair",
+        "Sharp, intimidating gaze"
+      ],
+      "relationships": {
+        "iseo_hyeon": {
+          "type": "Volatile Enemies-to-Lovers",
+          "description": "Iseo is an unexpected disruption in his controlled, chaotic world. He is initially hostile and cruel, using vulgarity to push her away. However, her refusal to break fascinates him, turning into a possessive, obsessive game. He summons her on a whim, teases her mercilessly, and seems to enjoy her fear and anger. Beneath the cruelty lies a flicker of something else—a man starved for a genuine connection, testing her to see if she's real."
+        },
+        "juah_shin": {
+          "type": "Stepmother & Bitter Rival",
+          "description": "Pure, unadulterated animosity. He sees Juah as the opportunistic woman who destroyed his family and usurped his mother's place. He treats her with open contempt and vulgar insults, refusing to play her political games and deriving satisfaction from shocking her. Their interactions are a cold war fought with sharp words and power plays."
+        },
+        "jingyeom_kwon": {
+          "type": "Half-Brother & Rival",
+          "description": "A relationship of dismissive superiority. Taegyeom barely acknowledges Jingyeom, viewing him as an annoying, immature pawn of his mother. He holds all the power in their dynamic, and his mere presence is enough to intimidate and infuriate his younger half-brother."
+        },
+        "chairman_kwon": {
+          "type": "Estranged Father",
+          "description": "The source of his deepest trauma. His father exiled him and his mother to the US, choosing his new family over them. Their relationship is defined by 20 years of estrangement, resentment, and a forced reunion driven by corporate succession, not affection. Rumors of physical abuse further darken their history."
+        }
+      },
+      "name_variants": {
+        "nickname": "",
+        "title": "큰 도련님 (Eldest Young Master)"
+      },
+      "honorifics_used": {},
+      "first_appearance": "Chapter 1, at the door of the annex.",
+      "english": "Taegyeom Kwon"
+    },
+    "권진겸": {
+      "name": "Jingyeom Kwon",
+      "korean_surname": "권",
+      "korean_given_name": "진겸",
+      "surname": "Kwon",
+      "given_name": "Jingyeom",
+      "gender": "male",
+      "role": "antagonist",
+      "age_group": "young_adult",
+      "personality_traits": [
+        "arrogant",
+        "malicious",
+        "immature",
+        "condescending"
+      ],
+      "speech_style": "informal_and_antagonistic",
+      "physical_description": [
+        "Tall"
+      ],
+      "relationships": {
+        "iseo_hyeon": {
+          "type": "Childhood Bully & Victim",
+          "description": "Iseo is the target of his deep-seated insecurities. He bullied her in school and continues to do so, using his status as her 'master' to try and dominate her. He is infuriated by her lack of fear and her sharp retorts, leading him to escalate his petty torments. His interest is a toxic mix of classist disdain and a desperate need for her attention."
+        },
+        "taegyeom_kwon": {
+          "type": "Half-Brother & Rival",
+          "description": "He lives in Taegyeom's shadow and resents him for it. Pushed by his mother to be a rival for the company, Jingyeom is outmatched and knows it. His attitude towards Taegyeom is a mix of fear, jealousy, and impotent rage."
+        },
+        "juah_shin": {
+          "type": "Mother & Chessmaster",
+          "description": "He is a key piece in his mother's power games. She manipulates him, pulling him from his studies to position him against Taegyeom. While he acts on her behalf, there's a sense that he is more of a tool for her ambitions than a cherished son."
+        }
+      },
+      "name_variants": {
+        "nickname": "",
+        "title": "둘째 도련님 (Second Young Master)"
+      },
+      "honorifics_used": {},
+      "first_appearance": "Chapter 1, smoking in the greenhouse.",
+      "english": "Jingyeom Kwon"
+    },
+    "신주아": {
+      "name": "Juah Shin",
+      "korean_surname": "신",
+      "korean_given_name": "주아",
+      "surname": "Shin",
+      "given_name": "Juah",
+      "gender": "female",
+      "role": "supporting",
+      "age_group": "adult",
+      "personality_traits": [
+        "scheming",
+        "opportunistic",
+        "manipulative"
+      ],
+      "speech_style": "formal",
+      "physical_description": [],
+      "relationships": {
+        "taegyeom_kwon": {
+          "type": "Stepmother & Bitter Rival",
+          "description": "Her primary obstacle. She sees Taegyeom as a threat to her son's inheritance and her own position. She attempts to control him through passive-aggressive tactics and by using Iseo as a pawn, but his open hostility and refusal to play by her rules constantly thwart her plans."
+        },
+        "jingyeom_kwon": {
+          "type": "Son & Pawn",
+          "description": "Her tool for ambition. She directs Jingyeom's life to position him as a viable heir, showing more concern for his strategic value than his well-being. Their relationship is transactional, built on her ambition and his obedience."
+        },
+        "chairman_kwon": {
+          "type": "Husband",
+          "description": "The source of her power. She secured her position as his wife, but with his failing health, her influence seems to be waning, forcing her to become more overt in her schemes."
+        }
+      },
+      "name_variants": {
+        "nickname": "",
+        "title": "사모님 (Madam)"
+      },
+      "honorifics_used": {},
+      "first_appearance": "Chapter 1, mentioned as 'Madam Shin'.",
+      "english": "Juah Shin"
+    }
+  },
+  "locations": {
+    "저택": {
+      "name": "The Kwon Mansion Estate",
+      "type": "estate",
+      "description": "A sprawling, opulent estate owned by the Kwon family. It serves as a microcosm of their world, containing a formal Main House (본채), a hedonistic Annex (별채) for the heir, communal Staff Quarters (숙소동), a secluded Greenhouse (유리온실), and even the humble Container House (컨테이너 가옥) where Iseo lives. The grounds are a battlefield for family politics, class division, and secret encounters.",
+      "atmosphere": "hierarchical, tense, opulent, full of secrets",
+      "significance": "The primary setting of the novel, where all the major conflicts of class, family, and romance unfold. Its geography dictates the characters' power dynamics and interactions.",
+      "english": "The Kwon Mansion Estate"
+    },
+    "별채": {
+      "name": "The Annex",
+      "type": "residence",
+      "description": "Taegyeom Kwon's personal fortress and playground. Located apart from the Main House like a 'lone island,' this two-story modern building is the site of his debaucherous, all-night parties. The first floor is a testament to chaos, while the second floor is unnervingly pristine and sterile. It is a forbidden zone for most staff, a symbol of Taegyeom's self-imposed isolation and control.",
+      "atmosphere": "decadent, chaotic, lawless, and intensely private",
+      "significance": "Taegyeom's domain and the primary stage for his volatile interactions with Iseo. It's a place of both psychological torment and unexpected intimacy.",
+      "english": "The Annex"
+    },
+    "컨테이너 가옥": {
+      "name": "Container House",
+      "type": "residence",
+      "description": "Iseo's humble, cramped home, made from a shipping container on the edge of the estate grounds. It stands in stark contrast to the mansion's opulence and is a constant reminder of her social status. The house is filled with memories of her once-happy family, making it both a sanctuary and a place of sorrow.",
+      "atmosphere": "cramped, nostalgic, solitary",
+      "significance": "Symbolizes the vast class divide between Iseo and the Kwons. It is her only private space, which is constantly threatened by the noise from the Annex and the intrusions of the Kwon brothers.",
+      "english": "Container House"
+    },
+    "서울구치소": {
+      "name": "Seoul Detention Center",
+      "type": "correctional facility",
+      "description": "A bleak, stark government facility where Iseo's father, Gyucheol Hyeon, is imprisoned. Visiting requires navigating a cold, bureaucratic process.",
+      "atmosphere": "bleak, oppressive, somber",
+      "significance": "The site of a major turning point where Iseo discovers the Kwon family's direct involvement in her father's case, linking her personal tragedy to her current predicament.",
+      "english": "Seoul Detention Center"
+    }
+  },
+  "terms": {
+    "GK그룹": {
+      "korean": "GK그룹",
+      "english": "GK Group",
+      "category": "organization",
+      "context": "The massive, family-owned conglomerate (chaebol) owned by the Kwon family. It is the source of their immense wealth and power, and the ultimate prize in the succession battle.",
+      "notes": "A key element of the world-building, representing corporate power and influence in modern Korea."
+    },
+    "재벌": {
+      "korean": "재벌",
+      "english": "Chaebol",
+      "category": "cultural",
+      "context": "Refers to a large, family-owned industrial conglomerate in South Korea, like the GK Group. The story revolves around the lives, conflicts, and succession struggles of a chaebol family.",
+      "notes": "Explain as 'a family-owned conglomerate' in the text. Do not use the romanized word."
+    },
+    "도련님": {
+      "korean": "도련님",
+      "english": "Young Master",
+      "category": "title",
+      "context": "The honorific used by household staff to refer to the sons of their employer. Taegyeom is '큰 도련님' (Eldest Young Master) and Jingyeom is '둘째 도련님' (Second Young Master).",
+      "notes": "Crucial for showing the household hierarchy. Translate as 'Young Master [Name]' or simply the name, depending on the formality of the speaker."
+    },
+    "사모님": {
+      "korean": "사모님",
+      "english": "Madam",
+      "category": "title",
+      "context": "The formal, respectful title used by staff and business associates for the wife of the Chairman, Juah Shin.",
+      "notes": "Translate as 'Madam Shin' or 'the Madam' to convey respect and distance."
+    },
+    "수능": {
+      "korean": "수능",
+      "english": "CSAT (College Scholastic Ability Test)",
+      "category": "education",
+      "context": "The notoriously difficult and high-stakes national college entrance exam in South Korea that Jingyeom is supposedly studying for.",
+      "notes": "Mentioning it highlights the immense academic pressure and resources of the wealthy."
+    },
+    "개수작": {
+      "korean": "개수작",
+      "english": "Cheap trick / Crude advance",
+      "category": "slang",
+      "context": "A highly vulgar term Taegyeom uses to dismiss his stepmother's manipulative efforts. Its use is shocking and highlights the depth of his contempt.",
+      "notes": "Translate the meaning strongly, e.g., 'Cut the bullshit,' or 'Don't try your cheap tricks on me,' to capture the hostility."
+    }
+  },
+  "honorifics": {
+    "님": "A formal honorific suffix. Reflect its politeness through formal address (e.g., 'Mr. Hwang', 'Chairman Kwon') or respectful tone. Do not use the romanized '-nim'.",
+    "씨": "A polite suffix for equals or those of unknown status. Use standard English equivalents like 'Mr./Ms.' or first names, depending on the context and relationship. Do not use the romanized '-ssi'.",
+    "야": "An informal address ('Hey') or name suffix used between close friends or from a superior to a subordinate. Its usage clearly defines power dynamics and can be intentionally condescending.",
+    "아주머니": "A familiar term for a middle-aged woman. Translate as 'auntie' in familiar contexts (like with Seosan-daek) or simply 'the woman' or 'the housekeeper' in more formal descriptions.",
+    "선배/후배": "senior/junior. Use English equivalents like 'senior', 'mentor', or reflect the dynamic through dialogue (e.g., showing deference or giving guidance). Avoid romanized 'sunbae/hubae'."
+  },
+  "style_guide": {
+    "name_format": "Iseo Hyeon",
+    "tone": "Serious, angsty, and psychologically tense, with moments of dark humor and sharp, witty dialogue.",
+    "formality_level": "medium",
+    "themes": [
+      "Class conflict",
+      "Power dynamics",
+      "Trauma and healing",
+      "Forbidden desire",
+      "Dysfunctional families"
+    ],
+    "genre": "Modern Romance",
+    "sub_genres": [
+      "Drama",
+      "Angst"
+    ],
+    "content_rating": "Mature (due to language, sexual themes, and psychological intensity)",
+    "honorific_usage": "Preserve the nuance of Korean honorifics to reflect hierarchy and intimacy. Use English equivalents (e.g., 'Chairman Kwon', 'Young Master', 'Madam') or adjust the tone and word choice in dialogue. Avoid romanized honorifics like '-nim' or '-ssi'.",
+    "formal_speech_level": "Match the English formality to the Korean speech levels (e.g., jondaemal vs. banmal) to accurately portray character relationships and status.",
+    "dialogue_style": "Naturalistic and character-driven. Taegyeom's speech is crude and aggressive. Iseo's is formal and guarded, becoming blunt when provoked. Jingyeom's is condescending and immature. Staff dialogue is more casual and gossipy.",
+    "narrative_style": {
+      "point_of_view": "Third-person limited, primarily from Iseo's perspective.",
+      "tense": "Past",
+      "voice": "Deeply introspective and observant, focusing on Iseo's internal reactions to the external chaos. The voice is melancholic when reflecting on the past and tense during confrontations.",
+      "common_expressions": [
+        "A dry laugh escaped her.",
+        "His eyes darkened.",
+        "A corner of his mouth lifted into a smirk."
+      ],
+      "atmosphere_descriptors": [
+        "tense",
+        "oppressive",
+        "charged",
+        "melancholic",
+        "decadent"
+      ]
+    }
+  },
+  "recurring_phrases": {
+    "네 팔자도 참…… 좆같아, 그치?": "Your life is so f*cking sh*tty, isn't it?",
+    "은혜를 입었다": "We are indebted to them.",
+    "이상한 나라": "Wonderland / A strange land."
+  },
+  "world_building_notes": [
+    "The narrative is set in modern-day South Korea, within the exclusive and insulated world of a chaebol family, the owners of the powerful GK Group.",
+    "A rigid social and class hierarchy is the central pillar of this world, starkly dividing the wealthy Kwon family from their household staff. This dynamic dictates interactions, speech patterns, and opportunities.",
+    "The Kwon family is deeply dysfunctional, defined by a bitter succession war between the first son, Taegyeom (from a discarded first wife), and the second son, Jingyeom (from the current, ambitious wife).",
+    "The family's history is riddled with scandal, including affairs, betrayals, and the strategic use of PR and philanthropy to maintain a clean public image.",
+    "The geography of the mansion estate is a physical manifestation of the power dynamics: the formal Main House, the lawless Annex, the communal Staff Quarters, and the lowly Container House.",
+    "The household staff operate as a secondary community with their own gossip network, providing exposition and a grounded perspective on the family's extravagant and cruel behavior."
+  ]
+}

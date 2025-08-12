@@ -113,9 +113,6 @@ export default function Chat() {
                 )}
               </div>
             </div>
-          );
-        })}
-        <div ref={messagesEndRef} />
       </div>
 
       <div className="chat__input">
