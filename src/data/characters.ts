@@ -1,25 +1,7 @@
 import type { Character } from "../types";
 
-import riftanCard from "../assets/images/img_card_riftan.jpg";
-import riftanVideo from "../assets/videos/vid_card_riftan.mp4";
-import riftanProfile from "../assets/images/img_profile_riftan.jpg";
-import riftanIcon from "../assets/images/img_icon_riftan.jpg";
-
-import heinriCard from "../assets/images/img_card_heinri.jpg";
-import heinriProfile from "../assets/images/img_profile_heinri.jpg";
-import heinriIcon from "../assets/images/img_icon_heinri.jpg";
-
-import tiwakanCard from "../assets/images/img_card_tiwakan.jpg";
-import tiwakanProfile from "../assets/images/img_profile_tiwakan.jpg";
-import tiwakanIcon from "../assets/images/img_icon_tiwakan.jpg";
-
-import taegyeomCard from "../assets/images/img_card_taegyeom.jpg";
-import taegyeomProfile from "../assets/images/img_profile_taegyeom.jpg";
-import taegyeomIcon from "../assets/images/img_icon_taegyeom.jpg";
-
-import dokjaCard from "../assets/images/img_card_dokja.jpg";
-import dokjaProfile from "../assets/images/img_profile_dokja.jpg";
-import dokjaIcon from "../assets/images/img_icon_dokja.jpg";
+// All image imports are now removed or commented out
+// as they are all being moved to the public folder.
 
 export const characters: Character[] = [
   {
@@ -29,10 +11,10 @@ export const characters: Character[] = [
     genre: "Romantasy",
     keywords: ["Smut", "Jealousy", "Loyal", "Hot Guy", "Steamy"],
     likes: 382,
-    imageCardUrl: riftanCard,
-    videoCardUrl: riftanVideo,
-    imageProfileUrl: riftanProfile,
-    imageIconUrl: riftanIcon,
+    imageCardUrl: "/images/img_card_riftan.jpg",
+    videoCardUrl: "/videos/vid_card_riftan.mp4",
+    imageProfileUrl: "/images/img_profile_riftan.jpg",
+    imageIconUrl: "/images/img_icon_riftan.jpg",
   },
   {
     id: "heinri",
@@ -41,9 +23,9 @@ export const characters: Character[] = [
     genre: "Romantasy",
     keywords: ["Caring", "Handsome", "Alpha Hero", "Cruel", "Shifter", "Beast"],
     likes: 501,
-    imageCardUrl: heinriCard,
-    imageProfileUrl: heinriProfile,
-    imageIconUrl: heinriIcon,
+    imageCardUrl: "/images/img_card_heinri.jpg",
+    imageProfileUrl: "/images/img_profile_heinri.jpg",
+    imageIconUrl: "/images/img_icon_heinri.jpg",
   },
   {
     id: "tiwakan",
@@ -52,9 +34,9 @@ export const characters: Character[] = [
     genre: "Romantasy",
     keywords: ["Toppy", "Dominant", "Alpha", "Respectful", "Cold-blooded"],
     likes: 219,
-    imageCardUrl: tiwakanCard,
-    imageProfileUrl: tiwakanProfile,
-    imageIconUrl: tiwakanIcon,
+    imageCardUrl: "/images/img_card_tiwakan.jpg",
+    imageProfileUrl: "/images/img_profile_tiwakan.jpg",
+    imageIconUrl: "/images/img_icon_tiwakan.jpg",
   },
   {
     id: "taegyeom",
@@ -63,9 +45,9 @@ export const characters: Character[] = [
     genre: "Romance",
     keywords: ["Steamy", "Trauma", "Wealthy", "Obssessive", "Possessive", "Secret"],
     likes: 188,
-    imageCardUrl: taegyeomCard,
-    imageProfileUrl: taegyeomProfile,
-    imageIconUrl: taegyeomIcon,
+    imageCardUrl: "/images/img_card_taegyeom.jpg",
+    imageProfileUrl: "/images/img_profile_taegyeom.jpg",
+    imageIconUrl: "/images/img_icon_taegyeom.jpg",
   },
   {
     id: "dokja",
@@ -74,8 +56,8 @@ export const characters: Character[] = [
     genre: "Action Fantasy",
     keywords: ["Weak to Strong", "Friendship", "Hidden Abilities", "Proactive"],
     likes: 984,
-    imageCardUrl: dokjaCard,
-    imageProfileUrl: dokjaProfile,
-    imageIconUrl: dokjaIcon,
+    imageCardUrl: "/images/img_card_dokja.jpg",
+    imageProfileUrl: "/images/img_profile_dokja.jpg",
+    imageIconUrl: "/images/img_icon_dokja.jpg",
   },
-]; 
+];
