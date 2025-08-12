@@ -8,12 +8,14 @@ export default function ChatInput({
   disabled,
   onUnlockWithAd,
   isRegistered,
+  disabledPlaceholder,
 }: {
   characterName: string;
   onSend: (text: string) => void;
   disabled?: boolean;
   onUnlockWithAd?: () => void;
   isRegistered?: boolean;
+  disabledPlaceholder?: string;
 }) {
   const [value, setValue] = useState("");
   const input = useRef<HTMLTextAreaElement | null>(null);
@@ -68,12 +70,16 @@ export default function ChatInput({
     }
   };
 
+  const placeholder = disabled
+    ? (disabledPlaceholder || "Out of credits. Sign up or watch a 15s ad to continue.")
+    : "Enter a dialogue. You can also describe a situation with the (+Add Situation) button.";
+
   return (
     <div className="chatInput">
       <textarea
         ref={input}
         className="chatInput__textarea"
-        placeholder="Enter a dialogue. You can also describe a situation with the (+Add Situation) button."
+        placeholder={placeholder}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={handleKeyDown}

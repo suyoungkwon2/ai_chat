@@ -13,16 +13,33 @@ export function UserRegistrationModal({ characterId, onClose }: ModalProps) {
   const [error, setError] = useState<string | null>(null);
   const handleModalAction = useAppStore((s) => s.handleModalAction);
   const updateUserProfile = useAppStore((s) => s.updateUserProfile);
+  const registerUser = useAppStore((s) => s.registerUser);
   const setActiveModal = useAppStore((s) => s.setActiveModal);
 
-  const handleSave = () => {
+  const handleSave = async () => {
     setError(null);
-    const result = updateUserProfile(id, password);
-    if (result.ok) {
-      if (characterId) handleModalAction(characterId, "register");
-    } else {
-      setError(result.reason);
+    const local = updateUserProfile(id, password);
+    if (!local.ok) {
+      setError(local.reason);
+      return;
     }
+    const backend = await (registerUser?.(id, password) || Promise.resolve({ ok: true as const }));
+    if (!backend.ok) {
+      setError(backend.reason);
+      return;
+    }
+    // After backend registration and login, fetch usage so UI reflects +10 credits immediately
+    await useAppStore.getState().refreshUsageStatus?.();
+    // When just registered, refresh/create the backend chat id if needed so /send doesn't 404
+    try {
+      const s = useAppStore.getState();
+      const character = s.modalContextCharacterId || characterId;
+      if (character) {
+        // Ensure a valid backend chat exists under auth
+        await s.openChat(character);
+      }
+    } catch {}
+    if (characterId) handleModalAction(characterId, "register");
   };
 
   return (
@@ -76,17 +93,25 @@ export function SignInModal({ characterId, onClose }: ModalProps) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const signInUser = useAppStore((s) => s.signInUser);
+  const loginUser = useAppStore((s) => s.loginUser);
   const handleModalAction = useAppStore((s) => s.handleModalAction);
   const setActiveModal = useAppStore((s) => s.setActiveModal);
 
-  const handleSignIn = () => {
+  const handleSignIn = async () => {
     setError(null);
-    const result = signInUser(id, password);
-    if (result.ok) {
-      if (characterId) handleModalAction(characterId, "register"); // Re-using register logic for simplicity
-    } else {
-      setError(result.reason);
+    // Local quick check
+    const local = signInUser(id, password);
+    if (!local.ok) {
+      setError(local.reason);
+      return;
     }
+    // Backend login
+    const be = await (loginUser?.(id, password) || Promise.resolve({ ok: true as const }));
+    if (!be.ok) {
+      setError(be.reason);
+      return;
+    }
+    if (characterId) handleModalAction(characterId, "register");
   };
 
   return (
@@ -138,23 +163,25 @@ export function WatchAdModal({ characterId, onClose }: ModalProps) {
   const setActiveModal = useAppStore((s) => s.setActiveModal);
   const modalState = useAppStore((s) => s.modalStates[characterId!]);
   const adViewsLeft = 5 - (modalState?.adViewsToday || 0);
+  const startAd = useAppStore((s) => s.startAd);
 
-  const handleWatchAd = () => {
-    setActiveModal("actualAd", characterId);
+  const handleWatchAd = async () => {
+    const res = await (startAd?.() || Promise.resolve({ ok: true } as any));
+    if (res.ok) setActiveModal("actualAd", characterId);
   };
 
   return (
     <div className="modal__backdrop" role="dialog" aria-modal="true">
       <div className="modal">
         <div className="modal__header">
-          <div className="modal__title">Watch an ad to unlock +10 chats 🎉</div>
+          <div className="modal__title">Watch an ad to unlock +1 chat 🎉</div>
           <button className="btn btn--icon" onClick={onClose}>
             ✖️
           </button>
         </div>
         <div className="modal__content">
           <p>
-            Watching a short ad will give you 10 extra free chats. You can watch
+            Watching a short ad will give you 1 extra free chat. You can watch
             up to 5 ads today. (Remaining: {adViewsLeft})
           </p>
         </div>
@@ -177,15 +204,22 @@ export function WatchAdModal({ characterId, onClose }: ModalProps) {
 export function ActualAdModal({ characterId, onClose }: { characterId?: string, onClose: () => void }) {
   const [countdown, setCountdown] = useState(15);
   const handleModalAction = useAppStore((s) => s.handleModalAction);
+  const completeAd = useAppStore((s) => s.completeAd);
+  const refreshUsageStatus = useAppStore((s) => s.refreshUsageStatus);
+  const adMinSeconds = useAppStore((s) => s.adMinSeconds) || 15;
 
   useEffect(() => {
     if (countdown > 0) {
       const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
       return () => clearTimeout(timer);
     } else {
-      if (characterId) handleModalAction(characterId, "watchAd");
+      (async () => {
+        const res = await (completeAd?.(adMinSeconds) || Promise.resolve({ ok: true }));
+        await (refreshUsageStatus?.() || Promise.resolve());
+        if (characterId) handleModalAction(characterId, "watchAd");
+      })();
     }
-  }, [countdown, characterId, handleModalAction]);
+  }, [countdown, characterId, handleModalAction, completeAd, adMinSeconds, refreshUsageStatus]);
 
   return (
     <div className="modal__backdrop" role="dialog" aria-modal="true">

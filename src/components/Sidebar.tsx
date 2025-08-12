@@ -1,7 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import ReactGA from "react-ga4";
 import { useAppStore } from "../store/appStore";
-import { characters as allCharacters } from "../data/characters";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import classnames from 'classnames';
 import userIcon from '../assets/images/img_icon_user.svg';
@@ -18,6 +17,7 @@ export default function Sidebar() {
   const resetAdViews = useAppStore((s) => s.resetAdViews);
   const isRegistered = useAppStore((s) => s.isRegistered);
   const setActiveModal = useAppStore((s) => s.setActiveModal);
+  const characters = useAppStore((s) => s.characters);
   const [showProfileModal, setShowProfileModal] = useState(false);
   const isResizing = useRef(false);
 
@@ -52,7 +52,6 @@ export default function Sidebar() {
   const handleMouseMove = useCallback((e: MouseEvent) => {
     if (!isResizing.current) return;
     const newWidth = e.clientX;
-    // 너비 제한
     const constrainedWidth = Math.max(64, Math.min(newWidth, 500));
     setSidebarWidth(constrainedWidth);
   }, [setSidebarWidth]);
@@ -71,12 +70,10 @@ export default function Sidebar() {
     };
   }, [handleMouseMove, handleMouseUp]);
 
-
   const openCharacters = useMemo(() => {
-    return openCharacterIds
-      .map((id) => allCharacters.find((c) => c.id === id))
-      .filter(Boolean) as typeof allCharacters;
-  }, [openCharacterIds]);
+    const byId = new Map(characters.map((c) => [c.id, c] as const));
+    return openCharacterIds.map((id) => byId.get(id)).filter(Boolean) as typeof characters;
+  }, [openCharacterIds, characters]);
 
   return (
     <aside

@@ -73,6 +73,11 @@ function AppShell() {
   usePageViews();
   const isMobile = useIsMobile();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const initUsage = useAppStore((s) => s.initUsage);
+
+  useEffect(() => {
+    initUsage?.();
+  }, [initUsage]);
 
   if (isMobile) {
     return (

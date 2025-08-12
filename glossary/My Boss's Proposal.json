@@ -1,0 +1,364 @@
+{
+  "characters": {
+    "전새봄": {
+      "name": "Saebom Jeon",
+      "korean_surname": "전",
+      "korean_given_name": "새봄",
+      "surname": "Jeon",
+      "given_name": "Saebom",
+      "gender": "female",
+      "role": "protagonist",
+      "age_group": "young_adult",
+      "personality_traits": [
+        "principled",
+        "empathetic",
+        "pragmatic",
+        "easily_flustered"
+      ],
+      "speech_style": "formal_to_superior",
+      "physical_description": [],
+      "relationships": {
+        "char_1": {
+          "type": "Forced Proximity / Enemies-to-Lovers",
+          "description": "Her arrogant boss who traps her in a fake relationship. Their dynamic is a constant, entertaining push-and-pull, fueled by his manipulative schemes and her principled resistance. Bound by cursed rings, their forced proximity peels back layers of antagonism to reveal a reluctant, magnetic attraction and a surprising level of mutual understanding."
+        },
+        "char_2": {
+          "type": "Potential Mother-in-Law (under false pretenses)",
+          "description": "Jiheon's mother, who is instantly charmed by Saebom's fabricated persona. Hwayoung's overwhelming affection and high expectations create immense pressure and a source of constant comedic stress for Saebom."
+        },
+        "char_4": {
+          "type": "Colleague / Friend",
+          "description": "Saebom's nosy but well-meaning junior colleague. Sujong's attempts at matchmaking and her gossip about Saebom's 'secret' relationship add a layer of workplace comedy and tension."
+        }
+      },
+      "name_variants": {
+        "nickname": "",
+        "title": "대리님 (Assistant Manager)"
+      },
+      "honorifics_used": {
+        "char_1": "전무님",
+        "char_4": "수정 씨"
+      },
+      "first_appearance": "Chapter 1, being summoned to the Executive Director's office.",
+      "english": "Saebom Jeon"
+    },
+    "류지헌": {
+      "name": "Jiheon Ryu",
+      "korean_surname": "류",
+      "korean_given_name": "지헌",
+      "surname": "Ryu",
+      "given_name": "Jiheon",
+      "gender": "male",
+      "role": "male_lead",
+      "age_group": "young_adult",
+      "personality_traits": [
+        "manipulative",
+        "calm",
+        "calculating",
+        "cynical",
+        "teasing"
+      ],
+      "speech_style": "polite_but_commanding",
+      "physical_description": [
+        "tall",
+        "handsome",
+        "long, single-lidded eyes",
+        "muscular build"
+      ],
+      "relationships": {
+        "char_0": {
+          "type": "Boss & Subordinate / Cursed Partner",
+          "description": "His employee whom he ropes into his scheme. Jiheon sees Saebom as a means to an end, but her unexpected defiance and genuine nature constantly challenge his cynical worldview. He enjoys teasing her but finds himself increasingly drawn to her warmth, creating a codependent dynamic where the master manipulator slowly loses control."
+        },
+        "char_2": {
+          "type": "Mother & Son",
+          "description": "His relationship with his mother is strained by her relentless pressure on him to marry. He resents her emotional meddling but is not immune to her wishes, which is the catalyst for his entire scheme involving Saebom."
+        },
+        "char_3": {
+          "type": "Father & Son",
+          "description": "A formal and authoritative relationship. His father is impatient and direct, viewing marriage as a strategic move. Jiheon feels the weight of his father's expectations, adding another layer of pressure to his life."
+        }
+      },
+      "name_variants": {
+        "nickname": "",
+        "title": "전무님 (Executive Director)"
+      },
+      "honorifics_used": {
+        "char_0": "전새봄 씨",
+        "char_13": "남 비서"
+      },
+      "first_appearance": "Chapter 1, proposing marriage to Saebom in his office.",
+      "english": "Jiheon Ryu"
+    },
+    "차화영": {
+      "name": "Hwayoung Cha",
+      "korean_surname": "차",
+      "korean_given_name": "화영",
+      "surname": "Cha",
+      "given_name": "Hwayoung",
+      "gender": "female",
+      "role": "supporting",
+      "age_group": "middle_aged",
+      "personality_traits": [
+        "emotional",
+        "elegant",
+        "inquisitive",
+        "pushy"
+      ],
+      "speech_style": "formal_warm",
+      "physical_description": [],
+      "relationships": {
+        "char_1": {
+          "type": "Mother & Son",
+          "description": "She adores her son but exasperates him with her constant pressure to get married. Her approval is the primary obstacle Jiheon tries to manage with his fake relationship scheme."
+        },
+        "char_3": {
+          "type": "Wife & Husband",
+          "description": "A traditional dynamic where she is the emotional heart of the family, often seeking her husband's agreement on important matters like their son's future."
+        },
+        "char_0": {
+          "type": "Perceived Future Daughter-in-Law",
+          "description": "She is completely taken with Saebom, believing her to be the perfect partner for her son. Her immediate and intense affection puts Saebom in an incredibly awkward position."
+        }
+      },
+      "name_variants": {
+        "nickname": "",
+        "title": "어머니 (Mother)"
+      },
+      "honorifics_used": {
+        "char_0": "새봄 씨"
+      },
+      "first_appearance": "Chapter 1, in the private hotel dining room.",
+      "english": "Hwayoung Cha"
+    },
+    "류승환": {
+      "name": "Seunghwan Ryu",
+      "korean_surname": "류",
+      "korean_given_name": "승환",
+      "surname": "Ryu",
+      "given_name": "Seunghwan",
+      "gender": "male",
+      "role": "supporting",
+      "age_group": "adult",
+      "personality_traits": [
+        "stern",
+        "direct",
+        "impatient",
+        "authoritative"
+      ],
+      "speech_style": "authoritative",
+      "physical_description": [],
+      "relationships": {
+        "char_1": {
+          "type": "Father & Son",
+          "description": "He is a demanding and authoritative figure in Jiheon's life, pressuring him to settle down and act decisively. His approval is a key factor in Jiheon's motivations."
+        },
+        "char_2": {
+          "type": "Husband & Wife",
+          "description": "The stern patriarch to his wife's emotional nature. He is the ultimate decision-maker in the family."
+        }
+      },
+      "name_variants": {
+        "nickname": "",
+        "title": "아버지 (Father)"
+      },
+      "honorifics_used": {},
+      "first_appearance": "Chapter 1, in the private hotel dining room.",
+      "english": "Seunghwan Ryu"
+    },
+    "김수정": {
+      "name": "Sujong Kim",
+      "korean_surname": "김",
+      "korean_given_name": "수정",
+      "surname": "Kim",
+      "given_name": "Sujong",
+      "gender": "female",
+      "role": "minor",
+      "age_group": "young_adult",
+      "personality_traits": [
+        "nosy",
+        "gossipy",
+        "observant",
+        "cheerful"
+      ],
+      "speech_style": "informal_polite",
+      "physical_description": [],
+      "relationships": {
+        "char_0": {
+          "type": "Colleague",
+          "description": "Saebom's junior colleague who is intensely curious about her personal life, especially the sudden appearance of a diamond ring. She acts as the voice of the office rumor mill."
+        }
+      },
+      "name_variants": {
+        "nickname": "",
+        "title": "김 주임 (Chief Kim)"
+      },
+      "honorifics_used": {
+        "char_0": "대리님"
+      },
+      "first_appearance": "Chapter 2, approaching Saebom's desk to ask about her ring.",
+      "english": "Sujong Kim"
+    }
+  },
+  "locations": {
+    "전무실": {
+      "name": "Executive Director's Office",
+      "type": "office",
+      "description": "Jiheon's spacious and intimidating office. It serves as his seat of power, where he hatches his plans, confronts Saebom, and feels the pressure of his situation. It's both a cage and a command center.",
+      "atmosphere": "tense, luxurious, oppressive",
+      "significance": "The site of the initial proposal, the contract offer, and where Jiheon discovers the ring's prophecy, making it a key stage for major plot developments.",
+      "english": "Executive Director's Office"
+    },
+    "호텔": {
+      "name": "Luxury Hotel",
+      "type": "commercial_building",
+      "description": "A high-end hotel that serves as the backdrop for the story's catalyst. It contains a public bathroom where the ring is found, and a luxurious private dining room with a view of Namsan.",
+      "atmosphere": "luxurious, fateful, tense",
+      "significance": "The location where the deception begins, trapping Saebom in Jiheon's world of wealth and lies. It's also where they wake up together after their drunken night, escalating their complicated relationship.",
+      "english": "Luxury Hotel"
+    },
+    "月下 (월하)": {
+      "name": "Wolha (Under the Moon) Ring Shop",
+      "type": "shop",
+      "description": "A mysterious, classic-looking jewelry shop that appeared in an alley only to vanish without a trace after Jiheon's visit. It had a strange, out-of-place atmosphere.",
+      "atmosphere": "mysterious, magical, ephemeral",
+      "significance": "The supernatural origin of the cursed rings. Its disappearance solidifies the magical nature of the conflict and removes any easy solution, forcing the protagonists to rely on each other.",
+      "english": "Wolha (Under the Moon) Ring Shop"
+    },
+    "포장마차": {
+      "name": "Pojangmacha (Street Food Tent)",
+      "type": "restaurant",
+      "description": "A humble, lively street food tent with plastic chairs, serving soju and comfort food like hagfish and chicken feet. A stark contrast to Jiheon's luxurious world.",
+      "atmosphere": "casual, lively, intimate",
+      "significance": "A neutral ground where Saebom and Jiheon, stripped of their corporate roles, have their first honest and vulnerable conversation, revealing their deepest fears and desires.",
+      "english": "Pojangmacha (Street Food Tent)"
+    },
+    "회사 사무실 / 휴게실": {
+      "name": "Company Office / Break Room",
+      "type": "workplace",
+      "description": "The modern, open-plan office where Saebom works. It's a hotbed of gossip and speculation, where colleagues like Sujong Kim and Jaehee watch Saebom and Jiheon's every move.",
+      "atmosphere": "professional, gossipy, tense",
+      "significance": "The primary setting for the 'fake relationship' performance. The constant presence of colleagues forces Saebom and Jiheon to maintain their facade, creating endless comedic and stressful situations.",
+      "english": "Company Office / Break Room"
+    }
+  },
+  "terms": {
+    "반지": {
+      "korean": "반지",
+      "english": "The Cursed Ring",
+      "category": "supernatural_item",
+      "context": "A pair of beautiful, expensive-looking rings from the mysterious shop 'Wolha'. Once worn, they cannot be removed by any conventional means. They are the central plot device binding Saebom and Jiheon together.",
+      "notes": "The rings' power is tied to the moon and can only be negated during a total lunar eclipse, setting a three-month timeline for the story's main conflict."
+    },
+    "붉은 달이 뜰 때, 비로소 신비로운 힘이 사라진다": {
+      "korean": "붉은 달이 뜰 때, 비로소 신비로운 힘이 사라진다",
+      "english": "When the red moon rises, the mystical power will finally disappear",
+      "category": "lore",
+      "context": "The prophecy engraved inside the ring box. It's the only clue to removing the rings and refers to a total lunar eclipse (개기월식).",
+      "notes": "This phrase represents the story's central ticking clock and the protagonists' only hope for freedom."
+    },
+    "전무 (님)": {
+      "korean": "전무 (님)",
+      "english": "Executive Director",
+      "category": "corporate_title",
+      "context": "Jiheon's high-ranking corporate title, placing him near the top of the company hierarchy and establishing the significant power imbalance with Saebom.",
+      "notes": "Always used with the honorific '님' (nim) by subordinates, reflecting the formal and hierarchical nature of their workplace."
+    },
+    "대리 (님)": {
+      "korean": "대리 (님)",
+      "english": "Assistant Manager",
+      "category": "corporate_title",
+      "context": "Saebom's mid-level corporate title. It positions her as a competent professional but clearly subordinate to Jiheon.",
+      "notes": "Used with the honorific '님' (nim) by her juniors, like Chief Kim."
+    },
+    "연인 대행": {
+      "korean": "연인 대행",
+      "english": "Acting Lover / Fake Date",
+      "category": "concept",
+      "context": "The service Jiheon initially hired to procure a fake girlfriend to appease his parents. Saebom becomes an unwilling, last-minute substitute.",
+      "notes": "This concept kicks off the entire 'fake relationship' trope."
+    },
+    "소개팅": {
+      "korean": "소개팅",
+      "english": "Blind Date (Arranged)",
+      "category": "social_custom",
+      "context": "A common Korean practice of being set up on a date by a mutual acquaintance. Saebom's colleague tries to arrange one for her, creating a potential complication for her 'relationship' with Jiheon.",
+      "notes": "Keep as 'blind date' or 'a setup'."
+    }
+  },
+  "honorifics": {
+    "님": "Formal honorific suffix for names and titles. Reflects respect and social/professional distance. Translate by using formal titles ('Mr. Ryu', 'Executive Director') or a more respectful tone, but never use the romanized '-nim'.",
+    "씨": "Polite address for equals or subordinates one is not close to. Can be translated as 'Mr./Ms.' or by using the full name ('Saebom Jeon'). Avoid using the romanized '-ssi' unless no other natural equivalent fits the context."
+  },
+  "style_guide": {
+    "name_format": "english_given_name english_surname",
+    "tone": "Romantic comedy with dramatic undertones",
+    "formality_level": "medium",
+    "themes": [
+      "Fake Relationship",
+      "Forced Proximity",
+      "Appearance vs. Reality",
+      "Fate vs. Choice",
+      "Social Pressure"
+    ],
+    "genre": "Modern Romance",
+    "sub_genres": [
+      "Office Romance",
+      "Romantic Comedy",
+      "Supernatural"
+    ],
+    "content_rating": "Teen+",
+    "honorific_usage": "Keep the original cultural and linguistic nuance of honorifics, endearments, suffixes and titles, but swap these terms out with english equivalents wherever possible like using just their name, or a joking title like newbie for hubae, etc or reflecting it in the sentence tone with vocabulary based on the context, character dynamics and the situation or tone the work is set in. Don't use the romanized version of the korean word such as seonsaeng-nim, sunbaenim, etc unless specified otherwise",
+    "formal_speech_level": "Match English formality to the Korean speech levels (e.g., Jondaemal vs. Banmal) to reflect character relationships and hierarchy.",
+    "dialogue_style": "Natural and contemporary. Dialogue should clearly reflect the characters' personalities—Jiheon's polite but cutting remarks vs. Saebom's earnest and sometimes flustered responses.",
+    "narrative_style": {
+      "point_of_view": "third-person limited, alternating between Saebom and Jiheon's perspectives.",
+      "tense": "past",
+      "voice": "Introspective and witty, focusing on the internal conflicts and humorous misunderstandings of the protagonists.",
+      "common_expressions": [
+        "그때 (At that moment)",
+        "그 순간 (In that instant)"
+      ],
+      "atmosphere_descriptors": [
+        "tense",
+        "awkward",
+        "comedic",
+        "romantic"
+      ]
+    }
+  },
+  "recurring_phrases": {
+    "어쩔 수 없었다": "There was no other choice / It couldn't be helped.",
+    "appearances": "Used frequently by both Saebom and Jiheon to rationalize their increasingly complicated decisions and forced proximity."
+  },
+  "world_building_notes": [
+    "The world is a blend of a realistic, modern South Korean corporate setting and a hidden supernatural element.",
+    "The corporate culture is strictly hierarchical, where titles (Executive Director, Assistant Manager) dictate social interactions and speech patterns (formal vs. informal language).",
+    "The concept of 'Chaebol' (family-owned conglomerates) is central. Heirs like Jiheon face immense pressure to marry for strategic reasons, not love, driving the core conflict.",
+    "Magic is not widespread but exists in mysterious, isolated pockets, such as the ephemeral 'Wolha' shop. Its rules are specific and tied to natural phenomena (lunar eclipses), grounding the fantasy in a tangible timeline."
+  ],
+  "story_summary": {
+    "logline": "A pragmatic office worker and her cynical chaebol boss are magically bound together by irremovable rings, forcing them into a fake relationship that might just become real before the next lunar eclipse can set them free.",
+    "blurb": "Saebom Jeon just wants a normal life and a normal romance. What she gets is a sudden, bizarre marriage proposal from her handsome, yet infuriatingly arrogant boss, Jiheon Ryu. After she flatly refuses, a series of mishaps lands a mysterious, cursed ring on her finger, trapping her in an elaborate lie as Jiheon's fake fiancée. The problem? The ring won't come off. Neither will his. With their fates—and fingers—intertwined, they discover their only hope for freedom is a total lunar eclipse three months away. Forced into close quarters, they navigate meddling parents, office gossip, and a growing, undeniable attraction. As the deadline approaches, they must confront whether they want to break the curse or if the bond holding them together is something more than magic."
+  },
+  "key_events_and_arcs": [
+    "1. Inciting Incident: Jiheon tricks Saebom into a fake date with his parents, putting a mysterious ring on her finger that becomes irremovably stuck.",
+    "2. Rising Action: After discovering his own matching ring is also stuck, Jiheon and Saebom fail to remove them by any means, leading them to the now-vanished magical shop and the discovery of a prophecy: the rings can only be removed during a red moon, three months away.",
+    "3. Midpoint: A drunken night at a street food tent leads to raw confessions about their fears and desires, shifting their dynamic from purely antagonistic to one of reluctant understanding and complicated attraction.",
+    "4. Climax: The night of the total lunar eclipse arrives, forcing them to confront their true feelings and decide whether to remove the rings and part ways, or embrace their magically-forged bond."
+  ],
+  "keywords": [
+    "#OfficeRomance",
+    "#FakeRelationship",
+    "#ContractRelationship",
+    "#ForcedProximity",
+    "#EnemiesToLovers",
+    "#ChaebolML",
+    "#OrdinaryFL",
+    "#CursedItem",
+    "#OneBedTrope",
+    "#GrumpySunshine",
+    "#KoreanNovel",
+    "#RomCom"
+  ]
+}

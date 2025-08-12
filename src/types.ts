@@ -45,6 +45,14 @@ export interface UserProfile {
   password: string;
 }
 
+// Backend usage/auth types
+export interface UsageStatusPayload {
+  credits_remaining: number;
+  authenticated: boolean;
+  ad_min_seconds: number;
+  ad_bonus_credits: number;
+}
+
 export interface AppState {
   currentUser: UserProfile;
   registeredUsernames: string[]; // 간단한 유니크 검사용
@@ -58,9 +66,20 @@ export interface AppState {
   isRegistered: boolean;
   globalMessageCount: number;
 
+  // usage/auth state
+  anonId?: string | null;
+  authToken?: string | null;
+  authenticated?: boolean;
+  creditsRemaining?: number | null;
+  adMinSeconds?: number;
+  adBonusCredits?: number;
+  usageReady?: boolean; // false until anon+status fetched
+  currentAdSessionId?: string | null;
+  paymentRequired?: boolean; // true if server indicated payment/credits required
+
   // actions
   openChat: (characterId: string) => void;
-  sendMessage: (characterId: string, inputText: string, sender: string) => void;
+  sendMessage: (characterId: string, inputText: string) => void;
   toggleLike: (characterId: string) => void;
   updateUserProfile: (username: string, password: string) => { ok: true } | { ok: false; reason: string };
   signInUser: (username: string, password: string) => { ok: true } | { ok: false; reason: string };
@@ -70,4 +89,13 @@ export interface AppState {
   handleModalAction: (characterId: string | undefined, action: "register" | "watchAd" | "lockChat") => void;
   resetUserRegistration: () => void;
   resetAdViews: () => void;
+  forceUnlock?: (characterId: string) => void;
+
+  // usage/auth actions
+  initUsage?: () => Promise<void>;
+  refreshUsageStatus?: () => Promise<void>;
+  registerUser?: (username: string, password: string) => Promise<{ ok: true } | { ok: false; reason: string }>;
+  loginUser?: (username: string, password: string) => Promise<{ ok: true } | { ok: false; reason: string }>;
+  startAd?: () => Promise<{ ok: boolean; adSessionId?: string; reason?: string }>;
+  completeAd?: (watchedSeconds: number) => Promise<{ ok: boolean; awarded?: boolean; credits?: number; reason?: string }>;
 } 

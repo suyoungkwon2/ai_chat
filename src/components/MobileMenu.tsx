@@ -1,6 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAppStore } from "../store/appStore";
-import { characters as allCharacters } from "../data/characters";
 import { useMemo } from "react";
 
 export default function MobileMenu({ onClose }: { onClose: () => void }) {
@@ -8,6 +7,7 @@ export default function MobileMenu({ onClose }: { onClose: () => void }) {
   const { pathname } = useLocation();
   const openCharacterIds = useAppStore((s) => s.openCharacterIds);
   const currentUser = useAppStore((s) => s.currentUser);
+  const characters = useAppStore((s) => s.characters);
 
   const handleLinkClick = (path: string) => {
     navigate(path);
@@ -15,10 +15,9 @@ export default function MobileMenu({ onClose }: { onClose: () => void }) {
   };
   
   const openCharacters = useMemo(() => {
-    return openCharacterIds
-      .map((id) => allCharacters.find((c) => c.id === id))
-      .filter(Boolean) as typeof allCharacters;
-  }, [openCharacterIds]);
+    const byId = new Map(characters.map((c) => [c.id, c] as const));
+    return openCharacterIds.map((id) => byId.get(id)).filter(Boolean) as typeof characters;
+  }, [openCharacterIds, characters]);
 
   return (
     <div className="mobile-menu" onClick={onClose}>
