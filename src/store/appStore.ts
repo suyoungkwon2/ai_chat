@@ -32,6 +32,91 @@ function createInitialAiGreeting(characterId: string): ChatMessage {
   };
 }
 
+const API_BASE = (import.meta as any).env?.VITE_API_BASE || "http://localhost:8000";
+
+async function feGetAnonId(): Promise<string> {
+  let anon = localStorage.getItem("anon_id") || "";
+  try {
+    const res = await fetch(`${API_BASE}/api/interface/guest/init`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ anon_id: anon || undefined }),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data?.anon_id) {
+        anon = data.anon_id;
+        localStorage.setItem("anon_id", anon);
+      }
+    }
+  } catch {}
+  if (!anon) {
+    anon = `anon_${nanoid(10)}`;
+    localStorage.setItem("anon_id", anon);
+  }
+  return anon;
+}
+
+async function beCreateChatById(userName: string, shortCharacterId: string) {
+  const res = await fetch(`${API_BASE}/api/interface/chat/create_by_id`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ user_name: userName, character_id: shortCharacterId }),
+  });
+  if (!res.ok) throw new Error("create chat failed");
+  return res.json();
+}
+
+async function beSendMessage(payload: { chat_id: string; sender_id?: string; content: string; anon_id?: string }) {
+  const headers: Record<string, string> = { "Content-Type": "application/json" };
+  if (payload.anon_id) headers["X-Anon-Id"] = payload.anon_id;
+  const res = await fetch(`${API_BASE}/api/interface/chat/send`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) {
+    const detail = await res.json().catch(() => null);
+    const err: any = new Error("send failed");
+    err.status = res.status;
+    err.detail = detail;
+    throw err;
+  }
+  return res.json();
+}
+
+async function ensureBackendChat(characterId: string, getState: () => AppState, setState: any) {
+  const state = getState();
+  const session = state.sessionsByCharacterId[characterId];
+  if (session?.backendChatId && session.humanId) return session;
+  const res = await beCreateChatById(state.currentUser.username, characterId);
+  setState((s: AppState) => ({
+    sessionsByCharacterId: {
+      ...s.sessionsByCharacterId,
+      [characterId]: {
+        ...s.sessionsByCharacterId[characterId],
+        backendChatId: res.chat_id,
+        humanId: res.human_player_id,
+        aiId: res.ai_player_id,
+        aiName: res.ai_name,
+        messages: res.messages?.length
+          ? [
+              ...s.sessionsByCharacterId[characterId].messages,
+              ...res.messages.map((m: any) => ({
+                id: m.id,
+                sender: "ai",
+                dialogue: m.content,
+                situation: undefined,
+                timestamp: Date.now(),
+              })),
+            ]
+          : s.sessionsByCharacterId[characterId].messages,
+      },
+    },
+  }));
+  return getState().sessionsByCharacterId[characterId];
+}
+
 export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
@@ -42,7 +127,7 @@ export const useAppStore = create<AppState>()(
       openCharacterIds: [],
       sidebarWidth: 270,
 
-      openChat: (characterId) => {
+      openChat: async (characterId) => {
         const state = get();
         const exists = state.sessionsByCharacterId[characterId];
         if (!exists) {
@@ -54,6 +139,34 @@ export const useAppStore = create<AppState>()(
               [characterId]: { id: sessionId, characterId, messages },
             },
           }));
+          // Kick off backend chat creation
+          const character = state.characters.find((c) => c.id === characterId)!;
+          try {
+            const res = await beCreateChatById(get().currentUser.username, characterId);
+            set((s) => ({
+              sessionsByCharacterId: {
+                ...s.sessionsByCharacterId,
+                [characterId]: {
+                  ...s.sessionsByCharacterId[characterId],
+                  backendChatId: res.chat_id,
+                  humanId: res.human_player_id, // absent for persistent flow; okay
+                  aiId: res.ai_player_id,
+                  aiName: res.ai_name,
+                  messages: res.messages?.length
+                    ? res.messages.map((m: any) => ({
+                        id: m.id,
+                        sender: m.sender_id?.startsWith("ai_") ? "ai" : "ai", // greeting is AI
+                        dialogue: m.content,
+                        situation: undefined,
+                        timestamp: Date.now(),
+                      }))
+                    : messages,
+                },
+              },
+            }));
+          } catch (e) {
+            // ignore; user can still chat with fallback template
+          }
         }
         set((s) => ({
           openCharacterIds: s.openCharacterIds.includes(characterId)
@@ -62,14 +175,12 @@ export const useAppStore = create<AppState>()(
         }));
       },
 
-      sendMessage: (characterId, inputText, username) => {
+      sendMessage: async (characterId, inputText, username) => {
         const state = get();
         const session = state.sessionsByCharacterId[characterId];
         if (!session) return;
         const { dialogue, situation } = parseInputToParts(inputText);
         if (!dialogue && !situation) return;
-
-        console.log(`Sending message to ${characterId} from ${username}:`, { dialogue, situation });
 
         const userMsg: ChatMessage = {
           id: nanoid(),
@@ -79,25 +190,137 @@ export const useAppStore = create<AppState>()(
           timestamp: Date.now(),
         };
 
-        const character = state.characters.find((c) => c.id === characterId)!;
-        // 단순한 더미 응답 생성
-        const aiMsg: ChatMessage = {
-          id: nanoid(),
-          sender: "ai",
-          dialogue: `${character.name}: My thoughts on "${dialogue || "..."}"... how interesting!`,
-          situation: situation ? `I understand the situation: ${situation}` : undefined,
-          timestamp: Date.now() + 1,
-        };
-
+        // optimistic update
         set((s) => ({
           sessionsByCharacterId: {
             ...s.sessionsByCharacterId,
             [characterId]: {
               ...s.sessionsByCharacterId[characterId],
-              messages: [...s.sessionsByCharacterId[characterId].messages, userMsg, aiMsg],
+              messages: [...s.sessionsByCharacterId[characterId].messages, userMsg],
             },
           },
         }));
+
+        // ensure backend chat exists before sending (handles race and server restarts)
+        let ensured = session;
+        try {
+          ensured = await ensureBackendChat(characterId, get, set);
+        } catch {}
+
+        // backend send
+        const anon_id = await feGetAnonId();
+        const payload = {
+          chat_id: ensured.backendChatId || ensured.id,
+          sender_id: ensured.humanId, // in-memory flow uses this, persistent ignores
+          content: dialogue + (situation ? `\n\n**SITUATION:** ${situation}` : ""),
+          anon_id,
+          user_name: get().currentUser.username,
+          ai_name: ensured.aiName,
+        };
+
+        try {
+          const res = await beSendMessage(payload);
+          const ai = res.ai_message;
+          const creditsRemaining = res.credits_remaining;
+          if (ai) {
+            // parse structured output if present
+            const text: string = ai.content || "";
+            const parsed = (() => {
+              const sit = (text.match(/\*\*SITUATION:\*\*([\s\S]*?)\n\s*\*\*DIALOGUE:\*\*/i)?.[1] || "").trim();
+              const dia = (text.match(/\*\*DIALOGUE:\*\*\s*"?([\s\S]*?)\n\s*\*\*AFFECTION LEVEL:\*\*/i)?.[1] || text).trim();
+              return { situation: sit || undefined, dialogue: dia.replace(/^"|"$/g, "") };
+            })();
+            const aiMsg: ChatMessage = {
+              id: ai.id || nanoid(),
+              sender: "ai",
+              dialogue: parsed.dialogue,
+              situation: parsed.situation,
+              timestamp: Date.now(),
+            };
+            set((s) => ({
+              sessionsByCharacterId: {
+                ...s.sessionsByCharacterId,
+                [characterId]: {
+                  ...s.sessionsByCharacterId[characterId],
+                  messages: [...s.sessionsByCharacterId[characterId].messages, aiMsg],
+                },
+              },
+            }));
+          }
+          // creditsRemaining can be shown in UI later
+        } catch (err: any) {
+          // if server lost in-memory chat (e.g., restarted), recreate and retry once
+          if (err?.status === 404) {
+            try {
+              const refreshed = await ensureBackendChat(characterId, get, set);
+              const retry = await beSendMessage({ ...payload, chat_id: refreshed.backendChatId || refreshed.id, sender_id: refreshed.humanId });
+              const ai = retry.ai_message;
+              if (ai) {
+                const text: string = ai.content || "";
+                const parsed = (() => {
+                  const sit = (text.match(/\*\*SITUATION:\*\*([\s\S]*?)\n\s*\*\*DIALOGUE:\*\*/i)?.[1] || "").trim();
+                  const dia = (text.match(/\*\*DIALOGUE:\*\*\s*"?([\s\S]*?)\n\s*\*\*AFFECTION LEVEL:\*\*/i)?.[1] || text).trim();
+                  return { situation: sit || undefined, dialogue: dia.replace(/^"|"$/g, "") };
+                })();
+                const aiMsg: ChatMessage = {
+                  id: ai.id || nanoid(),
+                  sender: "ai",
+                  dialogue: parsed.dialogue,
+                  situation: parsed.situation,
+                  timestamp: Date.now(),
+                };
+                set((s) => ({
+                  sessionsByCharacterId: {
+                    ...s.sessionsByCharacterId,
+                    [characterId]: {
+                      ...s.sessionsByCharacterId[characterId],
+                      messages: [...s.sessionsByCharacterId[characterId].messages, aiMsg],
+                    },
+                  },
+                }));
+                return;
+              }
+            } catch {}
+          }
+          // insufficient credits flow
+          if (err?.status === 402 && err?.detail?.error === "insufficient_credits") {
+            const aiMsg: ChatMessage = {
+              id: nanoid(),
+              sender: "ai",
+              dialogue: "You are out of free messages. Please sign up or watch a 15s ad to continue.",
+              situation: undefined,
+              timestamp: Date.now(),
+            };
+            set((s) => ({
+              sessionsByCharacterId: {
+                ...s.sessionsByCharacterId,
+                [characterId]: {
+                  ...s.sessionsByCharacterId[characterId],
+                  messages: [...s.sessionsByCharacterId[characterId].messages, aiMsg],
+                },
+              },
+            }));
+          } else {
+            // fallback local template if backend failed
+            const character = state.characters.find((c) => c.id === characterId)!;
+            const aiMsg: ChatMessage = {
+              id: nanoid(),
+              sender: "ai",
+              dialogue: `${character.name}: ${dialogue || "..."}`,
+              situation: situation ? `I understand the situation: ${situation}` : undefined,
+              timestamp: Date.now() + 1,
+            };
+            set((s) => ({
+              sessionsByCharacterId: {
+                ...s.sessionsByCharacterId,
+                [characterId]: {
+                  ...s.sessionsByCharacterId[characterId],
+                  messages: [...s.sessionsByCharacterId[characterId].messages, aiMsg],
+                },
+              },
+            }));
+          }
+        }
       },
 
       toggleLike: (characterId) => {
@@ -112,7 +335,6 @@ export const useAppStore = create<AppState>()(
         const state = get();
         const current = state.currentUser.username;
         const names = new Set(state.registeredUsernames);
-        // 현재 유저명을 제외하고 유니크 검사
         if (username !== current && names.has(username)) {
           return { ok: false as const, reason: "This username is already taken." };
         }
@@ -123,18 +345,10 @@ export const useAppStore = create<AppState>()(
           return { ok: false as const, reason: "Please enter a password." };
         }
         names.add(username);
-        // 이전 이름은 목록에 남겨둘 수 있지만, 간단히 제거 후 현재만 등록
         names.delete(current);
         set({ currentUser: { username, password }, registeredUsernames: Array.from(names) });
-        
-        // GA User ID 업데이트
         ReactGA.set({ userId: username });
-        ReactGA.event({
-          category: "Profile",
-          action: "save_profile_changes",
-          label: username,
-        });
-
+        ReactGA.event({ category: "Profile", action: "save_profile_changes", label: username });
         return { ok: true as const };
       },
       
