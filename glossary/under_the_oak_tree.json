@@ -1,0 +1,349 @@
+{
+  "characters": {
+    "맥시밀리언 칼립스": {
+      "name": "Maximilian Calypse",
+      "korean_surname": "칼립스",
+      "korean_given_name": "맥시밀리언",
+      "surname": "Calypse",
+      "given_name": "Maximilian",
+      "gender": "female",
+      "role": "protagonist",
+      "age_group": "young_adult",
+      "personality_traits": [
+        "anxious",
+        "traumatized",
+        "self-deprecating",
+        "resilient",
+        "kind-hearted",
+        "determined"
+      ],
+      "speech_style": "formal",
+      "physical_description": [
+        "pale skin",
+        "messy, curly red hair",
+        "large gray eyes",
+        "brown freckles across her nose",
+        "slender and delicate build",
+        "severe stutter"
+      ],
+      "relationships": {
+        "char_riftan": {
+          "type": "Husband / Enemies-to-Lovers / Hurt-Comfort",
+          "description": "The core of the story. Their relationship begins with a traumatic, forced consummation and three years of silence, leaving Maximilian terrified of her brutish, lowborn husband. But Riftan's fierce, almost violent possessiveness hides a deep, long-held obsession and a desperate need to protect her. Their dynamic is a slow, painful, and beautiful journey from fear to trust, from duty to a love so profound it threatens to consume them both. He is the storm she fears, and also the only shelter she's ever known."
+        },
+        "char_croyso": {
+          "type": "Father / Abuser",
+          "description": "The architect of her trauma. Duke Croyso is a cruel, tyrannical father who subjected Maximilian to a lifetime of physical and psychological abuse for her stutter, viewing her as a worthless failure. Her entire existence has been shaped by his shadow, and her journey is a desperate flight toward freedom from his control. He is the monster she must overcome, not on a battlefield, but within her own mind."
+        },
+        "char_ruth": {
+          "type": "Mentor / First Friend",
+          "description": "A reluctant, cynical alliance that blossoms into a genuine friendship. As her magic tutor, the sharp-tongued Ruth is the first person in Anatol to see past her stutter and recognize her intelligence. He pushes her, insults her, and ultimately becomes her most loyal confidant and supporter, the anchor of logic and reason in her turbulent new life."
+        },
+        "char_knights": {
+          "type": "Found Family / From Hostility to Loyalty",
+          "description": "Initially, the Remdragon Knights despise her, seeing her only as the daughter of the man who nearly sent them to their deaths. Their open hostility feeds her deepest insecurities. Yet, through her quiet determination, unexpected courage, and selfless acts of healing on the battlefield, she slowly shatters their prejudice, earning not just their respect, but their fierce, protective loyalty. They become the family she never had."
+        }
+      },
+      "name_variants": {
+        "nickname": "맥시 (Maxi)",
+        "title": "칼립스 부인 (Lady Calypse), 공작 영애 (Duke's Daughter), 마님 (My Lady)"
+      },
+      "honorifics_used": {
+        "char_riftan": "-요 (formal sentence ender)"
+      },
+      "first_appearance": "Chapter 1, pacing nervously in the reception room of Croyso Castle.",
+      "english": "Maximilian Calypse"
+    },
+    "리프탄 칼립스": {
+      "name": "Riftan Calypse",
+      "korean_surname": "칼립스",
+      "korean_given_name": "리프탄",
+      "surname": "Calypse",
+      "given_name": "Riftan",
+      "gender": "male",
+      "role": "deuteragonist",
+      "age_group": "young_adult",
+      "personality_traits": [
+        "possessive",
+        "intimidating",
+        "passionate",
+        "blunt",
+        "insecure",
+        "fiercely loyal"
+      ],
+      "speech_style": "informal",
+      "physical_description": [
+        "tall and powerfully built, like a 'giant made of twisted steel'",
+        "tanned skin",
+        "messy black hair",
+        "sharp, black eyes",
+        "calloused hands"
+      ],
+      "relationships": {
+        "char_maxi": {
+          "type": "Wife / Obsession / Savior",
+          "description": "Maximilian is his sun, his reason for living, and his greatest vulnerability. Having secretly loved her from afar since he was a boy, their forced marriage was both a dream and a nightmare. He resents the circumstances but is pathologically obsessed with possessing and protecting her. His love language is violence against her enemies and overwhelming her with riches, a clumsy attempt to heal wounds he doesn't fully understand. He is terrified of his own roughness and the depth of his desire, creating a volatile push-and-pull dynamic of fierce passion and profound insecurity."
+        },
+        "char_croyso": {
+          "type": "Father-in-law / Nemesis",
+          "description": "Pure, unadulterated hatred. Riftan despises the Duke not for the political slights against him, but for the unforgivable cruelty inflicted upon Maximilian. The Duke represents the corrupt, blood-soaked nobility Riftan has fought his entire life. Every interaction is a barely contained battle of wills, with Riftan's rage threatening to shatter the fragile peace of the kingdom."
+        },
+        "char_knights": {
+          "type": "Commander / Brother-in-Arms",
+          "description": "The Remdragon Knights are his family, forged in the crucible of war. He is their unshakeable leader, commanding their absolute loyalty and respect. They have followed him through hell and back. This bond is tested only by his all-consuming devotion to Maximilian, forcing his men to reconcile their hatred for her father with their duty to protect their commander's wife."
+        },
+        "char_agnes": {
+          "type": "Former Comrade / Political Thorn",
+          "description": "A relationship of mutual respect and constant friction. As comrades who fought a dragon together, they share a bond of experience. However, as a princess representing the political world Riftan despises, she is a constant source of irritation. He bluntly rejected a marriage proposal from her, and her continued presence in his life serves as a reminder of the political games he is desperate to shield Maximilian from."
+        }
+      },
+      "name_variants": {
+        "nickname": "마고 (Mago)",
+        "title": "칼립스 경 (Lord Calypse), 단장 (Commander)"
+      },
+      "honorifics_used": {},
+      "first_appearance": "Chapter 1, appearing at the doorway of the reception room.",
+      "english": "Riftan Calypse"
+    },
+    "이시언 크로이소": {
+      "name": "Ision Croyso",
+      "korean_surname": "크로이소",
+      "korean_given_name": "이시언",
+      "surname": "Croyso",
+      "given_name": "Ision",
+      "gender": "male",
+      "role": "antagonist",
+      "age_group": "adult",
+      "personality_traits": [
+        "abusive",
+        "cruel",
+        "authoritarian",
+        "obsessed with honor",
+        "hypocritical",
+        "ruthless"
+      ],
+      "speech_style": "formal",
+      "physical_description": [
+        "lean body",
+        "carries a cane"
+      ],
+      "relationships": {
+        "char_maxi": {
+          "type": "Daughter / Victim",
+          "description": "He is the source of all of Maximilian's trauma. He views her not as a daughter, but as a flawed tool and a source of shame. His relationship with her is one of pure abuse, control, and contempt, using violence to 'correct' her perceived imperfections."
+        },
+        "char_riftan": {
+          "type": "Son-in-law / Scapegoat",
+          "description": "He sees Riftan as a lowborn upstart to be used and discarded. He forced the marriage to pass on his military obligations, never expecting Riftan to survive, let alone return as a hero. Their relationship is one of mutual, seething hatred and a battle for control over Maximilian."
+        },
+        "char_rosetal": {
+          "type": "Daughter / Prized Asset",
+          "description": "Rosetal is the daughter he values, but only as an instrument for the family's ambition. He lavished resources on her and even forced her to witness Maximilian's abuse as a twisted lesson in obedience and the consequence of being 'useless'."
+        }
+      },
+      "name_variants": {
+        "nickname": "",
+        "title": "공작 (Duke)"
+      },
+      "honorifics_used": {},
+      "first_appearance": "Chapter 1, entering the reception room.",
+      "english": "Ision Croyso"
+    },
+    "루스 세르벨": {
+      "name": "Ruth Serbel",
+      "korean_surname": "세르벨",
+      "korean_given_name": "루스",
+      "surname": "Serbel",
+      "given_name": "Ruth",
+      "gender": "male",
+      "role": "major",
+      "age_group": "young_adult",
+      "personality_traits": [
+        "sarcastic",
+        "blunt",
+        "brilliant",
+        "lazy",
+        "pragmatic",
+        "secretly caring"
+      ],
+      "speech_style": "formal, direct",
+      "physical_description": [
+        "slender build",
+        "wears a robe",
+        "appears to be in his early to mid-twenties"
+      ],
+      "relationships": {
+        "char_maxi": {
+          "type": "Student / Best Friend",
+          "description": "He is Maximilian's magic tutor and, more importantly, her first true friend. He sees her intelligence when others only see her stutter. Their relationship is built on sarcastic banter, late-night study sessions, and mutual respect. He is the one who gives her the tools to build her confidence and find her own power."
+        },
+        "char_riftan": {
+          "type": "Commander / Annoying Friend",
+          "description": "A bond of deep, begrudging loyalty. Ruth is the only one who can speak to Riftan with open disrespect and get away with it. Having been saved by Riftan after deserting the World Tower, Ruth is bound to him by debt and genuine friendship, which he primarily expresses through nagging, complaining, and providing invaluable magical support."
+        }
+      },
+      "name_variants": {
+        "nickname": "",
+        "title": ""
+      },
+      "honorifics_used": {},
+      "first_appearance": "Chapter 2, offering Maximilian a magic stone.",
+      "english": "Ruth Serbel"
+    }
+  },
+  "locations": {
+    "크로이소 성": {
+      "name": "Croyso Castle",
+      "type": "castle",
+      "description": "The grand, opulent seat of the Duke of Croyso. It is a symbol of immense wealth and power, with magnificent gardens and luxurious interiors built in the splendid style of the fallen Roem Empire.",
+      "atmosphere": "oppressive, cold, a gilded cage",
+      "significance": "Maximilian's childhood home and the source of her trauma. It represents a life of isolated fear and abuse that she must escape, and the corrupt power of the old nobility that Riftan despises.",
+      "english": "Croyso Castle"
+    },
+    "칼립스 성": {
+      "name": "Calypse Castle",
+      "type": "castle",
+      "description": "A huge, formidable fortress built on a mountainside in the remote territory of Anatol. Initially, it is a bleak, practical, and neglected military stronghold, lacking any semblance of comfort or artistry.",
+      "atmosphere": "imposing, desolate, militaristic, transforming into a warm home",
+      "significance": "Riftan's seat of power and Maximilian's new home. Its transformation from a cold fortress into a vibrant, decorated home mirrors Maximilian's own journey of growth and self-discovery. It is the canvas on which she builds her new life.",
+      "english": "Calypse Castle"
+    },
+    "아나톨": {
+      "name": "Anatol",
+      "type": "territory",
+      "description": "Riftan's fiefdom, a rugged and mountainous territory on the southern edge of the continent. Once a neglected backwater teeming with monsters, it has prospered under Riftan's rule, developing a bustling town and a new port for trade.",
+      "atmosphere": "rugged, developing, fiercely loyal",
+      "significance": "The main setting of the story. It is Riftan's life's work and the symbol of his rise from nothing. For Maximilian, it is the place where she finds freedom, purpose, and a found family for the first time.",
+      "english": "Anatol"
+    },
+    "세계탑": {
+      "name": "The World Tower",
+      "type": "magical institution",
+      "description": "The supreme institution for mages, located on the isolated, artificial island of Nornui. It is a center of all magical knowledge and a neutral political power, dedicated to the protection of mages.",
+      "atmosphere": "scholarly, restrictive, mysterious",
+      "significance": "The source of all high-level magic in the world. It represents a path to immense power and independence for Maximilian, but at the cost of a long, painful separation from Riftan.",
+      "english": "The World Tower"
+    }
+  },
+  "terms": {
+    "겟슈": {
+      "korean": "겟슈",
+      "english": "Geshu",
+      "category": "cultural",
+      "context": "A knight's ultimate, once-in-a-lifetime pledge of loyalty, admiration, and affection to a person of high status, typically royalty or a noble lady.",
+      "notes": "A significant custom within knightly culture that signifies a deep, unbreakable bond. Uslin Rikaido pledged his to Princess Agnes, which is the source of his resentment towards Riftan."
+    },
+    "마나 / 마력": {
+      "korean": "마나 / 마력",
+      "english": "Mana / Magic Power",
+      "category": "technical",
+      "context": "The two forms of magical energy. 'Mana' is the balanced, ambient energy of the world. 'Magic Power' is the unstable, weaponized energy stored within a mage's body to cast spells.",
+      "notes": "Overuse of Magic Power leads to 'Mana Exhaustion,' a dangerous condition with symptoms similar to severe blood loss. Depleting one's innate Mana is akin to shortening one's lifespan."
+    },
+    "로셈 위그루": {
+      "korean": "로셈 위그루",
+      "english": "Rochem Wigrew",
+      "category": "title",
+      "context": "A prestigious title meaning 'Incarnation of Wigrew,' bestowed upon the most powerful knights on the continent. Riftan Calypse is one of only five knights to hold this title.",
+      "notes": "Wigrew was a legendary hero and one of the first twelve knights of the Roem Empire. The title is the highest honor a knight can receive."
+    },
+    "렘드라곤 기사단": {
+      "korean": "렘드라곤 기사단",
+      "english": "Remdragon Knights",
+      "category": "organization",
+      "context": "The elite knightly order commanded by Riftan Calypse, based in Anatol. Renowned for their ferocity, loyalty, and role in the dragon subjugation.",
+      "notes": "Their name is a key part of their identity and reputation across the continent."
+    }
+  },
+  "honorifics": {
+    "경": "Sir/Lord. A formal honorific for a knight, used with their name (e.g., 칼립스 경 - Lord Calypse).",
+    "님": "A general honorific suffix indicating respect. Used with titles (e.g., 단장님 - Commander) or names (e.g., 아그네스 님 - Lady Agnes).",
+    "폐하": "Your Majesty. Used to address a monarch.",
+    "전하": "Your Highness. Used to address royalty like a prince or princess.",
+    "마님": "My Lady/Madam. A respectful term used by servants and commoners for the lady of a castle.",
+    "부인": "Lady/Madam. A formal title for a married noblewoman, also used to mean 'wife'.",
+    "아가씨": "Young Lady/Miss. A term used by servants for an unmarried (or young) noblewoman.",
+    "소인": "This humble person. A self-deprecating first-person pronoun used when speaking to a superior."
+  },
+  "style_guide": {
+    "name_format": "english_given_name english_surname",
+    "tone": "Dramatic, emotional, and intense, with moments of tender romance and brutal violence.",
+    "formality_level": "medium",
+    "themes": [
+      "Overcoming Trauma",
+      "Love and Obsession",
+      "Class Struggle",
+      "Personal Growth and Empowerment",
+      "Found Family"
+    ],
+    "genre": "Fantasy Romance",
+    "sub_genres": [
+      "Medieval",
+      "Drama",
+      "Hurt/Comfort"
+    ],
+    "content_rating": "Mature (due to themes of abuse, violence, and explicit content)",
+    "honorific_usage": "keep the original cultural and linguistic nuance of honorifics, endearments, suffixes and titles, but swap these terms out with english equivalents wherever possible like using just their name, or a joking title like newbie for hubae, etc or reflecting it in the sentence tone with vocabulary based on the context, character dynamics and the situation or tone the work is set in. Don't use the romanized version of the korean word such as seonsaeng-nim, sunbaenim, etc unless specified otherwise",
+    "formal_speech_level": "Match formality to Korean. Use contractions for informal speech (Riftan, the knights) and full words for formal speech (Maximilian, royalty, servants addressing masters).",
+    "dialogue_style": "Dialogue should reflect the character's personality and station. Maximilian's speech is hesitant and formal, often stuttering, while Riftan's is blunt, informal, and often coarse. Ruth's is formal but laced with sarcasm.",
+    "narrative_style": {
+      "point_of_view": "third-person limited, primarily following Maximilian.",
+      "tense": "past",
+      "voice": "Deeply introspective and emotional. The narration is filtered through Maximilian's anxiety, trauma, and burgeoning self-awareness, creating a sense of immediacy and psychological depth.",
+      "common_expressions": [
+        "a bitter smile",
+        "furrowed his brow",
+        "bit her lip",
+        "voice trailed off"
+      ],
+      "atmosphere_descriptors": [
+        "tense",
+        "oppressive",
+        "passionate",
+        "melancholic",
+        "brutal"
+      ]
+    }
+  },
+  "recurring_phrases": {
+    "젠장": "Damn it.",
+    "빌어먹을": "Damn it / For fuck's sake.",
+    "말끝을 흐렸다": "trailed off / voice trailed off.",
+    "입술을 깨물었다": "bit her lip.",
+    "미간을 찌푸렸다": "furrowed his/her brow."
+  },
+  "world_building_notes": [
+    "The world is a medieval fantasy setting with a feudal political structure, composed of the Seven Kingdoms which rose after the fall of the ancient Roem Empire.",
+    "Society is hierarchical, with a clear class structure: Royalty > High Nobility (Dukes) > Landed Nobility (Counts, Barons, Lords) > Knights > Commoners/Serfs.",
+    "Magic is a tangible and powerful force, treated as a complex academic discipline. It is governed by the World Tower, an independent institution that trains and protects mages.",
+    "The world is inhabited by a variety of monsters (마물), from common goblins to legendary dragons. Monster subjugation is a primary duty of knights and a source of wealth and fame.",
+    "There is a religious schism between the traditional, anti-magic 'Old Sect' and the more tolerant 'New Sect,' which influences laws and culture in different regions.",
+    "Knightly culture is prominent, with formal orders (Remdragon Knights, Holy Knights), a code of honor, and specific customs like the 'Geshu' vow."
+  ],
+  "story_summary": {
+    "logline": "A traumatized noblewoman with a debilitating stutter, sold into a forced marriage with a lowborn knight, must learn to trust her fiercely possessive husband and unlock her own hidden power to survive the brutal politics and monstrous threats of a war-torn continent.",
+    "blurb": "Maximilian Calypse, the stuttering, unloved daughter of a powerful Duke, has spent her life cowering in fear. When her father forces her into a marriage with the lowborn knight Riftan Calypse to avoid his military duty, she is abandoned for three years after a single, traumatic night. But Riftan returns as a continental hero, a dragon-slaying warlord who is nothing like the resentful man she remembers. Possessive, brutish, yet unexpectedly tender, he claims her as his wife and sweeps her away to his remote, forbidding fiefdom. Thrown into a world of harsh realities, monstrous threats, and political intrigue, Maximilian must navigate her new life as a lady of the castle. As she grapples with the deep scars of her past and the terrifying intensity of her husband's affections, she discovers a latent power within herself—a power that might be the key to her own salvation, and the only thing that can protect the man she is slowly, unwillingly, coming to love."
+  },
+  "key_events_and_arcs": [
+    "1. Inciting Incident: The forced, traumatic marriage between Maximilian and Riftan, followed by his immediate three-year departure for a dragon subjugation war.",
+    "2. The Reunion Arc: Riftan's heroic return and his forceful reunion with a terrified Maximilian, leading to their arduous journey to his fiefdom, Anatol.",
+    "3. The Lady of Anatol Arc: Maximilian's struggle to adapt to her new role, managing a desolate castle, learning magic, and slowly earning the trust of Riftan's hostile knights while their fragile relationship deepens.",
+    "4. The Political Intrigue Arc: The arrival of Princess Agnes and the eruption of conflict with Duke Croyso, forcing Maximilian and Riftan to confront their pasts and solidify their bond against external threats.",
+    "5. The War Arc: Maximilian follows Riftan to a war in Rivadon, using her newfound courage and magical abilities to save lives and prove her worth on the battlefield, culminating in a high-stakes decision that will change their lives forever."
+  ],
+  "keywords": [
+    "#FantasyRomance",
+    "#Medieval",
+    "#ForcedMarriage",
+    "#TraumatizedFL",
+    "#PossessiveML",
+    "#HurtComfort",
+    "#SlowBurn",
+    "#BeautyAndTheBeast",
+    "#KnightAndLady",
+    "#Magic",
+    "#PersonalGrowth",
+    "#BookTok",
+    "#UnderTheOakTree"
+  ]
+}

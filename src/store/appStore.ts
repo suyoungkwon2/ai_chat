@@ -136,7 +136,7 @@ export const useAppStore = create<AppState>()(
           set((s) => ({
             sessionsByCharacterId: {
               ...s.sessionsByCharacterId,
-              [characterId]: { id: sessionId, characterId, messages },
+              [characterId]: { id: sessionId, characterId, messages, isTyping: false },
             },
           }));
           // Kick off backend chat creation
@@ -190,13 +190,14 @@ export const useAppStore = create<AppState>()(
           timestamp: Date.now(),
         };
 
-        // optimistic update
+        // optimistic update + set typing on
         set((s) => ({
           sessionsByCharacterId: {
             ...s.sessionsByCharacterId,
             [characterId]: {
               ...s.sessionsByCharacterId[characterId],
               messages: [...s.sessionsByCharacterId[characterId].messages, userMsg],
+              isTyping: true,
             },
           },
         }));
@@ -242,7 +243,16 @@ export const useAppStore = create<AppState>()(
                 [characterId]: {
                   ...s.sessionsByCharacterId[characterId],
                   messages: [...s.sessionsByCharacterId[characterId].messages, aiMsg],
+                  isTyping: false,
                 },
+              },
+            }));
+          } else {
+            // no ai payload; still turn off typing
+            set((s) => ({
+              sessionsByCharacterId: {
+                ...s.sessionsByCharacterId,
+                [characterId]: { ...s.sessionsByCharacterId[characterId], isTyping: false },
               },
             }));
           }
@@ -274,15 +284,29 @@ export const useAppStore = create<AppState>()(
                     [characterId]: {
                       ...s.sessionsByCharacterId[characterId],
                       messages: [...s.sessionsByCharacterId[characterId].messages, aiMsg],
+                      isTyping: false,
                     },
                   },
                 }));
                 return;
               }
-            } catch {}
-          }
-          // insufficient credits flow
-          if (err?.status === 402 && err?.detail?.error === "insufficient_credits") {
+              // no ai even on retry, stop typing
+              set((s) => ({
+                sessionsByCharacterId: {
+                  ...s.sessionsByCharacterId,
+                  [characterId]: { ...s.sessionsByCharacterId[characterId], isTyping: false },
+                },
+              }));
+            } catch {
+              // stop typing on failure
+              set((s) => ({
+                sessionsByCharacterId: {
+                  ...s.sessionsByCharacterId,
+                  [characterId]: { ...s.sessionsByCharacterId[characterId], isTyping: false },
+                },
+              }));
+            }
+          } else if (err?.status === 402 && err?.detail?.error === "insufficient_credits") {
             const aiMsg: ChatMessage = {
               id: nanoid(),
               sender: "ai",
@@ -296,6 +320,7 @@ export const useAppStore = create<AppState>()(
                 [characterId]: {
                   ...s.sessionsByCharacterId[characterId],
                   messages: [...s.sessionsByCharacterId[characterId].messages, aiMsg],
+                  isTyping: false,
                 },
               },
             }));
@@ -315,6 +340,7 @@ export const useAppStore = create<AppState>()(
                 [characterId]: {
                   ...s.sessionsByCharacterId[characterId],
                   messages: [...s.sessionsByCharacterId[characterId].messages, aiMsg],
+                  isTyping: false,
                 },
               },
             }));

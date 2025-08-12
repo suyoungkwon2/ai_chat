@@ -1,0 +1,345 @@
+{
+  "characters": {
+    "나비에 엘리 트로비": {
+      "name": "Navier Ellie Trovi",
+      "korean_surname": "트로비",
+      "korean_given_name": "나비에 엘리",
+      "surname": "Trovi",
+      "given_name": "Navier Ellie",
+      "gender": "female",
+      "role": "protagonist",
+      "age_group": "young_adult",
+      "personality_traits": [
+        "dignified",
+        "pragmatic",
+        "strategic",
+        "composed",
+        "intelligent",
+        "resilient"
+      ],
+      "speech_style": "formal",
+      "physical_description": [
+        "Exceptionally beautiful",
+        "Often described with a cold, composed, or regal aura"
+      ],
+      "relationships": {
+        "sovieshu": {
+          "type": "Estranged Ex-Husband / Childhood Friend",
+          "description": "Navier's relationship with Sovieshu is the story's tragic core. Raised together to be the perfect imperial couple, their bond was one of deep friendship and political partnership, not passionate love. His sudden betrayal shatters her world, but her pragmatic nature forces her to move on. Yet, she remains a fixture in his mind, evolving from a discarded wife into an object of obsessive regret that drives him to madness."
+        },
+        "heinrey": {
+          "type": "Secret Pen Pal / Second Husband / True Love",
+          "description": "What begins as an anonymous, witty correspondence with a mysterious bird named 'Queen' blossoms into Navier's second chance at love. Heinrey, the charming and playful king, sees Navier not as a political tool but as his equal. Their relationship is a slow burn, built on mutual respect, secret comfort, and a shared intelligence that allows them to become a true power couple, challenging the old empires."
+        },
+        "rashta": {
+          "type": "Rival / Successor",
+          "description": "Rashta is everything Navier is not: naive, emotional, and from the lowest rungs of society. As the woman who replaced her, Rashta is Navier's primary antagonist. Their rivalry is a battle of wits and public perception, pitting Navier's cold, calculated dignity against Rashta's manipulative victimhood. Navier views her with a mix of pity and strategic disdain, seeing her as a pawn in a larger game she is determined to win."
+        },
+        "koshar_troby": {
+          "type": "Beloved Older Brother",
+          "description": "Koshar is Navier's fiercely protective older brother. His explosive temper is a constant source of worry, but his devotion is absolute. He is her greatest vulnerability and her most loyal champion, willing to start a war or ruin his own name to defend her honor. Their bond is one of deep, unconditional love."
+        }
+      },
+      "name_variants": {
+        "title": "황후폐하 (Your Majesty the Empress)",
+        "nickname": "퀸 (Queen, by Heinrey)"
+      },
+      "honorifics_used": {},
+      "first_appearance": "Chapter 1, during her public divorce.",
+      "english": "Navier Ellie Trovi"
+    },
+    "소비에슈 트로비 빅트": {
+      "name": "Sovieshu Trovi Vict",
+      "korean_surname": "트로비 빅트",
+      "korean_given_name": "소비에슈",
+      "surname": "Trovi Vict",
+      "given_name": "Sovieshu",
+      "gender": "male",
+      "role": "antagonist",
+      "age_group": "young_adult",
+      "personality_traits": [
+        "self-serving",
+        "conflict-averse",
+        "possessive",
+        "regretful",
+        "obsessive"
+      ],
+      "speech_style": "formal",
+      "physical_description": [
+        "Handsome",
+        "dignified",
+        "stately"
+      ],
+      "relationships": {
+        "navier_trovi": {
+          "type": "Discarded Wife / Object of Obsession",
+          "description": "Sovieshu's greatest mistake. He sacrifices his lifelong partner for a fleeting infatuation, only to realize too late that Navier was his true anchor. His love for her curdles into a toxic obsession, driving him to manipulate, scheme, and ultimately destroy himself in a desperate attempt to undo his own folly. Their dynamic is a tragic exploration of a love realized only in loss."
+        },
+        "rashta": {
+          "type": "Mistress / Political Tool",
+          "description": "Rashta is initially the object of Sovieshu's pity and affection, a symbol of a simpler love he never had with Navier. However, she quickly becomes a political pawn in his grand scheme to secure an heir. He uses her, protects her, and ultimately discards her when she becomes a liability, revealing his love was conditional and secondary to his imperial ambitions."
+        },
+        "heinrey": {
+          "type": "Rival",
+          "description": "Sovieshu harbors a deep, consuming hatred for Heinrey, the man who won the heart of the woman he cast away. He sees Heinrey as a cunning usurper who stole what was rightfully his, refusing to acknowledge his own role in losing Navier. Their rivalry fuels the central conflict between the two empires."
+        }
+      },
+      "name_variants": {
+        "title": "폐하 (Your Majesty)"
+      },
+      "honorifics_used": {},
+      "first_appearance": "Chapter 1, presiding over his divorce from Navier.",
+      "english": "Sovieshu Trovi Vict"
+    },
+    "라스타 이스쿠아": {
+      "name": "Rashta Isqua",
+      "korean_surname": "이스쿠아",
+      "korean_given_name": "라스타",
+      "surname": "Isqua",
+      "given_name": "Rashta",
+      "gender": "female",
+      "role": "antagonist",
+      "age_group": "young_adult",
+      "personality_traits": [
+        "naive",
+        "manipulative",
+        "ambitious",
+        "insecure",
+        "pitiful",
+        "cruel"
+      ],
+      "speech_style": "informal/inappropriate",
+      "physical_description": [
+        "Extremely beautiful in a pure, pitiful way",
+        "Light silver hair",
+        "Large black eyes"
+      ],
+      "relationships": {
+        "sovieshu": {
+          "type": "Patron / Lover / Husband",
+          "description": "Sovieshu is Rashta's savior and her path to power. She clings to his affection, using her perceived innocence and vulnerability to manipulate him. While she may have genuine feelings for him, her primary motivation is survival and securing her position, making their relationship a fragile construct built on lies and convenience."
+        },
+        "navier_trovi": {
+          "type": "Rival / Idol",
+          "description": "Rashta's relationship with Navier is a toxic mix of envy and admiration. She sees Navier as the ultimate goal—a perfect, respected empress—and desperately tries to emulate and replace her. This obsession drives her to acts of petty cruelty and grand sabotage, as she can never truly escape the shadow of the woman she usurped."
+        },
+        "viscount_roteschu": {
+          "type": "Former Master / Blackmailer",
+          "description": "The ghost of Rashta's past. Roteschu represents the brutal reality she escaped and the secret that threatens to destroy her. He is a cruel tormentor who holds her life in his hands, forcing her into a desperate dance of blackmail and appeasement that ultimately leads to her ruin."
+        },
+        "duke_ergi": {
+          "type": "Manipulator / False Ally",
+          "description": "Ergi is the devil on Rashta's shoulder, a charming duke who sees her as the perfect tool to create chaos. He teaches her the art of social warfare, but his support is a poisoned chalice. He empowers her only to watch her burn, making him the architect of her most spectacular and self-destructive schemes."
+        }
+      },
+      "name_variants": {
+        "title": "레이디 라스타 (Lady Rashta)"
+      },
+      "honorifics_used": {},
+      "first_appearance": "Chapter 1, standing next to Sovieshu during the divorce.",
+      "english": "Rashta Isqua"
+    },
+    "하인리 알레스 라즐로": {
+      "name": "Heinrey Alles Lazlo",
+      "korean_surname": "라즐로",
+      "korean_given_name": "하인리 알레스",
+      "surname": "Lazlo",
+      "given_name": "Heinrey Alles",
+      "gender": "male",
+      "role": "love_interest",
+      "age_group": "young_adult",
+      "personality_traits": [
+        "charming",
+        "playful",
+        "cunning",
+        "possessive",
+        "loyal"
+      ],
+      "speech_style": "formal/intimate",
+      "physical_description": [
+        "Exceptionally handsome",
+        "Purple eyes",
+        "Golden hair",
+        "Tall and muscular"
+      ],
+      "relationships": {
+        "navier_trovi": {
+          "type": "Secret Pen Pal / Wife / Queen",
+          "description": "Navier is Heinrey's 'Queen' in every sense. He falls for her intelligence and wit through their secret letters before ever meeting her properly. Unlike Sovieshu, he sees her as a partner, an equal to rule beside. His love is both playful and fiercely protective, willing to manipulate courts and declare himself an emperor just to ensure she never has to lower her head again."
+        },
+        "sovieshu": {
+          "type": "Rival",
+          "description": "Heinrey views Sovieshu with contempt, seeing him as a fool who threw away a priceless treasure. Their rivalry is sharp and immediate, a clash of two powerful rulers fighting over the same woman. Heinrey uses his cunning and charm to outmaneuver Sovieshu at every turn, delighting in stealing not just his ex-wife, but his political standing as well."
+        },
+        "mckenna": {
+          "type": "Aide / Cousin / Best Friend",
+          "description": "McKenna is Heinrey's long-suffering right-hand man. As his aide and cousin, he is the only one privy to Heinrey's true nature and secret plans. Their dynamic is one of exasperated loyalty, with McKenna constantly trying to rein in Heinrey's reckless schemes and playful antics, serving as the pragmatic anchor to Heinrey's romantic ambitions."
+        },
+        "christa": {
+          "type": "Sister-in-Law / Political Thorn",
+          "description": "As his late brother's wife, Christa represents a political complication. Her unrequited love for Heinrey and her refusal to relinquish her influence as the former queen creates a faction of opposition within his own court, forcing Heinrey to engage in a delicate and ruthless game of power to secure Navier's position."
+        }
+      },
+      "name_variants": {
+        "nickname": "퀸 (Queen - his bird form)",
+        "title": "서왕국의 왕 (King of the Western Kingdom)"
+      },
+      "honorifics_used": {},
+      "first_appearance": "Chapter 1, as the mysterious man behind the curtain.",
+      "english": "Heinrey Alles Lazlo"
+    }
+  },
+  "locations": {
+    "동대제국": {
+      "name": "Eastern Empire",
+      "type": "country",
+      "description": "The powerful, traditional empire ruled by Emperor Sovieshu. It serves as the primary setting for the novel's initial conflicts, including Navier's divorce and Rashta's rise and fall.",
+      "atmosphere": "Formal, politically charged, and rife with scandal.",
+      "significance": "Represents Navier's past, a place of both cherished memories and deep betrayal. It stands as a rival power to the Western Empire.",
+      "english": "Eastern Empire"
+    },
+    "황궁": {
+      "name": "Imperial Palace (Eastern Empire)",
+      "type": "royal residence",
+      "description": "The sprawling residence of the Eastern Empire's imperial family. It is divided into wings, including the East Palace (Emperor's domain), West Palace (Empress's domain), and Southern Palace (for guests).",
+      "atmosphere": "Opulent but tense, a battleground for social and political warfare.",
+      "significance": "The heart of the empire's power and the main stage for the drama between Navier, Sovieshu, and Rashta.",
+      "english": "Imperial Palace (Eastern Empire)"
+    },
+    "서대제국": {
+      "name": "Western Empire",
+      "type": "country",
+      "description": "Formerly the Western Kingdom, this nation is elevated to an empire by King Heinrey upon his marriage to Navier. It is known for its immense wealth, particularly in jewels.",
+      "atmosphere": "Ambitious, modern, and a rising power.",
+      "significance": "Represents Navier's new beginning and future. It is her new home and the seat of her power as she builds a new life with Heinrey.",
+      "english": "Western Empire"
+    },
+    "컴프셔": {
+      "name": "Compshire",
+      "type": "region",
+      "description": "A beautiful region in the Western Empire known as the 'city of arts'. It contains a grand mansion designated as the traditional residence for former queens.",
+      "atmosphere": "Glamorous and artistic, but also a place of political exile.",
+      "significance": "The location of Christa's confinement and eventual death, symbolizing the gilded cage of a royal who has lost power.",
+      "english": "Compshire"
+    }
+  },
+  "terms": {
+    "정부": {
+      "korean": "정부",
+      "english": "Official Mistress / Concubine",
+      "category": "social_custom",
+      "context": "A formally recognized lover of a monarch or noble, distinct from a secret affair. The position is legally acknowledged but socially inferior to that of the official spouse.",
+      "notes": "The existence of a 'jeongbu' is a central source of conflict, representing the clash between political duty (arranged marriages) and personal desire."
+    },
+    "도망 노예": {
+      "korean": "도망 노예",
+      "english": "Runaway Slave",
+      "category": "social_status",
+      "context": "A person who has escaped from slavery. This status carries an immense social stigma, considered a grave crime and a source of deep shame.",
+      "notes": "Rashta's hidden past as a runaway slave is her greatest vulnerability and the secret that ultimately leads to her downfall."
+    },
+    "새대가리 일족": {
+      "korean": "새대가리 일족",
+      "english": "Bird Clan",
+      "category": "world_lore",
+      "context": "A race of shapeshifters who can transform between human and bird forms. Heinrey and his family belong to this clan.",
+      "notes": "Their existence is a closely guarded secret. The derogatory name 'Bird-head Clan' was given by their enemies, and they are also known as the 'Jodujok'."
+    },
+    "재혼 황후": {
+      "korean": "재혼 황후",
+      "english": "Remarried Empress",
+      "category": "title",
+      "context": "The central concept of the novel. Refers to Navier, who remarries immediately after her divorce, an unprecedented act for a deposed empress.",
+      "notes": "This title encapsulates Navier's defiance and the novel's core premise of a woman forging her own destiny after betrayal."
+    }
+  },
+  "honorifics": {
+    "폐하": "Your Majesty. The highest form of address for a ruling Emperor or Empress.",
+    "전하": "Your Highness. Used for kings, queens, princes, and princesses who are not the ruling sovereign of an empire.",
+    "경": "Sir/Dame. An honorific for a knight.",
+    "-님": "A suffix attached to names or titles to show respect, akin to 'Lord', 'Lady', or 'Mr./Ms.'",
+    "아가씨": "Young Lady/Miss. A term for an unmarried noblewoman.",
+    "오빠": "A term used by a female to address a close older male, such as a biological brother or a close friend/lover. Its usage can indicate deep familiarity and affection.",
+    "언니": "A term used by a female to address a close older female. Rashta's attempt to use this with Navier is a major social faux pas, highlighting her ignorance of court etiquette."
+  },
+  "style_guide": {
+    "name_format": "english_given_name english_surname",
+    "tone": "Dramatic, emotional, and regal, with a focus on political intrigue and romantic tension.",
+    "formality_level": "medium",
+    "themes": [
+      "Betrayal and Revenge",
+      "Second Chances",
+      "Power and Responsibility",
+      "Love vs. Duty",
+      "Class Conflict"
+    ],
+    "genre": "Fantasy Romance",
+    "sub_genres": [
+      "Political Drama",
+      "Royalty"
+    ],
+    "content_rating": "Teen",
+    "honorific_usage": "Translate the nuance of Korean honorifics using English equivalents where possible (e.g., 'Your Majesty' for 'Pyeha', 'Sir' for '-gyeong'). Reflect social distance and intimacy through dialogue choices rather than using romanized terms like '-nim' or '-ssi'.",
+    "formal_speech_level": "Match the formality of English dialogue to the original Korean. Use elevated, formal language for court scenes and more natural, relaxed language for private conversations between equals.",
+    "dialogue_style": "Character-driven. Navier's speech is composed and articulate. Sovieshu's is formal but can become emotionally volatile. Heinrey's is charming and playful. Rashta's is often naive, manipulative, or hysterical.",
+    "narrative_style": {
+      "point_of_view": "Primarily first-person limited from Navier's perspective, providing deep insight into her thoughts and strategies. Occasionally shifts to third-person limited to show the perspectives of other key characters like Sovieshu and Heinrey.",
+      "tense": "past",
+      "voice": "Introspective, analytical, and emotionally resonant. The narrative voice captures the dignity and inner turmoil of a queen navigating betrayal and finding new love.",
+      "common_expressions": [
+        "a sigh escaped automatically",
+        "bit one's lip tightly",
+        "eyes widened"
+      ],
+      "atmosphere_descriptors": [
+        "tense",
+        "opulent",
+        "melancholic",
+        "romantic",
+        "treacherous"
+      ]
+    }
+  },
+  "recurring_phrases": {
+    "황후는 우는 게 아니야": "An empress doesn't cry.",
+    "말도 안 돼": "That's absurd / No way.",
+    "어쩔 수 없지": "It can't be helped.",
+    "자존심이 상했다": "My pride was hurt.",
+    "퀸": "Queen."
+  },
+  "world_building_notes": [
+    "The world is dominated by two rival powers: the traditional, mage-reliant Eastern Empire and the wealthy, ambitious Western Empire.",
+    "A strict aristocratic hierarchy exists, where lineage, reputation, and political marriages are paramount.",
+    "Slavery is a legal institution, and a past as a 'runaway slave' is a socially ruinous secret.",
+    "Magic is a real and tangible force. It includes shapeshifting (the Bird Clan), elemental abilities (ice magic), healing, and magical items (potions, mana stones).",
+    "A mysterious 'Mana Decline Phenomenon' is a source of international conflict and espionage.",
+    "The High Temple is a powerful religious institution with authority over royal marriages, divorces, and paternity tests.",
+    "Court life is a battlefield of social warfare, where rumors, public perception, and coded language (like the language of flowers) are used as weapons."
+  ],
+  "story_summary": {
+    "logline": "After being publicly divorced by her emperor husband for a beautiful runaway slave, a perfect empress shocks the world by immediately demanding to remarry a mysterious foreign king, igniting a continental power struggle fueled by love, betrayal, and revenge.",
+    "blurb": "Empress Navier Trovi was raised for one purpose: to be the perfect ruler alongside her childhood friend and husband, Emperor Sovieshu. But when the Emperor brings a beautiful, naive runaway slave named Rashta into the palace, Navier's world crumbles. Sovieshu, blinded by his new love, casts Navier aside in a humiliating public divorce. But the court's pity turns to shock when Navier, with ice in her veins, accepts the divorce and makes an unprecedented demand: approval to remarry. Her chosen groom? A handsome, enigmatic foreign king who has been watching from the shadows. Thrown into a new kingdom as a remarried empress, Navier must navigate a treacherous court, a budding romance with a man who is more than he seems, and the obsessive, regretful schemes of the ex-husband who discarded her. As Rashta's ambition grows and Sovieshu's obsession deepens, two empires are set on a collision course, with Navier at the center of the storm."
+  },
+  "key_events_and_arcs": [
+    "1. The Imperial Divorce: Emperor Sovieshu divorces Empress Navier to marry his mistress, Rashta.",
+    "2. The Shocking Remarriage: Navier immediately remarries King Heinrey of the Western Kingdom, moving her power base and escalating the conflict.",
+    "3. The Rise and Fall of Rashta: Rashta's ascent to Empress is plagued by her hidden past as a slave and mother, leading to a dramatic public downfall.",
+    "4. The War of Two Empires: The personal rivalry between Sovieshu and Heinrey, fueled by their connection to Navier, escalates into a political and magical cold war between the Eastern and Western Empires.",
+    "5. The Secret of the Bird Clan: Heinrey's true nature as a shapeshifter is revealed, adding a layer of supernatural intrigue and affecting the future of the Western Empire's royal line."
+  ],
+  "keywords": [
+    "#RemarriedEmpress",
+    "#SmartFL",
+    "#ColdFL",
+    "#Revenge",
+    "#PoliticalIntrigue",
+    "#Royalty",
+    "#SecondChance",
+    "#ObsessiveEx",
+    "#ShapeshifterML",
+    "#BookTok",
+    "#Webnovel",
+    "#FantasyRomance",
+    "#StrongFemaleLead"
+  ]
+}

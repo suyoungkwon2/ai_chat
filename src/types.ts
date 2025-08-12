@@ -29,6 +29,7 @@ export interface ChatSession {
   humanId?: string;
   aiId?: string;
   aiName?: string;
+  isTyping?: boolean;
 }
 
 export interface UserProfile {

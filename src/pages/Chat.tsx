@@ -47,6 +47,19 @@ export default function Chat() {
             </div>
           </div>
         ))}
+        {session?.isTyping && (
+          <div className="message-row message-row--ai">
+            <img src={character.imageIconUrl} alt={character.name} className="avatar avatar--chat" />
+            <div className="bubble bubble--ai typing-indicator">
+              <span className="typing-text">{character.name} is typing</span>
+              <span className="typing-dots">
+                <span className="dot" />
+                <span className="dot" />
+                <span className="dot" />
+              </span>
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="chat__input">
