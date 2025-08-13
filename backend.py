@@ -44,7 +44,8 @@ from sqlalchemy import (
     case,
 )
 from sqlalchemy.orm import declarative_base, relationship
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.orm import sessionmaker
 import bcrypt
 import jwt
 from fastapi.security import OAuth2PasswordBearer
@@ -65,7 +66,8 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
 # Async SQLAlchemy setup
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./app.db")
 engine = create_async_engine(DATABASE_URL, echo=False, future=True)
-AsyncSessionLocal = async_sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
+# SQLAlchemy 1.4 compatibility
+AsyncSessionLocal = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 Base = declarative_base()
 
 # ------------------- DB Models -------------------
@@ -351,14 +353,14 @@ def _static_interface_characters() -> List[dict]:
             "id": "taegyeom-kwon",
             "name": "Taegyeom Kwon",
             "title": "Mr. Kwon",
-            "series": "Lights Don’t Go Out in the Annex",
+            "series": "Lights Don't Go Out in the Annex",
             "image": "img/img_card_taegyeom-DShA9n8d.jpg",
             "description": "A cold and calculating duke whose heart melts only for his chosen one.",
             "tags": ["Steamy", "Trauma", "Wealthy", "Obssessive", "Possessive", "Secret"],
             "greeting": """<Scenario 1>\n
 
             You had one simple task: deliver a sandwich to the Annex and leave.\n
-            You told yourself you wouldn’t even step inside—just set it down and walk away.\n
+            You told yourself you wouldn't even step inside—just set it down and walk away.\n
 
             The gate clicked shut behind you.\n
             And then you saw him.\n
@@ -367,10 +369,10 @@ def _static_interface_characters() -> List[dict]:
 
             …Oh. My. God.\n
 
-            Even soft, the thick length hanging between his legs was obscene—thick as a man’s forearm, heavy enough to make everything else about him fade into irrelevance. Your breath caught in your throat.\n
+            Even soft, the thick length hanging between his legs was obscene—thick as a man's forearm, heavy enough to make everything else about him fade into irrelevance. Your breath caught in your throat.\n
 
-            “You’re staring,” he said, voice low and lazy, but cutting straight through you.\n
-            “Does my cock look that suckable to you?”\n
+            "You're staring," he said, voice low and lazy, but cutting straight through you.\n
+            "Does my cock look that suckable to you? "\n
 
             You squeezed your eyes shut, then opened them again.\n
             It was still there. Huge. Shameless. And now… he was walking toward you.""",
@@ -385,7 +387,7 @@ def _static_interface_characters() -> List[dict]:
             "tags": ["Obsessive", "Possessive", "Wealthy", "Secret", "Steamy"],
             "greeting": """<Scenario 1>\n
 
-            In the sleek executive office of Ryu Enterprises’ towering corporate building, you're summoned by your boss, Jiheon Ryu—the handsome, calculating heir to a chaebol empire. \n
+            In the sleek executive office of Ryu Enterprises' towering corporate building, you're summoned by your boss, Jiheon Ryu—the handsome, calculating heir to a chaebol empire. \n
             
             What starts as a routine call spirals into absurdity: he proposes marriage out of nowhere, not out of love, but convenience. \n
             
@@ -395,7 +397,7 @@ def _static_interface_characters() -> List[dict]:
 
             Jiheon leans back, his long-lashed eyes locking onto yours with teasing intensity. \n
 
-            “Why not? I think you’re perfect for me.” """,
+            "Why not? I think you're perfect for me." """,
         },
     ]
 
@@ -713,8 +715,9 @@ Give line breaks for each sentence.
 Do the situation in third person POV while using 'you' to refer to the user For example, 'He pushes you against the wall and kisses you hard.']
 
 **DIALOGUE:**
-"[Maximum 5 sentences in character's authentic voice, ending with engaging question or call-to-action, 
-make sure that the output is first-person dialogue only, do not include 'I said', etc. third-person descriptors. Don't make the dialogue too short, and make sure that its authentic to the original character's personality, to the plot and the situation.]"
+"[The output must be pure dialogue. Do not include any form of narration or descriptions whatsoever.
+Maximum 5 sentences in character's authentic voice, ending with engaging question or call-to-action. 
+Make sure that the output is first-person dialogue only, do not include 'I said', etc. third-person descriptors. Don't make the dialogue too short, and make sure that its authentic to the original character's personality, to the plot and the situation.]"
 
 **AFFECTION LEVEL:** [0-100]
 ```
