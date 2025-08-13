@@ -1,10 +1,9 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import ReactGA from "react-ga4";
 import { useAppStore } from "../store/appStore";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import classnames from 'classnames';
 import userIcon from '../assets/images/img_icon_user.svg';
-import { UserProfileModal } from "./FeatureModals";
 
 export default function Sidebar() {
   const navigate = useNavigate();

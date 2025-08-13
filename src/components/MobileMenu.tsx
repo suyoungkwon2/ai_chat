@@ -6,7 +6,6 @@ export default function MobileMenu({ onClose }: { onClose: () => void }) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const openCharacterIds = useAppStore((s) => s.openCharacterIds);
-  const currentUser = useAppStore((s) => s.currentUser);
   const characters = useAppStore((s) => s.characters);
 
   const handleLinkClick = (path: string) => {
