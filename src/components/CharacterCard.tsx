@@ -3,6 +3,7 @@ import ReactGA from "react-ga4";
 import { useAppStore } from "../store/appStore";
 import type { Character } from "../types";
 import { useState, useRef, useEffect } from "react";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 export default function CharacterCard({ character }: { character: Character }) {
   const openChat = useAppStore((s) => s.openChat);
@@ -10,15 +11,42 @@ export default function CharacterCard({ character }: { character: Character }) {
   const liked = (character as any)._liked;
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
-    if (isHovered && videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(error => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isHovered && character.videoCardUrl) {
+      video.currentTime = 0;
+      video.play().catch(error => {
         console.error("Video play was prevented:", error);
       });
+    } else {
+      video.pause();
     }
-  }, [isHovered]);
+  }, [isHovered, character.videoCardUrl]);
+
+  useEffect(() => {
+    if (!isMobile || !cardRef.current || !character.videoCardUrl) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsHovered(entry.isIntersecting);
+      },
+      { threshold: 0.5 }
+    );
+
+    const currentCardRef = cardRef.current;
+    observer.observe(currentCardRef);
+
+    return () => {
+      if (currentCardRef) {
+        observer.unobserve(currentCardRef);
+      }
+    };
+  }, [isMobile, character.videoCardUrl]);
 
   const handleStartChat = () => {
     openChat(character.id);
@@ -39,13 +67,15 @@ export default function CharacterCard({ character }: { character: Character }) {
   };
 
   const handleMouseEnter = () => {
-    if (character.videoCardUrl) {
+    if (!isMobile && character.videoCardUrl) {
       setIsHovered(true);
     }
   };
 
   const handleMouseLeave = () => {
-    setIsHovered(false);
+    if (!isMobile) {
+      setIsHovered(false);
+    }
   };
 
   const handleVideoEnd = () => {
@@ -54,6 +84,7 @@ export default function CharacterCard({ character }: { character: Character }) {
 
   return (
     <div
+      ref={cardRef}
       className="card"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
