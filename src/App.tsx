@@ -30,13 +30,22 @@ function usePageViews() {
 function MobileHeader({ onMenuToggle }: { onMenuToggle: () => void }) {
   const setActiveModal = useAppStore((s) => s.setActiveModal);
   const currentUser = useAppStore((s) => s.currentUser);
+  const isRegistered = useAppStore((s) => s.isRegistered);
+
+  const handleProfileClick = () => {
+    if (isRegistered) {
+      setActiveModal("userProfile");
+    } else {
+      setActiveModal("userRegistration");
+    }
+  };
 
   return (
     <header className="mobile-header">
       <button onClick={onMenuToggle} className="hamburger-btn" aria-label="Toggle menu">
         <span className="hamburger-inner"></span>
       </button>
-      <button className="mobile-header__profile" onClick={() => setActiveModal('userProfile')}>
+      <button className="mobile-header__profile" onClick={handleProfileClick}>
         <img src={userIcon} alt="user profile" className="avatar avatar--sm" />
         <span>{currentUser.username}</span>
       </button>
