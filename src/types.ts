@@ -90,7 +90,7 @@ export interface AppState {
   sendMessage: (characterId: string, inputText: string) => void;
   toggleLike: (characterId: string) => void;
   updateUserProfile: (username: string, password: string) => { ok: true } | { ok: false; reason: string };
-  signInUser: (username: string, password: string) => { ok: true } | { ok: false; reason: string };
+  signInUser: (username: string, password: string) => Promise<{ ok: true } | { ok: false; reason: string }>;
   setSidebarWidth: (width: number) => void;
   initModalState: (characterId: string) => void;
   setActiveModal: (modal: "userRegistration" | "watchAd" | "endOfChats" | "actualAd" | "signIn" | 'userProfile' | 'characterProfile' | null, characterId?: string) => void;

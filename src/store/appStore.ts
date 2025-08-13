@@ -773,20 +773,44 @@ export const useAppStore = create<AppState>()(
         return { ok: true as const };
       },
 
-      signInUser: (username: string, password: string) => {
-        const state = get();
-        const user = state.registeredUsernames.find(
-          (u) => u === username
-        );
-
-        if (user) {
-          const storedUser = state.currentUser;
-          if (storedUser.username === username && storedUser.password === password) {
-             set({ isRegistered: true, activeModal: null, modalContextCharacterId: null });
-            return { ok: true as const };
+      signInUser: async (username: string, password: string) => {
+        try {
+          // Call backend login API to verify credentials
+          const res = await fetch(`${API_BASE}/api/auth/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password }),
+          });
+          
+          if (!res.ok) {
+            const errorData = await res.json().catch(() => null);
+            return { ok: false as const, reason: errorData?.detail || "Login failed" };
           }
+          
+          const data = await res.json();
+          const token = data?.access_token;
+          
+          if (token) {
+            localStorage.setItem("auth_token", token);
+            set({ 
+              authToken: token, 
+              isRegistered: true, 
+              activeModal: null, 
+              modalContextCharacterId: null,
+              currentUser: { username, password }
+            });
+            
+            // Refresh usage status after successful login
+            await get().refreshUsageStatus?.();
+            
+            return { ok: true as const };
+          } else {
+            return { ok: false as const, reason: "No access token received" };
+          }
+        } catch (error) {
+          console.error("Login error:", error);
+          return { ok: false as const, reason: "Network error during login" };
         }
-        return { ok: false as const, reason: "Invalid username or password." };
       },
       
       setSidebarWidth: (width) => set({ sidebarWidth: width }),
