@@ -12,8 +12,8 @@ export default function Sidebar() {
   const currentUser = useAppStore((s) => s.currentUser);
   const sidebarWidth = useAppStore((s) => s.sidebarWidth);
   const setSidebarWidth = useAppStore((s) => s.setSidebarWidth);
-  const resetUserRegistration = useAppStore((s) => s.resetUserRegistration);
-  const resetAdViews = useAppStore((s) => s.resetAdViews);
+  // const resetUserRegistration = useAppStore((s) => s.resetUserRegistration);
+  // const resetAdViews = useAppStore((s) => s.resetAdViews);
   const isRegistered = useAppStore((s) => s.isRegistered);
   const setActiveModal = useAppStore((s) => s.setActiveModal);
   const characters = useAppStore((s) => s.characters);
