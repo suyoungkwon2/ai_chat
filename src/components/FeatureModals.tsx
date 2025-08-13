@@ -214,7 +214,7 @@ export function ActualAdModal({ characterId, onClose }: { characterId?: string, 
       return () => clearTimeout(timer);
     } else {
       (async () => {
-        const res = await (completeAd?.(adMinSeconds) || Promise.resolve({ ok: true }));
+        await (completeAd?.(adMinSeconds) || Promise.resolve({ ok: true }));
         await (refreshUsageStatus?.() || Promise.resolve());
         if (characterId) handleModalAction(characterId, "watchAd");
       })();
