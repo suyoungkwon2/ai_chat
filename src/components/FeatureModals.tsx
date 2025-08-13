@@ -168,6 +168,12 @@ export function WatchAdModal({ characterId, onClose }: ModalProps) {
   const startAd = useAppStore((s) => s.startAd);
 
   const handleWatchAd = async () => {
+    ReactGA.event({
+      category: "Gating",
+      action: "click_watch_ad",
+      label: characterId,
+      value: (modalState?.adViewsToday || 0) + 1,
+    });
     const res = await (startAd?.() || Promise.resolve({ ok: true } as any));
     if (res.ok) setActiveModal("actualAd", characterId);
   };
@@ -209,6 +215,8 @@ export function ActualAdModal({ characterId, onClose }: { characterId?: string, 
   const completeAd = useAppStore((s) => s.completeAd);
   const refreshUsageStatus = useAppStore((s) => s.refreshUsageStatus);
   const adMinSeconds = useAppStore((s) => s.adMinSeconds) || 15;
+  const modalState = useAppStore((s) => s.modalStates[characterId!]);
+  const adViewsToday = modalState?.adViewsToday || 0;
 
   useEffect(() => {
     if (countdown > 0) {
@@ -216,12 +224,18 @@ export function ActualAdModal({ characterId, onClose }: { characterId?: string, 
       return () => clearTimeout(timer);
     } else {
       (async () => {
+        ReactGA.event({
+          category: "Gating",
+          action: "complete_watch_ad",
+          label: characterId,
+          value: adViewsToday + 1,
+        });
         await (completeAd?.(adMinSeconds) || Promise.resolve({ ok: true }));
         await (refreshUsageStatus?.() || Promise.resolve());
         if (characterId) handleModalAction(characterId, "watchAd");
       })();
     }
-  }, [countdown, characterId, handleModalAction, completeAd, adMinSeconds, refreshUsageStatus]);
+  }, [countdown, characterId, handleModalAction, completeAd, adMinSeconds, refreshUsageStatus, adViewsToday]);
 
   return (
     <div className="modal__backdrop" role="dialog" aria-modal="true">
