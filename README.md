@@ -43,9 +43,7 @@ VITE_API_BASE=http://localhost:8000
 ### 백엔드 실행 (FastAPI)
 1) Python 가상환경 생성 및 패키지 설치
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+conda activate agent
 ```
 
 2) `.env` 파일 준비(위 섹션 참고).

@@ -15,14 +15,24 @@ const FormattedMessage: React.FC<FormattedMessageProps> = ({ text }) => {
         if (index % 2 === 1) {
           return (
             <div key={index} className="bubble__situation">
-              {part}
+              {part.split('\n').map((line, lineIndex) => (
+                <React.Fragment key={lineIndex}>
+                  {lineIndex > 0 && <br />}
+                  {line}
+                </React.Fragment>
+              ))}
             </div>
           );
         }
 
         return (
           <div key={index} className="bubble__dialogue">
-            {part}
+            {part.split('\n').map((line, lineIndex) => (
+              <React.Fragment key={lineIndex}>
+                {lineIndex > 0 && <br />}
+                {line}
+              </React.Fragment>
+            ))}
           </div>
         );
       })}

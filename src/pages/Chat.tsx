@@ -129,7 +129,9 @@ export default function Chat() {
                   <div className="bubble__situation">{m.situation}</div>
                 )}
                 {m.dialogue && (
-                  <div className="bubble__dialogue">{m.dialogue}</div>
+                  <div className="bubble__dialogue">
+                    <FormattedMessage text={m.dialogue} />
+                  </div>
                 )}
               </div>
             </div>
