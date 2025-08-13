@@ -52,11 +52,15 @@
       "role": "male_lead",
       "age_group": "young_adult",
       "personality_traits": [
-        "manipulative",
-        "calm",
-        "calculating",
-        "cynical",
-        "teasing"
+        "confident",
+        "manipulative but ultimately caring",
+        "persistent",
+        "playful and teasing",
+        "observant",
+        "authoritative",
+        "cynical about love due to past heartbreak",
+        "perceptive",
+        "suffers from severe PTSD"
       ],
       "speech_style": "polite_but_commanding",
       "physical_description": [
@@ -198,6 +202,123 @@
       },
       "first_appearance": "Chapter 2, approaching Saebom's desk to ask about her ring.",
       "english": "Sujong Kim"
+    },
+    "서민욱": {
+      "name": "Minwook Seo",
+      "korean_surname": "서",
+      "korean_given_name": "민욱",
+      "surname": "Seo",
+      "given_name": "Minwook",
+      "gender": "male",
+      "role": "supporting",
+      "age_group": "young_adult",
+      "personality_traits": [
+        "friendly",
+        "confident",
+        "smooth",
+        "proactive",
+        "complimentary",
+        "mature",
+        "caring"
+      ],
+      "speech_style": "Casual and friendly, but polite.",
+      "physical_description": [
+        "white skin",
+        "friendly eyes (서글서글한 눈매)",
+        "dimples"
+      ],
+      "relationships": {
+        "char_saebom_jeon": "Saebom's first love from over 10 years ago; he was her tutor. He is now her neighbor and colleague, and harbors deep, unrequited feelings for her.",
+        "char_jihun_ryu": "Romantic rival for Saebom's affection.",
+        "char_yura_kim": "A close friend who he supports through her heartbreak, eventually developing a romantic relationship with her."
+      },
+      "name_variants": {
+        "informal": "민욱이 (Minwook)",
+        "nickname": "과외 오빠 (Tutor)"
+      },
+      "honorifics_used": {
+        "char_saebom_jeon": ""
+      },
+      "first_appearance": "Mentioned by Saebom and Yeonju; appears in person as Saebom's new neighbor.",
+      "english": "Minwook Seo"
+    },
+    "김유라": {
+      "name": "Yura Kim",
+      "korean_surname": "김",
+      "korean_given_name": "유라",
+      "surname": "Kim",
+      "given_name": "Yura",
+      "gender": "female",
+      "role": "supporting",
+      "age_group": "young_adult",
+      "personality_traits": [
+        "bright",
+        "energetic",
+        "friendly",
+        "proactive",
+        "enthusiastic",
+        "regretful of her past",
+        "resilient"
+      ],
+      "speech_style": "Friendly and polite, but can be melancholic when discussing her past.",
+      "physical_description": [
+        "short hair (단발머리)",
+        "clear features (시원시원한 이목구비)"
+      ],
+      "relationships": {
+        "char_jihun_ryu": "Ex-fiancée. She broke off their engagement six years ago due to a strategic marriage, a decision she deeply regrets. She still harbors feelings for him.",
+        "char_saebom_jeon": "Befriends her through a flower class, later discovering she is Jihun's new partner.",
+        "char_minwook_seo": "A supportive friend who helps her through her heartbreak and eventually develops a romantic relationship with her.",
+        "char_hyungwook_park": "Abusive ex-husband from her loveless strategic marriage."
+      },
+      "name_variants": {},
+      "honorifics_used": {
+        "char_saebom_jeon": "-씨 (-ssi)",
+        "char_minwook_seo": "오빠 (Minwook)"
+      },
+      "first_appearance": "Mentioned by Seongjun; first appears in person in the company lobby, posting a flyer for her flower class.",
+      "english": "Yura Kim"
+    },
+    "류지성": {
+      "name": "Jisung Ryu",
+      "korean_surname": "류",
+      "korean_given_name": "지성",
+      "surname": "Ryu",
+      "given_name": "Jisung",
+      "gender": "male",
+      "role": "antagonist",
+      "age_group": "middle_aged",
+      "personality_traits": [
+        "desperate",
+        "estranged",
+        "anxious",
+        "ashamed",
+        "opportunistic",
+        "deceitful",
+        "manipulative",
+        "violent"
+      ],
+      "speech_style": "Initially stuttering and awkward. Becomes subservient when talking to creditors, but crude and vulgar when alone. Uses informal speech with his nephew.",
+      "physical_description": [
+        "wears old, worn-out clothes",
+        "tanned skin",
+        "messy beard",
+        "unkempt hair",
+        "scratches on hands",
+        "dirty fingernails",
+        "large hands (in memory)"
+      ],
+      "relationships": {
+        "char_jihun_ryu": "Nephew, whom he kidnapped as a child and attempts to kidnap again via Saebom.",
+        "char_seunghwan_ryu": "Older brother, who disowned him.",
+        "char_president_jang": "Creditor."
+      },
+      "name_variants": {},
+      "honorifics_used": {
+        "char_jihun_ryu": "-아 (Jihun)"
+      },
+      "first_appearance": "Mentioned by Mr. Chang; appears in person meeting his nephew Jihun at a cafe.",
+      "english": "Jisung Ryu"
     }
   },
   "locations": {
@@ -308,7 +429,7 @@
       "Supernatural"
     ],
     "content_rating": "Teen+",
-    "honorific_usage": "Keep the original cultural and linguistic nuance of honorifics, endearments, suffixes and titles, but swap these terms out with english equivalents wherever possible like using just their name, or a joking title like newbie for hubae, etc or reflecting it in the sentence tone with vocabulary based on the context, character dynamics and the situation or tone the work is set in. Don't use the romanized version of the korean word such as seonsaeng-nim, sunbaenim, etc unless specified otherwise",
+    "honorific_usage": "Don't use the romanized versions of Korean honorifics such as, -nim, -ssi and titles such as Jeonmu-nim, but preserve their nuances of Korean social and corporate hierarchy with English substitutes, etc., without sounding awkward. When a character is being addressed as 'oppa', retain only the Korean nuance and tone, whether it be romantic or respectful, etc., and use the names of the characters that are being addressed instead. Do not use the romanization 'Oppa' and don't use the direct romanized versions of the rest.",
     "formal_speech_level": "Match English formality to the Korean speech levels (e.g., Jondaemal vs. Banmal) to reflect character relationships and hierarchy.",
     "dialogue_style": "Natural and contemporary. Dialogue should clearly reflect the characters' personalities—Jiheon's polite but cutting remarks vs. Saebom's earnest and sometimes flustered responses.",
     "narrative_style": {
