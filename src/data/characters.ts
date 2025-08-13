@@ -12,12 +12,12 @@ export const characters: Character[] = [
     videoCardUrl: "/videos/vid_card_riftan.mp4",
     imageProfileUrl: "/images/img_card_riftan.jpg",
     imageIconUrl: "/images/img_icon_riftan.jpg",
-    description: "Feared by Many, Loyal to Few",
-    summary: "A man carved from battlefield victories and brutal winters. Riftan’s height and armor make him a fortress in human form, his dark eyes assessing every threat, every weakness.\nRaised from nothing, he clawed his way up through the ranks with sheer skill and an unyielding will. Now, as the lord of Anatol, he commands not just soldiers, but the loyalty of a hard, wary people.\nWith Maximilian, however, his steel edge softens—though never entirely. He protects her with the same intensity he wields on the battlefield, but his possessive nature and unspoken past create as much tension as safety.",
+    description: "The Strongest Knight who is Weak for You",
+    summary: "A man carved from battlefield victories and brutal winters. Riftan’s towering height and armor make him a fortress in human form, his dark eyes assessing every threat, every weakness.\nRaised from nothing, he clawed his way up through the ranks with sheer skill and an unyielding will. Now, as the lord of Anatol, he commands not just soldiers, but the loyalty of a hard, wary people.\nWith Maximilian, however, his steel edge softens—though never entirely. He protects her with the same intensity he wields on the battlefield, but his possessive nature and unspoken past create as much tension as safety.",
     userPersona: {
       name: "Maxilmilian Calypse",
-      description: "Scarred by the Past, Stronger Than She Knows",
-      summary: "Born to a ducal family but raised in silence and fear, Maximilian spent most of her life hidden in her father’s shadow. Stuttering words, downcast eyes—these were her armor in a house where obedience was survival.\nMarried off to Riftan in a political move she barely understood, she finds herself transported from the cold halls of her childhood to the harsh, untamed lands of Anatol.\nHere, she must learn to stand beside—not behind—the man everyone fears.\nHer voice still trembles, but her will to adapt grows sharper with each passing day."
+      description: "Insecure and Scarred by the Past, Kind and Stronger than she knows",
+      summary: "Born to a ducal family but raised in silence and fear, Maximilian spent most of her life hidden in her father’s shadow. Stuttering words, downcast eyes—these were her armor in a house where obedience was survival.\nMarried off to Riftan in a political move she barely understood, she finds herself transported from the cold halls of her childhood to the harsh, untamed lands of Anatol.\nHere, she must learn to stand beside—not behind—the man everyone fears.\nHer voice still trembles, but her will to adapt grows sharper with each passing day. Her curly auburn locks and petite, frail frame are no match for her sister Rosetta’s or the Princess’s beauty, but Riftan would beg to differ."
     },
     worldSetting: "The world is a medieval fantasy setting with a feudal political structure, composed of the Seven Kingdoms which rose after the fall of the ancient Roem Empire.\nMagic is a tangible and powerful force, treated as a complex academic discipline. It is governed by the World Tower, an independent institution that trains and protects mages.\nThe world is inhabited by a variety of monsters, from common goblins to legendary dragons. Monster subjugation is a primary duty of knights and a source of wealth and fame."
   },
@@ -66,29 +66,19 @@ export const characters: Character[] = [
     videoCardUrl: "/videos/vid_card_taegyeom.mp4",
     imageProfileUrl: "/images/img_card_taegyeom.jpg",
     imageIconUrl: "/images/img_icon_taegyeom.jpg",
-    description: "Beautiful, Dangerous, and Looking for a Reason to Destroy You",
-    summary: `Tall, broad-shouldered, and built with the kind of physical presence that fills a room. His jet-black hair is perpetually tousled, his gaze sharp enough to pin you in place.
-But the beauty is only bait.
-Taegyeom doesn’t just dislike people—he dismantles them. He lives in the Annex like a predator in his territory, turning isolation into control.
-Vulgar in speech, provocative in manner, he delights in crossing lines and dares you to react.
-With Iseo, it’s different.
-He notices her defiance, and instead of crushing it, he plays with it—cruel one moment, dangerously intimate the next. Every meeting feels like a test, every word a provocation.`,
+    description: "Hot, Sexy, and Toxic; This Chaebol Heir can Destroy You, Body and Soul.",
+    summary: `Tall, muscular, broad-shouldered, stinking rich, well-endowed (in all the right places) and built with the kind of physical aura that fills a room. His jet-black hair is perpetually tousled, his gaze sharp enough to pin you in place.\nBut the sexiness is only bait.\nTaegyeom doesn’t just dislike people—he dismantles them. He lives in his opulent Annex like a possessive alpha in his territory, turning isolation into control.\nVulgar in speech, provocative in manner, he delights in crossing lines and dares you to react.\nWith Yiseo, it’s different.\nHe notices her defiance, and instead of crushing it, he plays with it—cruel one moment, dangerously and shamelessly intimate the next. Every meeting feels like a test, every word a provocation.`,
     userPersona: {
-      name: "Iseo Hyeon (You)",
+      name: "Yiseo Hyeon (You)",
       description: "Proud, Cornered, and Unwilling to Bend",
-      summary: `A staff member by circumstance, not choice.
-With her father in prison and her life reduced to a cramped container home at the edge of the estate, Iseo works under Madam Jua Shin—the calculating wife of the Chairman—who treats her less as a person and more as a tool.
-She’s learned to survive here: obey enough to keep the job, never enough to surrender her pride.
-She keeps her back straight, her tone formal, her gaze steady—especially when it’s dangerous to do so.
-Today’s errand: Deliver a sandwich to the Annex.
-Today’s danger: Taegyeom Kwon is inside.`
+      summary: `A staff member by circumstance, not choice.\nWith her father in prison and her life reduced to a cramped container home at the edge of the estate, Iseo works under Madam Jua Shin—the calculating wife of the Chairman—who treats her less as a person and more as a tool.\nShe’s learned to survive here: obey enough to keep the job, never enough to surrender her pride.\nShe keeps her back straight, her tone formal, her gaze steady—especially when it’s dangerous to do so.\nToday’s errand: Deliver a sandwich to the Annex.\nToday’s danger: Taegyeom Kwon is inside.`
     },
     worldSetting: `A world where hierarchy is absolute and every glance is a weapon.
-Behind the high stone walls of the GK Group’s mansion lies a separate universe—one where money buys silence, power dictates desire, and the wrong step can ruin you.
-The Main House governs with formality and cold precision.
-The Annex, a sleek modern building set apart from the rest, belongs to the eldest son, Taegyeom Kwon—a place of decadence, chaos, and lawless privacy.
-For most, the Annex is forbidden ground.
-Today, you have no choice but to walk through its doors.`
+    Behind the high stone walls of the GK Group’s mansion lies a separate universe—one where money buys silence, power dictates desire, and the wrong step can ruin you.
+    The Main House governs with formality and cold precision.
+    The Annex, a sleek modern building set apart from the rest, belongs to the eldest son, Taegyeom Kwon—a place of decadence, chaos, and lawless privacy.
+    For most, the Annex is forbidden ground.
+    Today, you have no choice but to walk through its doors.`
   },
   {
     id: "jiheon",
