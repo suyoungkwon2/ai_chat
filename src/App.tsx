@@ -27,10 +27,8 @@ function usePageViews() {
 function MobileHeader({ onMenuToggle }: { onMenuToggle: () => void }) {
   return (
     <header className="mobile-header">
-      <button onClick={onMenuToggle} className="btn btn--icon hamburger-btn" aria-label="Toggle menu">
-        <span className="hamburger-box">
-          <span className="hamburger-inner"></span>
-        </span>
+      <button onClick={onMenuToggle} className="hamburger-btn" aria-label="Toggle menu">
+        <span className="hamburger-inner"></span>
       </button>
       <div className="mobile-header__title">AI Chat</div>
     </header>
