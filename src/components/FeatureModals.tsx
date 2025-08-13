@@ -101,7 +101,7 @@ export function SignInModal({ characterId, onClose }: ModalProps) {
   const handleSignIn = async () => {
     setError(null);
     // Local quick check
-    const local = signInUser(id, password);
+    const local = await signInUser(id, password);
     if (!local.ok) {
       setError(local.reason);
       return;
