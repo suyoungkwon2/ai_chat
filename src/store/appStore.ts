@@ -177,11 +177,12 @@ export const useAppStore = create<AppState>()(
       // @ts-ignore
       __initLikesOnce: (async () => {
         try {
-          const { liked_by_me } = await beFetchLikes();
+          const { likes, liked_by_me } = await beFetchLikes();
           set((s: AppState) => ({
             characters: s.characters.map((c) => {
               const liked = !!liked_by_me[c.id];
-              return { ...(c as any), _liked: liked } as any;
+              const likesCount = likes[c.id] || c.likes;
+              return { ...(c as any), likes: likesCount, _liked: liked } as any;
             }) as any,
           }));
         } catch {}
