@@ -5,7 +5,7 @@ export const characters: Character[] = [
     id: "riftan",
     name: "Riftan Calypse",
     novelTitle: "Under the Oak Tree",
-    genre: "Romance",
+    genre: "Romantasy",
     keywords: ["Knight", "Protective", "Gruff", "Soft on the Inside"],
     likes: 1200,
     imageCardUrl: "/images/img_card_riftan.jpg",
