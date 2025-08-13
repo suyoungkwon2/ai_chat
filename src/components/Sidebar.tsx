@@ -83,10 +83,10 @@ export default function Sidebar() {
           <button className="btn btn--home" onClick={handleHomeClick}>
             <span className="icon">🏠</span> <span className="text">Home</span>
           </button>
-          <button className="btn" onClick={() => resetUserRegistration()} title="Reset User">
+          <button className="btn" onClick={() => resetUserRegistration()} title="Reset User" disabled>
             <span className="icon">🔄</span>
           </button>
-          <button className="btn" onClick={() => resetAdViews()} title="Reset Ads">
+          <button className="btn" onClick={() => resetAdViews()} title="Reset Ads" disabled>
             <span className="icon">📺</span>
           </button>
         </div>
