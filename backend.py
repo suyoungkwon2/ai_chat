@@ -288,7 +288,16 @@ def _static_interface_characters() -> List[dict]:
             "image": "public/videos/vid_card_riftan.mp4",
             "description": "A powerful knight with a fierce reputation but a tender heart for his beloved.",
             "tags": ["Smut", "Jealousy", "Loyal", "Hot Guy", "Steamy"],
-            "greeting": "My lady... I've been waiting for you. Come, sit with me by the fire.",
+            "greeting": """<Scenario 1>\n
+            *Three years ago, your wedding was a subject of ridicule rather than a cause for celebration. Riftan Calypse, then a low-class knight, was forced to marry you by the Duke's command. He left for the campaign to subdue the Red Dragon the day after the wedding and never once wrote to you.\n
+            
+            Now, the war is over. The hero who defeated the Red Dragon Sektor, Riftan Calypse, has returned, his status elevated to that of a hero. He is now one of the best swordmasters on the continent and could potentially be taken as King Reuben's son-in-law. The Duke of Croyso is terrified that Riftan will annul the marriage. He has ordered you to persuade Riftan to remain in the marriage and threatened to punish you brutally if you bring shame upon the house.\n
+            
+            You believe Riftan will not want you, as you are a plain-looking woman with a stutter and are less beautiful than your half-sister, Rosetta. You must do everything to prevent the annulment. Otherwise, divorce is equivalent to a death sentence for a noblewoman, and your life will be ruined.
+            
+            Now, Riftan stands before you.*\n
+
+            "I didn't expect a warm welcome, but did you have to tremble as if I were carrying the plague?" """,
         },
         {
             "id": "emperor-heinrey",
@@ -298,7 +307,16 @@ def _static_interface_characters() -> List[dict]:
             "image": "img/img_card_heinri-CA-nu1Er.jpg",
             "description": "A charming and intelligent emperor who can transform into a bird.",
             "tags": ["Caring", "Handsome", "Alpha Hero", "Cruel", "Shifter", "Beast"],
-            "greeting": "Queen, my beloved queen. You look radiant tonight. Shall we take a moonlit flight together?",
+            "greeting": """<Epilogue>\n
+            On a quiet afternoon, you are in the empress's office in the Western Empire, gazing out the window, lost in thought. The anxiety and betrayal that once haunted you have been replaced by a deep sense of stability and trust. Just then, a familiar golden bird lands on the windowsill. It looks at you with intelligent eyes before transforming, in a flash of blue light, into a dazzling man.\n
+
+            Your husband, Emperor Heinrey, leans against the window frame with a smile, extending a hand toward you.\n
+
+            "My love, were you buried in tedious paperwork again? It's time for a break, Queen. Come here and give me a kiss."\n
+
+            He winks playfully and adds,\n
+
+            "Or, shall I turn back into your favorite bird and come sit on your lap?" """,
         },
         {
             "id": "lord-tiwakan",
@@ -308,7 +326,18 @@ def _static_interface_characters() -> List[dict]:
             "image": "img/img_card_tiwakan-BcI64aLI.jpg",
             "description": "A mysterious lord cursed with a beast form, seeking redemption through love.",
             "tags": ["Beast", "Mysterious", "Cursed", "Dark", "Powerful"],
-            "greeting": "You're not afraid of me? Most people run when they see my true form...",
+            "greeting": """<Scenario 1>\n
+            The kingdom of Nauk teeters on the edge of ruin, besieged by the infamous Tiwakan mercenaries for a fortnight under the guise of a marriage proposal. As the last heir to the Arsac throne, you've weighed every desperate option: reject the barbarian lord's demand, and your people starve; accept, and surrender your fate to a man whispered to be the spawn of war gods, untouchable and savage.\n
+
+            With your advisor and guard at your side, you ride to the neutral tent, heart pounding. Rumors of an ambush—your former fiancé's reinforcements—stir fleeting hope. But as you prepare to flee, the tent flap lifts, flooding the dim space with light.\n
+
+            A towering figure emerges: Black, Lord of Tiwakan. His black hair frames a face both brutally handsome and feral, pale blue eyes locking onto you like a predator's. Blood stains his cheek, and in his grasp dangles your ex-lover's sword—proof of crushed rebellion.\n
+
+            He discards the blade casually, his voice a low, unyielding rumble. "The interruption is dealt with. Now, your answer to my proposal?"\n
+
+            You bluff, claiming pregnancy by the dead man to repel him. But Black's lips curve faintly, unfazed.\n
+
+            "Then bear the child. But know this... I shall have you." """,
             "personality": ["Brooding", "Gentle beneath the surface", "Protective", "Misunderstood"],
             "responses": [
                 "You see the man in me when others only see the beast.",
@@ -326,7 +355,25 @@ def _static_interface_characters() -> List[dict]:
             "image": "img/img_card_taegyeom-DShA9n8d.jpg",
             "description": "A cold and calculating duke whose heart melts only for his chosen one.",
             "tags": ["Steamy", "Trauma", "Wealthy", "Obssessive", "Possessive", "Secret"],
-            "greeting": "So, you've come to my estate. Most find it too cold here... but perhaps you're different.",
+            "greeting": """<Scenario 1>\n
+
+            You had one simple task: deliver a sandwich to the Annex and leave.\n
+            You told yourself you wouldn’t even step inside—just set it down and walk away.\n
+
+            The gate clicked shut behind you.\n
+            And then you saw him.\n
+
+            A man rose from the glittering pool, not a scrap of clothing on him. Sunlight slid over wide shoulders, down a chest cut from stone, across abs sharp as armor… until your gaze, unbidden, dropped lower.\n
+
+            …Oh. My. God.\n
+
+            Even soft, the thick length hanging between his legs was obscene—thick as a man’s forearm, heavy enough to make everything else about him fade into irrelevance. Your breath caught in your throat.\n
+
+            “You’re staring,” he said, voice low and lazy, but cutting straight through you.\n
+            “Does my cock look that suckable to you?”\n
+
+            You squeezed your eyes shut, then opened them again.\n
+            It was still there. Huge. Shameless. And now… he was walking toward you.""",
         },
         {
             "id": "jiheon-ryu",
@@ -336,7 +383,19 @@ def _static_interface_characters() -> List[dict]:
             "image": "public/videos/vid_card_jiheon.mp4",
             "description": "A charismatic, obsessive CEO whose protectiveness blurs into possessiveness.",
             "tags": ["Obsessive", "Possessive", "Wealthy", "Secret", "Steamy"],
-            "greeting": "I don't make casual offers. When I say I want you, I mean permanently.",
+            "greeting": """<Scenario 1>\n
+
+            In the sleek executive office of Ryu Enterprises’ towering corporate building, you're summoned by your boss, Jiheon Ryu—the handsome, calculating heir to a chaebol empire. \n
+            
+            What starts as a routine call spirals into absurdity: he proposes marriage out of nowhere, not out of love, but convenience. \n
+            
+            You refuse, citing your dream of true romance, but his gaze sharpens, unyielding, as he slides a velvet ring box across his desk. You hesitate, sensing a trap, but his calm insistence pressures you to open it.\n
+
+            Trapped in this bizarre power play, you sense the web tightening. Little do you know, a cursed ring inside will soon bind you both, forcing a fake relationship that blurs lines between hate, duty, and desire.\n
+
+            Jiheon leans back, his long-lashed eyes locking onto yours with teasing intensity. \n
+
+            “Why not? I think you’re perfect for me.” """,
         },
     ]
 
@@ -523,23 +582,23 @@ class CharacterChatSystem:
         #     model_name="gpt-4.1-mini-2025-04-14",
         #     openai_api_key=openai_api_key
         # )
-        if ChatXAI is None:
-            raise RuntimeError("langchain-xai is not installed. Please pip install langchain-xai.")
-        self.llm = ChatXAI(
-            model="grok-4-0709",
-            temperature=0.7,
-            max_tokens=None,
-            timeout=None,
-            max_retries=2,
-        )
-
-        # self.llm = ChatGoogleGenerativeAI(
-        #     model="gemini-2.5-pro",
+        # if ChatXAI is None:
+        #     raise RuntimeError("langchain-xai is not installed. Please pip install langchain-xai.")
+        # self.llm = ChatXAI(
+        #     model="grok-4-0709",
         #     temperature=0.7,
         #     max_tokens=None,
         #     timeout=None,
         #     max_retries=2,
         # )
+
+        self.llm = ChatGoogleGenerativeAI(
+            model="gemini-2.5-pro",
+            temperature=0.7,
+            max_tokens=None,
+            timeout=None,
+            max_retries=2,
+        )
 
         self.players: Dict[str, Player] = {}
         self.chat_rooms: Dict[str, ChatRoom] = {}
@@ -649,10 +708,13 @@ Use conversation history to track continuity, relationship dynamics, and scene s
 OUTPUT FORMAT (STRICT)
 ```
 **SITUATION:**
-[Minimum 10 sentences with rich sensory details, internal thoughts, physical actions, environmental atmosphere, and meaningful story progression]
+[Minimum 5 sentences with rich sensory details, internal thoughts, physical actions, environmental atmosphere, and meaningful story progression.
+Give line breaks for each sentence.
+Do the situation in third person POV while using 'you' to refer to the user For example, 'He pushes you against the wall and kisses you hard.']
 
 **DIALOGUE:**
-"[Maximum 4 sentences in character's authentic voice, ending with engaging question or call-to-action]"
+"[Maximum 5 sentences in character's authentic voice, ending with engaging question or call-to-action, 
+make sure that the output is first-person dialogue only, do not include 'I said', etc. third-person descriptors. Don't make the dialogue too short, and make sure that its authentic to the original character's personality, to the plot and the situation.]"
 
 **AFFECTION LEVEL:** [0-100]
 ```
