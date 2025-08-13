@@ -61,7 +61,7 @@ export interface AppState {
   openCharacterIds: string[]; // 사이드바에 노출되는 열린 채팅 목록
   sidebarWidth: number;
   modalStates: Record<string, ModalState>;
-  activeModal: "userRegistration" | "watchAd" | "endOfChats" | "actualAd" | "signIn" | null;
+  activeModal: "userRegistration" | "watchAd" | "endOfChats" | "actualAd" | "signIn" | 'userProfile' | null;
   modalContextCharacterId: string | null;
   isRegistered: boolean;
   globalMessageCount: number;
@@ -85,7 +85,7 @@ export interface AppState {
   signInUser: (username: string, password: string) => { ok: true } | { ok: false; reason: string };
   setSidebarWidth: (width: number) => void;
   initModalState: (characterId: string) => void;
-  setActiveModal: (modal: "userRegistration" | "watchAd" | "endOfChats" | "actualAd" | "signIn" | null, characterId?: string) => void;
+  setActiveModal: (modal: "userRegistration" | "watchAd" | "endOfChats" | "actualAd" | "signIn" | 'userProfile' | null, characterId?: string) => void;
   handleModalAction: (characterId: string | undefined, action: "register" | "watchAd" | "lockChat") => void;
   resetUserRegistration: () => void;
   resetAdViews: () => void;

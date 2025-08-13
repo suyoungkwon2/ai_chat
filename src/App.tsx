@@ -12,8 +12,10 @@ import {
   EndOfChatsModal,
   SignInModal,
   UserRegistrationModal,
+  UserProfileModal,
   WatchAdModal,
 } from "./components/FeatureModals.tsx";
+import userIcon from './assets/images/img_icon_user.svg';
 
 const GA_MEASUREMENT_ID = "G-K7NPXST4BM";
 
@@ -25,12 +27,18 @@ function usePageViews() {
 }
 
 function MobileHeader({ onMenuToggle }: { onMenuToggle: () => void }) {
+  const setActiveModal = useAppStore((s) => s.setActiveModal);
+  const currentUser = useAppStore((s) => s.currentUser);
+
   return (
     <header className="mobile-header">
       <button onClick={onMenuToggle} className="hamburger-btn" aria-label="Toggle menu">
         <span className="hamburger-inner"></span>
       </button>
-      <div className="mobile-header__title">AI Chat</div>
+      <button className="mobile-header__profile" onClick={() => setActiveModal('userProfile')}>
+        <img src={userIcon} alt="user profile" className="avatar avatar--sm" />
+        <span>{currentUser.username}</span>
+      </button>
     </header>
   );
 }
@@ -62,6 +70,8 @@ function GlobalModals() {
       return <ActualAdModal {...props} />;
     case "endOfChats":
       return <EndOfChatsModal onClose={() => setActiveModal(null)} />;
+    case "userProfile":
+      return <UserProfileModal onClose={() => setActiveModal(null)} />;
     default:
       return null;
   }

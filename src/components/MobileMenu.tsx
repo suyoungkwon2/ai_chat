@@ -46,12 +46,6 @@ export default function MobileMenu({ onClose }: { onClose: () => void }) {
             ))}
           </div>
         </div>
-        <div className="mobile-menu__bottom">
-          <div className="mobile-menu__item">
-            <img className="avatar avatar--sm" src={`https://api.dicebear.com/7.x/thumbs/svg?seed=${currentUser.username}`} alt="me" />
-            <div className="mobile-menu__itemText">{currentUser.username}</div>
-          </div>
-        </div>
       </div>
     </div>
   );

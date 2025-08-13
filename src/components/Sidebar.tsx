@@ -18,7 +18,6 @@ export default function Sidebar() {
   const isRegistered = useAppStore((s) => s.isRegistered);
   const setActiveModal = useAppStore((s) => s.setActiveModal);
   const characters = useAppStore((s) => s.characters);
-  const [showProfileModal, setShowProfileModal] = useState(false);
   const isResizing = useRef(false);
 
   const handleHomeClick = () => {
@@ -31,7 +30,7 @@ export default function Sidebar() {
 
   const handleProfileClick = () => {
     if (isRegistered) {
-      setShowProfileModal(true);
+      setActiveModal("userProfile");
       ReactGA.event({
         category: "Navigation",
         action: "open_profile_modal",
@@ -118,7 +117,6 @@ export default function Sidebar() {
 
       <div className="sidebar__resizer" onMouseDown={handleMouseDown} />
 
-      {showProfileModal && <UserProfileModal onClose={() => setShowProfileModal(false)} />}
     </aside>
   );
 } 
