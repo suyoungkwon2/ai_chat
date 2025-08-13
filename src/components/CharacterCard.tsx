@@ -8,6 +8,7 @@ import { useIsMobile } from "../hooks/useIsMobile";
 export default function CharacterCard({ character }: { character: Character }) {
   const openChat = useAppStore((s) => s.openChat);
   const toggleLike = useAppStore((s) => s.toggleLike);
+  const setActiveModal = useAppStore((s) => s.setActiveModal);
   const liked = (character as any)._liked;
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -131,6 +132,9 @@ export default function CharacterCard({ character }: { character: Character }) {
             className="btn btn--primary">
             Start Chat
           </Link>
+          <button className="btn btn--text" onClick={() => setActiveModal('characterProfile', character.id)}>
+            See Profile
+          </button>
         </div>
       </div>
     </div>

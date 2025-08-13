@@ -14,6 +14,7 @@ import {
   UserRegistrationModal,
   UserProfileModal,
   WatchAdModal,
+  CharacterProfileModal,
 } from "./components/FeatureModals.tsx";
 import userIcon from './assets/images/img_icon_user.svg';
 
@@ -72,6 +73,8 @@ function GlobalModals() {
       return <EndOfChatsModal onClose={() => setActiveModal(null)} />;
     case "userProfile":
       return <UserProfileModal onClose={() => setActiveModal(null)} />;
+    case "characterProfile":
+      return <CharacterProfileModal {...props} />;
     default:
       return null;
   }

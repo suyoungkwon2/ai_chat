@@ -80,11 +80,16 @@ export default function Chat() {
   return (
     <div className="chat">
       <div className="chat__header">
-        <img className="avatar" src={character.imageProfileUrl} alt={character.name} />
-        <div className="chat__meta">
-          <div className="chat__title">{character.name}</div>
-          <div className="chat__subtitle">{character.novelTitle} · {character.genre}</div>
+        <div className="chat__header-left">
+          <img className="avatar" src={character.imageProfileUrl} alt={character.name} />
+          <div className="chat__meta">
+            <div className="chat__title">{character.name}</div>
+            <div className="chat__subtitle">{character.novelTitle} · {character.genre}</div>
+          </div>
         </div>
+        <button className="btn btn--text" onClick={() => setActiveModal('characterProfile', characterId)}>
+          See Profile
+        </button>
       </div>
 
       <div className="chat__messages">

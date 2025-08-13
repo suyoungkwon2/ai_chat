@@ -821,7 +821,7 @@ export const useAppStore = create<AppState>()(
       },
     }),
     {
-      name: "aichat-store",
+      name: "aichat-store-v2",
       partialize: (state) => ({
         currentUser: state.currentUser,
         registeredUsernames: state.registeredUsernames,

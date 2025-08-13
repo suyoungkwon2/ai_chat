@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppStore } from "../store/appStore";
 import adVideo from "../assets/videos/vid_book.mp4";
+import { Link, useNavigate } from "react-router-dom";
 
 interface ModalProps {
   characterId?: string;
@@ -291,6 +292,75 @@ export function EndOfChatsModal({ onClose }: { onClose: () => void }) {
         <div className="modal__footer">
           <button className="btn btn--primary" onClick={onClose}>
             See You Tomorrow
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function CharacterProfileModal({ characterId, onClose }: ModalProps) {
+  const navigate = useNavigate();
+  const openChat = useAppStore((s) => s.openChat);
+  const character = useAppStore((s) => s.characters.find((c) => c.id === characterId));
+
+  if (!character) return null;
+
+  const handleStartChat = () => {
+    openChat(character.id);
+    navigate(`/chat/${character.id}`);
+    onClose();
+  };
+
+  return (
+    <div className="modal__backdrop" role="dialog" aria-modal="true">
+      <div className="modal">
+        <div className="modal__header">
+          <div className="modal__title">{character.name}'s Profile</div>
+          <button className="btn btn--icon" onClick={onClose}>
+            ✖️
+          </button>
+        </div>
+        <div className="modal__content modal__content--profile">
+          <img src={character.imageProfileUrl} alt={character.name} className="profile-modal__image" />
+          
+          <div className="profile-modal__section">
+            <div className="profile-modal__title">Character</div>
+            <div className="profile-modal__name-row">
+              <span className="profile-modal__name">{character.name}</span>
+              <span className="profile-modal__subtitle">{character.description ?? "A captivating character with a story to tell."}</span>
+            </div>
+            <div className="profile-modal__summary">
+              {(character.summary ?? "").split('\n').map((line, i) => <p key={i}>{line || '\u00A0'}</p>)}
+            </div>
+          </div>
+
+          <hr className="divider" />
+
+          <div className="profile-modal__section">
+            <div className="profile-modal__title">You</div>
+            <div className="profile-modal__name-row">
+              <span className="profile-modal__name">{character.userPersona?.name ?? "Your Role"}</span>
+              <span className="profile-modal__subtitle">{character.userPersona?.description ?? "You find yourself drawn into their world."}</span>
+            </div>
+            <div className="profile-modal__summary">
+              {(character.userPersona?.summary ?? "").split('\n').map((line, i) => <p key={i}>{line || '\u00A0'}</p>)}
+            </div>
+          </div>
+
+          <hr className="divider" />
+
+          <div className="profile-modal__section">
+            <div className="profile-modal__title">World Setting</div>
+            <div className="profile-modal__summary">
+              {(character.worldSetting ?? "").split('\n').map((line, i) => <p key={i}>{line || '\u00A0'}</p>)}
+            </div>
+          </div>
+        </div>
+        <div className="modal__footer">
+          <button className="btn" onClick={onClose}>Close</button>
+          <button className="btn btn--primary" onClick={handleStartChat}>
+            Start Chat
           </button>
         </div>
       </div>
