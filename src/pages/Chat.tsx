@@ -23,6 +23,7 @@ export default function Chat() {
   const character = characters.find((c) => c.id === characterId);
   const modalState = modalStates[characterId];
   const session = sessions[characterId];
+  const userMessageCount = session?.messages.filter(m => m.sender === 'user').length ?? 0;
   const isAiTyping = !!session?.isTyping;
   const isCreditBlocked = !usageReady || (creditsRemaining <= 0);
 
@@ -41,6 +42,36 @@ export default function Chat() {
   }, [sessions[characterId]?.messages]);
 
   useEffect(() => {
+    // This effect handles tracking when a user leaves the chat page.
+    // It's crucial for understanding user drop-off points.
+    return () => {
+      const { activeModal, sessionsByCharacterId } = useAppStore.getState();
+      const session = sessionsByCharacterId[characterId];
+      const userMessageCount =
+        session?.messages.filter((m) => m.sender === "user").length ?? 0;
+
+      // We define "exit modals" as modals that effectively end the chat session.
+      // If one of these is active when the user leaves, we assume the modal's own
+      // event is sufficient, and we don't fire the 'leave_chat' event to avoid double-counting.
+      const exitModals: (string | null)[] = [
+        "userRegistration",
+        "watchAd",
+        "actualAd",
+        "endOfChats",
+      ];
+
+      if (!exitModals.includes(activeModal)) {
+        ReactGA.event({
+          category: "Chat",
+          action: "leave_chat",
+          label: characterId,
+          value: userMessageCount,
+        });
+      }
+    };
+  }, [characterId]);
+
+  useEffect(() => {
     if (!modalState) return;
 
     const { messageCount, adViewsToday, isChatLocked } = modalState;
@@ -51,16 +82,29 @@ export default function Chat() {
 
     if (!isRegistered && globalMessageCount >= 5) {
       setActiveModal("userRegistration", characterId);
-      ReactGA.event({ category: "Gating", action: "show_signup_modal" });
+      ReactGA.event({ category: "Gating", action: "show_signup_modal", label: characterId });
     } else if (isRegistered && messageCount >= 10 && adViewsToday < 5) {
       setActiveModal("watchAd", characterId);
-      ReactGA.event({ category: "Gating", action: "show_ad_modal" });
+      ReactGA.event({
+        category: "Gating",
+        action: "show_ad_modal",
+        label: characterId,
+        value: adViewsToday + 1,
+      });
     } else if (isRegistered && messageCount >= 10 && adViewsToday >= 5) {
       setActiveModal("endOfChats", characterId);
-      ReactGA.event({ category: "Gating", action: "show_end_modal" });
+      ReactGA.event({ category: "Gating", action: "show_end_modal", label: characterId, value: messageCount });
     }
   }, [modalState, isRegistered, globalMessageCount, setActiveModal, characterId]);
 
+  const handleSeeProfile = () => {
+    setActiveModal('characterProfile', characterId);
+    ReactGA.event({
+      category: "Engagement",
+      action: "click_see_profile_chat",
+      label: character?.name,
+    });
+  };
 
   if (!character) {
     return <div className="page">
@@ -87,7 +131,7 @@ export default function Chat() {
             <div className="chat__subtitle">{character.novelTitle} · {character.genre}</div>
           </div>
         </div>
-        <button className="btn btn--text" onClick={() => setActiveModal('characterProfile', characterId)}>
+        <button className="btn btn--text" onClick={handleSeeProfile}>
           See Profile
         </button>
       </div>
@@ -170,6 +214,7 @@ export default function Chat() {
           disabledPlaceholder={disabledPlaceholder}
           onUnlockWithAd={isCreditBlocked ? () => setActiveModal("watchAd", characterId) : undefined}
           isRegistered={isRegistered}
+          userMessageCount={userMessageCount}
         />
       </div>
 

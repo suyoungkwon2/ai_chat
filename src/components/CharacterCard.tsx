@@ -67,6 +67,15 @@ export default function CharacterCard({ character }: { character: Character }) {
     });
   };
 
+  const handleSeeProfile = () => {
+    setActiveModal('characterProfile', character.id);
+    ReactGA.event({
+      category: "Engagement",
+      action: "click_see_profile_homepage",
+      label: character.name,
+    });
+  };
+
   const handleMouseEnter = () => {
     if (!isMobile && character.videoCardUrl) {
       setIsHovered(true);
@@ -132,7 +141,7 @@ export default function CharacterCard({ character }: { character: Character }) {
             className="btn btn--primary">
             Start Chat
           </Link>
-          <button className="btn btn--text" onClick={() => setActiveModal('characterProfile', character.id)}>
+          <button className="btn btn--text" onClick={handleSeeProfile}>
             See Profile
           </button>
         </div>

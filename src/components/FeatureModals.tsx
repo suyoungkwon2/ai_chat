@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAppStore } from "../store/appStore";
 import adVideo from "../assets/videos/vid_book.mp4";
 import { useNavigate } from "react-router-dom";
+import ReactGA from "react-ga4";
 
 interface ModalProps {
   characterId?: string;
@@ -310,6 +311,11 @@ export function CharacterProfileModal({ characterId, onClose }: ModalProps) {
     openChat(character.id);
     navigate(`/chat/${character.id}`);
     onClose();
+    ReactGA.event({
+      category: "Engagement",
+      action: "start_chat_from_profile",
+      label: character.name,
+    });
   };
 
   return (

@@ -9,6 +9,7 @@ export default function ChatInput({
   onUnlockWithAd,
   isRegistered,
   disabledPlaceholder,
+  userMessageCount,
 }: {
   characterName: string;
   onSend: (text: string) => void;
@@ -16,8 +17,10 @@ export default function ChatInput({
   onUnlockWithAd?: () => void;
   isRegistered?: boolean;
   disabledPlaceholder?: string;
+  userMessageCount: number;
 }) {
   const [value, setValue] = useState("");
+  const [situationClickCount, setSituationClickCount] = useState(0);
   const input = useRef<HTMLTextAreaElement | null>(null);
   const isSending = useRef(false);
 
@@ -29,10 +32,13 @@ export default function ChatInput({
     const next = `${value.slice(0, start)}**${value.slice(end)}`;
     setValue(next);
 
+    const nextCount = situationClickCount + 1;
+    setSituationClickCount(nextCount);
     ReactGA.event({
       category: "Chat",
       action: "add_situation",
       label: characterName,
+      value: nextCount,
     });
 
     requestAnimationFrame(() => {
@@ -55,6 +61,7 @@ export default function ChatInput({
       category: "Chat",
       action: "send_message",
       label: characterName,
+      value: userMessageCount + 1,
     });
 
     setTimeout(() => {
