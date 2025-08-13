@@ -304,10 +304,7 @@ export const useAppStore = create<AppState>()(
             body: JSON.stringify({ username, password }),
           });
           if (!res.ok) {
-            console.log(res);
             const d = await res.json().catch(() => null);
-            console.log(d);
-            console.log(d?.detail);
             return { ok: false as const, reason: d?.detail || "Invalid username or password." };
           }
           const data = await res.json();
