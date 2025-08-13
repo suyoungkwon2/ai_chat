@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppStore } from "../store/appStore";
 import adVideo from "../assets/videos/vid_book.mp4";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface ModalProps {
   characterId?: string;
