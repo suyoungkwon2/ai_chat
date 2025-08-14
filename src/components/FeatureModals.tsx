@@ -30,6 +30,11 @@ export function UserRegistrationModal({ characterId, onClose }: ModalProps) {
       setError(backend.reason);
       return;
     }
+    ReactGA.event({
+      category: "Gating",
+      action: "complete_registration",
+      label: characterId,
+    });
     // After backend registration and login, fetch usage so UI reflects +10 credits immediately
     await useAppStore.getState().refreshUsageStatus?.();
     // When just registered, refresh/create the backend chat id if needed so /send doesn't 404
