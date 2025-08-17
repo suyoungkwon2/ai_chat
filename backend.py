@@ -16,6 +16,7 @@ from pydantic import BaseModel
 
 # from langchain.chat_models import ChatOpenAI
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
+
 try:
     from langchain_xai import ChatXAI  # type: ignore
     from langchain_google_genai import ChatGoogleGenerativeAI
@@ -25,6 +26,7 @@ except ImportError:
 
 import os, glob
 from dotenv import load_dotenv
+
 # Load environment variables from a .env file if present
 load_dotenv()
 # Prefer XAI_API_KEY; fallback to OPENAI_API_KEY for convenience if provided
@@ -70,6 +72,7 @@ engine = create_async_engine(DATABASE_URL, echo=False, future=True)
 AsyncSessionLocal = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 Base = declarative_base()
 
+
 # ------------------- DB Models -------------------
 class User(Base):
     __tablename__ = "users"
@@ -80,6 +83,7 @@ class User(Base):
     created_at = Column(DateTime, server_default=func.now(), nullable=False)
 
     chats = relationship("Chat", back_populates="owner")
+
 
 class Chat(Base):
     __tablename__ = "chats"
@@ -95,6 +99,7 @@ class Chat(Base):
     owner = relationship("User", back_populates="chats")
     messages = relationship("MessageDB", back_populates="chat", cascade="all, delete-orphan")
 
+
 class MessageDB(Base):
     __tablename__ = "messages"
     id = Column(String(64), primary_key=True)
@@ -105,6 +110,7 @@ class MessageDB(Base):
     timestamp = Column(DateTime, server_default=func.now(), nullable=False)
 
     chat = relationship("Chat", back_populates="messages")
+
 
 # ------------------- Usage/Ad Models -------------------
 class UsageAccount(Base):
@@ -120,6 +126,7 @@ class UsageAccount(Base):
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now(), nullable=False)
 
     user = relationship("User")
+
 
 class AdEvent(Base):
     __tablename__ = "ad_events"
@@ -137,11 +144,14 @@ class AdEvent(Base):
 
     account = relationship("UsageAccount")
 
+
 # ------------------- Auth utils -------------------
+
 
 def get_password_hash(password: str) -> str:
     salt = bcrypt.gensalt()
     return bcrypt.hashpw(password.encode("utf-8"), salt).decode("utf-8")
+
 
 def verify_password(password: str, hashed: str) -> bool:
     try:
@@ -149,17 +159,22 @@ def verify_password(password: str, hashed: str) -> bool:
     except Exception:
         return False
 
+
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
     to_encode = data.copy()
     expire = datetime.utcnow() + (expires_delta or timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
     to_encode.update({"exp": expire})
     return jwt.encode(to_encode, JWT_SECRET, algorithm=JWT_ALGORITHM)
 
+
 async def get_db_session() -> AsyncSession:
     async with AsyncSessionLocal() as session:
         yield session
 
-async def get_current_user(token: str = Depends(oauth2_scheme), session: AsyncSession = Depends(get_db_session)) -> User:
+
+async def get_current_user(
+    token: str = Depends(oauth2_scheme), session: AsyncSession = Depends(get_db_session)
+) -> User:
     credentials_exception = HTTPException(status_code=401, detail="Could not validate credentials")
     try:
         payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
@@ -174,7 +189,10 @@ async def get_current_user(token: str = Depends(oauth2_scheme), session: AsyncSe
         raise credentials_exception
     return user
 
-async def get_current_user_optional(request: Request, session: AsyncSession = Depends(get_db_session)) -> Optional[User]:
+
+async def get_current_user_optional(
+    request: Request, session: AsyncSession = Depends(get_db_session)
+) -> Optional[User]:
     auth = request.headers.get("Authorization")
     if not auth or not auth.lower().startswith("bearer "):
         return None
@@ -189,15 +207,18 @@ async def get_current_user_optional(request: Request, session: AsyncSession = De
     except Exception:
         return None
 
+
 # 게임 상태 관리 클래스들
 class PlayerType(Enum):
     HUMAN = "human"
     AI = "ai"
 
+
 class ChatType(Enum):
     GROUP = "group"
     PRIVATE = "private"
     UNIT = "unit"
+
 
 @dataclass
 class Player:
@@ -206,7 +227,8 @@ class Player:
     type: PlayerType
     is_alive: bool = True
     persona: Optional[str] = None
-    
+
+
 @dataclass
 class Message:
     id: str
@@ -215,7 +237,7 @@ class Message:
     content: str
     timestamp: datetime
     chat_id: str
-    
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -223,9 +245,10 @@ class Message:
             "sender_name": self.sender_name,
             "content": self.content,
             "timestamp": self.timestamp.isoformat(),
-            "chat_id": self.chat_id
+            "chat_id": self.chat_id,
         }
-    
+
+
 @dataclass
 class ChatRoom:
     id: str
@@ -233,33 +256,38 @@ class ChatRoom:
     type: ChatType
     participants: Set[str]
     messages: List[Message] = field(default_factory=list)
-    
+
     def to_dict(self):
         return {
             "id": self.id,
             "name": self.name,
             "type": self.type.value,
             "participants": list(self.participants),
-            "messages": [msg.to_dict() for msg in self.messages]
+            "messages": [msg.to_dict() for msg in self.messages],
         }
+
 
 # API 모델들
 class CreatePlayerRequest(BaseModel):
     name: str
     type: str = "human"
 
+
 class SendMessageRequest(BaseModel):
     content: str
     chat_id: str
+
 
 # Vote removed
 # class VoteRequest(BaseModel):
 #     target_player_id: str
 
+
 # 개인 채팅방 생성 요청 모델
 class PrivateChatRequest(BaseModel):
     requester_id: str  # 개인 채팅을 요청하는 플레이어 ID
     target_player_id: str  # 상대 플레이어 ID
+
 
 # 캐릭터 채팅 생성 요청 모델
 
@@ -270,6 +298,7 @@ class InterfaceCreateChatRequest(BaseModel):
     character_name: str
     character_persona: Optional[str] = None  # 선택 사항
 
+
 class InterfaceSendMessageRequest(BaseModel):
     chat_id: str
     sender_id: Optional[str] = None
@@ -277,8 +306,10 @@ class InterfaceSendMessageRequest(BaseModel):
     anon_id: Optional[str] = None
     character_id: Optional[str] = None
 
+
 # -------- Interface Character Catalog (mirrors interface/src/data/characters.ts) --------
 # Build from glossary dynamically at startup; keep a static fallback for safety
+
 
 def _static_interface_characters() -> List[dict]:
     return [
@@ -310,13 +341,13 @@ def _static_interface_characters() -> List[dict]:
             "description": "A charming and intelligent emperor who can transform into a bird.",
             "tags": ["Caring", "Handsome", "Alpha Hero", "Cruel", "Shifter", "Beast"],
             "greeting": """<Epilogue>\n
-            On a quiet afternoon, you are in the empress's office in the Western Empire, gazing out the window, lost in thought. The anxiety and betrayal that once haunted you have been replaced by a deep sense of stability and trust. Just then, a familiar golden bird lands on the windowsill. It looks at you with intelligent eyes before transforming, in a flash of blue light, into a dazzling man.\n
+            *On a quiet afternoon, you are in the empress's office in the Western Empire, gazing out the window, lost in thought. The anxiety and betrayal that once haunted you have been replaced by a deep sense of stability and trust. Just then, a familiar golden bird lands on the windowsill. It looks at you with intelligent eyes before transforming, in a flash of blue light, into a dazzling man.\n
 
             Your husband, Emperor Heinrey, leans against the window frame with a smile, extending a hand toward you.\n
 
             "My love, were you buried in tedious paperwork again? It's time for a break, Queen. Come here and give me a kiss."\n
 
-            He winks playfully and adds,\n
+            He winks playfully and adds,*\n
 
             "Or, shall I turn back into your favorite bird and come sit on your lap?" """,
         },
@@ -329,7 +360,7 @@ def _static_interface_characters() -> List[dict]:
             "description": "A mysterious lord cursed with a beast form, seeking redemption through love.",
             "tags": ["Beast", "Mysterious", "Cursed", "Dark", "Powerful"],
             "greeting": """<Scenario 1>\n
-            The kingdom of Nauk teeters on the edge of ruin, besieged by the infamous Tiwakan mercenaries for a fortnight under the guise of a marriage proposal. As the last heir to the Arsac throne, you've weighed every desperate option: reject the barbarian lord's demand, and your people starve; accept, and surrender your fate to a man whispered to be the spawn of war gods, untouchable and savage.\n
+            *The kingdom of Nauk teeters on the edge of ruin, besieged by the infamous Tiwakan mercenaries for a fortnight under the guise of a marriage proposal. As the last heir to the Arsac throne, you've weighed every desperate option: reject the barbarian lord's demand, and your people starve; accept, and surrender your fate to a man whispered to be the spawn of war gods, untouchable and savage.\n
 
             With your advisor and guard at your side, you ride to the neutral tent, heart pounding. Rumors of an ambush—your former fiancé's reinforcements—stir fleeting hope. But as you prepare to flee, the tent flap lifts, flooding the dim space with light.\n
 
@@ -337,7 +368,7 @@ def _static_interface_characters() -> List[dict]:
 
             He discards the blade casually, his voice a low, unyielding rumble. "The interruption is dealt with. Now, your answer to my proposal?"\n
 
-            You bluff, claiming pregnancy by the dead man to repel him. But Black's lips curve faintly, unfazed.\n
+            You bluff, claiming pregnancy by the dead man to repel him. But Black's lips curve faintly, unfazed.*\n
 
             "Then bear the child. But know this... I shall have you." """,
             "personality": ["Brooding", "Gentle beneath the surface", "Protective", "Misunderstood"],
@@ -359,13 +390,13 @@ def _static_interface_characters() -> List[dict]:
             "tags": ["Steamy", "Trauma", "Wealthy", "Obssessive", "Possessive", "Secret"],
             "greeting": """<Scenario 1>\n
 
-            You had one simple task: deliver a sandwich to the Annex and leave.\n
+            *You had one simple task: deliver a sandwich to the Annex and leave.\n
             You told yourself you wouldn't even step inside—just set it down and walk away.\n
 
             The gate clicked shut behind you.\n
             And then you saw him.\n
 
-            A man rose from the glittering pool, not a scrap of clothing on him. Sunlight slid over wide shoulders, down a chest cut from stone, across abs sharp as armor… until your gaze, unbidden, dropped lower.\n
+            A man rose from the glittering pool, not a scrap of clothing on him. Sunlight slid over wide shoulders, down a chest cut from stone, across abs sharp as armor… until your gaze, unbidden, dropped lower.*\n
 
             …Oh. My. God.\n
 
@@ -387,7 +418,7 @@ def _static_interface_characters() -> List[dict]:
             "tags": ["Obsessive", "Possessive", "Wealthy", "Secret", "Steamy"],
             "greeting": """<Scenario 1>\n
 
-            In the sleek executive office of Ryu Enterprises' towering corporate building, you're summoned by your boss, Jiheon Ryu—the handsome, calculating heir to a chaebol empire. \n
+            *In the sleek executive office of Ryu Enterprises' towering corporate building, you're summoned by your boss, Jiheon Ryu—the handsome, calculating heir to a chaebol empire. \n
             
             What starts as a routine call spirals into absurdity: he proposes marriage out of nowhere, not out of love, but convenience. \n
             
@@ -395,11 +426,12 @@ def _static_interface_characters() -> List[dict]:
 
             Trapped in this bizarre power play, you sense the web tightening. Little do you know, a cursed ring inside will soon bind you both, forcing a fake relationship that blurs lines between hate, duty, and desire.\n
 
-            Jiheon leans back, his long-lashed eyes locking onto yours with teasing intensity. \n
+            Jiheon leans back, his long-lashed eyes locking onto yours with teasing intensity. *\n
 
             "Why not? I think you're perfect for me." """,
         },
     ]
+
 
 # Holds the final characters served to the frontend
 INTERFACE_CHARACTERS: List[dict] = []
@@ -502,13 +534,13 @@ def _build_interface_characters_from_glossary(base_dir: str) -> Tuple[List[dict]
                 # Personality from personality_traits
                 traits = matched_char.get("personality_traits")
                 if isinstance(traits, list) and traits:
+
                     def _fmt_trait(t: str) -> str:
                         if not isinstance(t, str):
                             return ""
                         return t.replace("_", " ").replace("-", " ").strip().capitalize()
-                    ch["personality"] = [
-                        s for s in (_fmt_trait(t) for t in traits) if s
-                    ]
+
+                    ch["personality"] = [s for s in (_fmt_trait(t) for t in traits) if s]
 
     # If no match by scan, try fallback by the existing 'series' label matching filename
     for ch in static_chars:
@@ -532,6 +564,7 @@ def _build_interface_characters_from_glossary(base_dir: str) -> Tuple[List[dict]
     # Return the static list (now with optional glossary_series fields) and mappings
     return static_chars, id_to_series, glossaries
 
+
 def _character_by_id(char_id: str) -> Optional[dict]:
     for ch in INTERFACE_CHARACTERS:
         if ch.get("id") == char_id:
@@ -552,31 +585,33 @@ def _build_persona_from_character(ch: dict) -> str:
     ]
     return "\n".join([p for p in parts if p])
 
+
 class ConnectionManager:
     def __init__(self):
         self.active_connections: Dict[str, WebSocket] = {}
-        
+
     async def connect(self, websocket: WebSocket, client_id: str):
         await websocket.accept()
         self.active_connections[client_id] = websocket
-        
+
     def disconnect(self, client_id: str):
         if client_id in self.active_connections:
             del self.active_connections[client_id]
-            
+
     async def send_personal_message(self, message: dict, client_id: str):
         if client_id in self.active_connections:
             await self.active_connections[client_id].send_json(message)
-            
+
     async def broadcast(self, message: dict, exclude: Optional[str] = None):
         for client_id, connection in self.active_connections.items():
             if client_id != exclude:
                 await connection.send_json(message)
-                
+
     async def broadcast_to_chat(self, message: dict, participant_ids: Set[str]):
         for client_id in participant_ids:
             if client_id in self.active_connections:
                 await self.active_connections[client_id].send_json(message)
+
 
 class CharacterChatSystem:
     def __init__(self, openai_api_key: str):
@@ -621,32 +656,31 @@ class CharacterChatSystem:
         # filter empty
         persona = "\n".join([p for p in persona_parts if p])
         return persona
-        
+
     def add_player(self, player: Player) -> dict:
         self.players[player.id] = player
         return {"id": player.id, "name": player.name, "type": player.type.value}
-        
+
     def create_chat_room(self, name: str, chat_type: ChatType, participants: Set[str]) -> ChatRoom:
         chat_id = f"{chat_type.value}_{uuid.uuid4().hex[:8]}"
-        chat_room = ChatRoom(
-            id=chat_id,
-            name=name,
-            type=chat_type,
-            participants=participants
-        )
+        chat_room = ChatRoom(id=chat_id, name=name, type=chat_type, participants=participants)
         self.chat_rooms[chat_id] = chat_room
         return chat_room
-        
 
-        
     async def generate_ai_response(self, ai_player: Player, chat_room: ChatRoom) -> Optional[str]:
         """선택된 캐릭터들의 페르소나 기반 AI 응답 생성"""
 
         # 대화 참여자(인간 포함) 이름 목록
-        other_participants = [p.name for p in self.players.values() if p.id in chat_room.participants and p.id != ai_player.id]
+        other_participants = [
+            p.name for p in self.players.values() if p.id in chat_room.participants and p.id != ai_player.id
+        ]
 
         # Identify the human user's display name (for personalization)
-        human_names = [p.name for p in self.players.values() if p.id in chat_room.participants and p.id != ai_player.id and p.type == PlayerType.HUMAN]
+        human_names = [
+            p.name
+            for p in self.players.values()
+            if p.id in chat_room.participants and p.id != ai_player.id and p.type == PlayerType.HUMAN
+        ]
         user_display_name = human_names[0] if human_names else (other_participants[0] if other_participants else "User")
 
         # Try to enrich with catalog metadata if available
@@ -768,20 +802,20 @@ RESPONSE QUALITY CHECKLIST
 - [ ] Story has progressed meaningfully
 - [ ] Response invites continued engagement
 """
-        
+
         # 최근 메시지들 (AI/인간 모두 포함)
         messages = [SystemMessage(content=system_prompt)]
         recent = chat_room.messages[-15:]
-        
+
         for msg in recent:
             if msg.sender_id == ai_player.id:
                 messages.append(AIMessage(content=msg.content))
             else:
                 messages.append(HumanMessage(content=f"[{msg.sender_name}]: {msg.content}"))
-        
+
         if not recent:
             return None
-            
+
         try:
             content = None
             if self.llm is not None:
@@ -814,7 +848,7 @@ RESPONSE QUALITY CHECKLIST
                     if m.sender_id != ai_player.id:
                         last_user = m
                         break
-                user_line = (last_user.content if last_user else "...")
+                user_line = last_user.content if last_user else "..."
                 content = f"""
 **SITUATION:**
 The air hums softly around {ai_player.name}. A faint scent of parchment and steel lingers as memories of recent words — '{user_line[:120]}' — echo in the quiet. Candlelight flickers, tracing amber halos across determined eyes as thoughts align with purpose. The room holds a measured calm, each heartbeat a deliberate cadence. Boots shift over stone; leather creaks. A wind from distant ramparts brushes the skin, cool and bracing. Resolve settles, the moment tightening like a drawn bowstring. Emotions swirl: restraint, curiosity, a protective current pulsing steady. The world outside narrows; only this exchange matters now. A step forward, closer.
@@ -834,19 +868,20 @@ The air hums softly around {ai_player.name}. A faint scent of parchment and stee
 
     # ------------------ 캐릭터 기반 채팅 기능 ------------------
 
-
-
-
-    def create_interface_chat(self, user_name: str, character_name: str, character_persona: Optional[str]) -> Tuple[Player, Player, ChatRoom]:
+    def create_interface_chat(
+        self, user_name: str, character_name: str, character_persona: Optional[str]
+    ) -> Tuple[Player, Player, ChatRoom]:
         """FRONTEND 전용: 사용자 이름과 캐릭터 이름/페르소나로 즉석 채팅 생성."""
         human = Player(id=f"human_{uuid.uuid4().hex[:8]}", name=user_name, type=PlayerType.HUMAN)
-        ai = Player(id=f"ai_{uuid.uuid4().hex[:8]}", name=character_name, type=PlayerType.AI, persona=character_persona or "")
+        ai = Player(
+            id=f"ai_{uuid.uuid4().hex[:8]}", name=character_name, type=PlayerType.AI, persona=character_persona or ""
+        )
         self.players[human.id] = human
         self.players[ai.id] = ai
         chat = self.create_chat_room(f"{character_name} Chat", ChatType.UNIT, {human.id, ai.id})
         # No default greeting here; specific endpoints may add one
         return human, ai, chat
-        
+
 
 # FastAPI 앱 설정
 app = FastAPI()
@@ -871,6 +906,7 @@ if os.path.isdir("img"):
 manager = ConnectionManager()
 game_system: Optional[CharacterChatSystem] = None
 
+
 # ------------------- Startup / DB init -------------------
 @app.on_event("startup")
 async def startup_event():
@@ -880,12 +916,13 @@ async def startup_event():
     game_system = CharacterChatSystem(openai_api_key=api_key)
 
     # Load glossaries and build interface characters
-    base_dir = os.path.dirname(__file__) # Assuming this file is in the root of the project
+    base_dir = os.path.dirname(__file__)  # Assuming this file is in the root of the project
     INTERFACE_CHARACTERS, CHAR_ID_TO_SERIES, SERIES_TO_GLOSSARY = _build_interface_characters_from_glossary(base_dir)
 
     # Initialize DB schema
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+
 
 # ------------------- Auth API -------------------
 class RegisterRequest(BaseModel):
@@ -893,16 +930,21 @@ class RegisterRequest(BaseModel):
     password: str
     email: Optional[str] = None
 
+
 class LoginRequest(BaseModel):
     username: str  # accept username for simplicity
     password: str
+
 
 class TokenResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
 
+
 # -------- Usage helpers --------
-async def get_or_create_usage_account(session: AsyncSession, user: Optional[User], anon_id: Optional[str]) -> Tuple["UsageAccount", bool]:
+async def get_or_create_usage_account(
+    session: AsyncSession, user: Optional[User], anon_id: Optional[str]
+) -> Tuple["UsageAccount", bool]:
     created = False
     if user:
         res = await session.execute(select(UsageAccount).where(UsageAccount.user_id == user.id))
@@ -929,35 +971,44 @@ async def get_or_create_usage_account(session: AsyncSession, user: Optional[User
     await session.commit()
     return acc, True
 
+
 async def grant_credits(session: AsyncSession, account: "UsageAccount", amount: int):
     account.credits_remaining = (account.credits_remaining or 0) + max(0, amount)
     await session.commit()
 
+
 async def consume_one_credit_or_raise(session: AsyncSession, account: "UsageAccount"):
     if (account.credits_remaining or 0) <= 0:
-        raise HTTPException(status_code=402, detail={
-            "error": "insufficient_credits",
-            "credits_remaining": 0,
-            "next_action": "register_or_watch_ad",
-            "ad_min_seconds": AD_MIN_WATCH_SECONDS,
-        })
+        raise HTTPException(
+            status_code=402,
+            detail={
+                "error": "insufficient_credits",
+                "credits_remaining": 0,
+                "next_action": "register_or_watch_ad",
+                "ad_min_seconds": AD_MIN_WATCH_SECONDS,
+            },
+        )
     account.credits_remaining -= 1
     account.total_messages = (account.total_messages or 0) + 1
     await session.commit()
 
+
 # -------- Usage/Ad API --------
 class GuestInitRequest(BaseModel):
     anon_id: Optional[str] = None
+
 
 class GuestInitResponse(BaseModel):
     anon_id: str
     credits_remaining: int
     is_new: bool
 
+
 @app.post("/api/interface/guest/init", response_model=GuestInitResponse)
 async def guest_init(req: GuestInitRequest, session: AsyncSession = Depends(get_db_session)):
     acc, created = await get_or_create_usage_account(session, None, req.anon_id)
     return GuestInitResponse(anon_id=acc.anon_id or "", credits_remaining=acc.credits_remaining, is_new=created)
+
 
 class UsageStatus(BaseModel):
     credits_remaining: int
@@ -965,21 +1016,34 @@ class UsageStatus(BaseModel):
     ad_min_seconds: int = AD_MIN_WATCH_SECONDS
     ad_bonus_credits: int = AD_BONUS_CREDITS
 
+
 @app.get("/api/interface/usage/status", response_model=UsageStatus)
-async def usage_status(request: Request, current_user: Optional[User] = Depends(get_current_user_optional), session: AsyncSession = Depends(get_db_session)):
+async def usage_status(
+    request: Request,
+    current_user: Optional[User] = Depends(get_current_user_optional),
+    session: AsyncSession = Depends(get_db_session),
+):
     anon_id = request.headers.get("X-Anon-Id")
     acc, _ = await get_or_create_usage_account(session, current_user, anon_id)
     return UsageStatus(credits_remaining=acc.credits_remaining, authenticated=bool(current_user))
 
+
 class AdStartRequest(BaseModel):
     anon_id: Optional[str] = None
+
 
 class AdStartResponse(BaseModel):
     ad_session_id: str
     ad_min_seconds: int = AD_MIN_WATCH_SECONDS
 
+
 @app.post("/api/interface/ad/start", response_model=AdStartResponse)
-async def ad_start(req: AdStartRequest, request: Request, current_user: Optional[User] = Depends(get_current_user_optional), session: AsyncSession = Depends(get_db_session)):
+async def ad_start(
+    req: AdStartRequest,
+    request: Request,
+    current_user: Optional[User] = Depends(get_current_user_optional),
+    session: AsyncSession = Depends(get_db_session),
+):
     header_anon = request.headers.get("X-Anon-Id")
     anon_id = req.anon_id or header_anon
     acc, _ = await get_or_create_usage_account(session, current_user, anon_id)
@@ -998,14 +1062,17 @@ async def ad_start(req: AdStartRequest, request: Request, current_user: Optional
     await session.commit()
     return AdStartResponse(ad_session_id=ad_session_id)
 
+
 class AdCompleteRequest(BaseModel):
     ad_session_id: str
     watched_seconds: int
+
 
 class AdCompleteResponse(BaseModel):
     awarded: bool
     credits_remaining: int
     estimated_revenue_usd: float
+
 
 @app.post("/api/interface/ad/complete", response_model=AdCompleteResponse)
 async def ad_complete(req: AdCompleteRequest, session: AsyncSession = Depends(get_db_session)):
@@ -1017,7 +1084,11 @@ async def ad_complete(req: AdCompleteRequest, session: AsyncSession = Depends(ge
         # idempotent
         acc_res = await session.execute(select(UsageAccount).where(UsageAccount.id == ev.usage_account_id))
         acc = acc_res.scalar_one()
-        return AdCompleteResponse(awarded=True, credits_remaining=acc.credits_remaining, estimated_revenue_usd=(ev.revenue_usd_cents or 0) / 100.0)
+        return AdCompleteResponse(
+            awarded=True,
+            credits_remaining=acc.credits_remaining,
+            estimated_revenue_usd=(ev.revenue_usd_cents or 0) / 100.0,
+        )
 
     ev.completed_at = datetime.utcnow()
     ev.watched_seconds = int(req.watched_seconds)
@@ -1036,11 +1107,16 @@ async def ad_complete(req: AdCompleteRequest, session: AsyncSession = Depends(ge
         await session.commit()
         ev.status = "completed"
         await session.commit()
-        return AdCompleteResponse(awarded=True, credits_remaining=acc.credits_remaining, estimated_revenue_usd=revenue_cents / 100.0)
+        return AdCompleteResponse(
+            awarded=True, credits_remaining=acc.credits_remaining, estimated_revenue_usd=revenue_cents / 100.0
+        )
     else:
         ev.status = "canceled"
         await session.commit()
-        return AdCompleteResponse(awarded=False, credits_remaining=acc.credits_remaining, estimated_revenue_usd=revenue_cents / 100.0)
+        return AdCompleteResponse(
+            awarded=False, credits_remaining=acc.credits_remaining, estimated_revenue_usd=revenue_cents / 100.0
+        )
+
 
 @app.post("/api/auth/register")
 async def register(req: RegisterRequest, session: AsyncSession = Depends(get_db_session)):
@@ -1066,6 +1142,7 @@ async def register(req: RegisterRequest, session: AsyncSession = Depends(get_db_
 
     return {"id": user.id, "username": user.username}
 
+
 @app.post("/api/auth/login", response_model=TokenResponse)
 async def login(req: LoginRequest, session: AsyncSession = Depends(get_db_session)):
     res = await session.execute(select(User).where(User.username == req.username))
@@ -1079,7 +1156,9 @@ async def login(req: LoginRequest, session: AsyncSession = Depends(get_db_sessio
     token = create_access_token({"sub": user.username})
     return TokenResponse(access_token=token)
 
+
 # --------- Interface-only API ----------
+
 
 # Helper to build a temporary ChatRoom from DB for AI generation
 async def _build_temp_chat_context(session: AsyncSession, chat: Chat, user: User) -> Tuple[Player, Player, ChatRoom]:
@@ -1089,19 +1168,24 @@ async def _build_temp_chat_context(session: AsyncSession, chat: Chat, user: User
     game_system.players[ai.id] = ai
     room = ChatRoom(id=chat.id, name=chat.name, type=ChatType.UNIT, participants={human.id, ai.id})
     # Load recent messages
-    res = await session.execute(select(MessageDB).where(MessageDB.chat_id == chat.id).order_by(MessageDB.timestamp.asc()))
+    res = await session.execute(
+        select(MessageDB).where(MessageDB.chat_id == chat.id).order_by(MessageDB.timestamp.asc())
+    )
     rows: List[MessageDB] = list(res.scalars().all())
     for m in rows[-50:]:
         sender_id = human.id if m.sender_type == "user" else ai.id
-        room.messages.append(Message(
-            id=m.id,
-            sender_id=sender_id,
-            sender_name=m.sender_name,
-            content=m.content,
-            timestamp=m.timestamp or datetime.utcnow(),
-            chat_id=chat.id,
-        ))
+        room.messages.append(
+            Message(
+                id=m.id,
+                sender_id=sender_id,
+                sender_name=m.sender_name,
+                content=m.content,
+                timestamp=m.timestamp or datetime.utcnow(),
+                chat_id=chat.id,
+            )
+        )
     return human, ai, room
+
 
 # ----- Interface 전용 채팅 생성 -----
 @app.post("/api/interface/chat/create")
@@ -1119,17 +1203,24 @@ async def interface_create_chat(request: InterfaceCreateChatRequest):
         "messages": [m.to_dict() for m in chat.messages],
     }
 
+
 # List built-in interface characters
 @app.get("/api/interface/characters")
 async def interface_characters():
     return INTERFACE_CHARACTERS
 
+
 class InterfaceCreateChatByIdRequest(BaseModel):
     user_name: str
     character_id: str
 
+
 @app.post("/api/interface/chat/create_by_id")
-async def interface_create_chat_by_id(req: InterfaceCreateChatByIdRequest, current_user: Optional[User] = Depends(get_current_user_optional), session: AsyncSession = Depends(get_db_session)):
+async def interface_create_chat_by_id(
+    req: InterfaceCreateChatByIdRequest,
+    current_user: Optional[User] = Depends(get_current_user_optional),
+    session: AsyncSession = Depends(get_db_session),
+):
     # allow FE short ids
     alias_map = {
         "riftan": "riftan-calypse",
@@ -1172,16 +1263,20 @@ async def interface_create_chat_by_id(req: InterfaceCreateChatByIdRequest, curre
         return {
             "chat_id": chat.id,
             "ai_name": chat.ai_name,
-            "messages": [] if not greeting else [
-                {
-                    "id": msg.id,
-                    "sender_id": f"ai_{chat.id}",
-                    "sender_name": chat.ai_name,
-                    "content": greeting,
-                    "timestamp": datetime.utcnow().isoformat(),
-                    "chat_id": chat.id,
-                }
-            ],
+            "messages": (
+                []
+                if not greeting
+                else [
+                    {
+                        "id": msg.id,
+                        "sender_id": f"ai_{chat.id}",
+                        "sender_name": chat.ai_name,
+                        "content": greeting,
+                        "timestamp": datetime.utcnow().isoformat(),
+                        "chat_id": chat.id,
+                    }
+                ]
+            ),
         }
 
     # Fallback: ephemeral in-memory if unauthenticated (backward compatible)
@@ -1209,11 +1304,19 @@ async def interface_create_chat_by_id(req: InterfaceCreateChatByIdRequest, curre
         "messages": [m.to_dict() for m in chat.messages],
     }
 
+
 @app.post("/api/interface/chat/send")
-async def interface_send_message(req: InterfaceSendMessageRequest, request: Request, current_user: Optional[User] = Depends(get_current_user_optional), session: AsyncSession = Depends(get_db_session)):
+async def interface_send_message(
+    req: InterfaceSendMessageRequest,
+    request: Request,
+    current_user: Optional[User] = Depends(get_current_user_optional),
+    session: AsyncSession = Depends(get_db_session),
+):
     # Persistent flow if authenticated
     if current_user:
-        result = await session.execute(select(Chat).where(Chat.id == req.chat_id, Chat.owner_user_id == current_user.id, Chat.is_archived == False))
+        result = await session.execute(
+            select(Chat).where(Chat.id == req.chat_id, Chat.owner_user_id == current_user.id, Chat.is_archived == False)
+        )
         chat = result.scalar_one_or_none()
         if not chat:
             raise HTTPException(status_code=404, detail="chat not found")
@@ -1295,10 +1398,20 @@ async def interface_send_message(req: InterfaceSendMessageRequest, request: Requ
             human_player = Player(id=hid, name="Guest", type=PlayerType.HUMAN)
             game_system.players[hid] = human_player
         # ai player by character name
-        ai_player = Player(id=f"ai_{uuid.uuid4().hex[:8]}", name=ch_meta["name"], type=PlayerType.AI, persona=_build_persona_from_character(ch_meta))
+        ai_player = Player(
+            id=f"ai_{uuid.uuid4().hex[:8]}",
+            name=ch_meta["name"],
+            type=PlayerType.AI,
+            persona=_build_persona_from_character(ch_meta),
+        )
         game_system.players[ai_player.id] = ai_player
         # create chat room with provided id
-        room = ChatRoom(id=req.chat_id, name=f"{ch_meta['name']} Chat", type=ChatType.UNIT, participants={human_player.id, ai_player.id})
+        room = ChatRoom(
+            id=req.chat_id,
+            name=f"{ch_meta['name']} Chat",
+            type=ChatType.UNIT,
+            participants={human_player.id, ai_player.id},
+        )
         game_system.chat_rooms[req.chat_id] = room
         # continue with newly reconstructed chat
         chat_room = room
@@ -1332,8 +1445,12 @@ async def interface_send_message(req: InterfaceSendMessageRequest, request: Requ
 
     # Trigger one AI participant immediately and return its message if available
     ai_candidates = [
-        p for p in game_system.players.values()
-        if p.id in chat_room.participants and p.type == PlayerType.AI and p.is_alive and p.id not in game_system.controlled_characters
+        p
+        for p in game_system.players.values()
+        if p.id in chat_room.participants
+        and p.type == PlayerType.AI
+        and p.is_alive
+        and p.id not in game_system.controlled_characters
     ]
     ai_response_payload = None
     if ai_candidates:
@@ -1358,6 +1475,7 @@ async def interface_send_message(req: InterfaceSendMessageRequest, request: Requ
         "credits_remaining": acc.credits_remaining,
     }
 
+
 # New: List my chats (persistent)
 class ChatSummary(BaseModel):
     chat_id: str
@@ -1367,49 +1485,68 @@ class ChatSummary(BaseModel):
     last_message: Optional[str] = None
     updated_at: Optional[str] = None
 
+
 @app.get("/api/interface/my/chats", response_model=List[ChatSummary])
-async def list_my_chats(current_user: User = Depends(get_current_user), session: AsyncSession = Depends(get_db_session)):
-    res = await session.execute(select(Chat).where(Chat.owner_user_id == current_user.id).order_by(Chat.created_at.desc()))
+async def list_my_chats(
+    current_user: User = Depends(get_current_user), session: AsyncSession = Depends(get_db_session)
+):
+    res = await session.execute(
+        select(Chat).where(Chat.owner_user_id == current_user.id).order_by(Chat.created_at.desc())
+    )
     chats: List[Chat] = list(res.scalars().all())
     summaries: List[ChatSummary] = []
     for c in chats:
-        last_res = await session.execute(select(MessageDB).where(MessageDB.chat_id == c.id).order_by(MessageDB.timestamp.desc()).limit(1))
+        last_res = await session.execute(
+            select(MessageDB).where(MessageDB.chat_id == c.id).order_by(MessageDB.timestamp.desc()).limit(1)
+        )
         last = last_res.scalar_one_or_none()
-        summaries.append(ChatSummary(
-            chat_id=c.id,
-            ai_name=c.ai_name,
-            name=c.name,
-            is_archived=c.is_archived,
-            last_message=(last.content if last else None),
-            updated_at=((last.timestamp.isoformat() if last and last.timestamp else None)),
-        ))
+        summaries.append(
+            ChatSummary(
+                chat_id=c.id,
+                ai_name=c.ai_name,
+                name=c.name,
+                is_archived=c.is_archived,
+                last_message=(last.content if last else None),
+                updated_at=((last.timestamp.isoformat() if last and last.timestamp else None)),
+            )
+        )
     return summaries
+
 
 # New: Get messages for a chat
 @app.get("/api/interface/my/chats/{chat_id}/messages")
-async def get_chat_messages(chat_id: str, current_user: User = Depends(get_current_user), session: AsyncSession = Depends(get_db_session)):
+async def get_chat_messages(
+    chat_id: str, current_user: User = Depends(get_current_user), session: AsyncSession = Depends(get_db_session)
+):
     res = await session.execute(select(Chat).where(Chat.id == chat_id, Chat.owner_user_id == current_user.id))
     chat = res.scalar_one_or_none()
     if not chat:
         raise HTTPException(status_code=404, detail="chat not found")
-    res2 = await session.execute(select(MessageDB).where(MessageDB.chat_id == chat_id).order_by(MessageDB.timestamp.asc()))
+    res2 = await session.execute(
+        select(MessageDB).where(MessageDB.chat_id == chat_id).order_by(MessageDB.timestamp.asc())
+    )
     msgs: List[MessageDB] = list(res2.scalars().all())
     payload = []
     for m in msgs:
-        sender_id = (f"human_{current_user.id}" if m.sender_type == "user" else f"ai_{chat.id}")
-        payload.append({
-            "id": m.id,
-            "sender_id": sender_id,
-            "sender_name": m.sender_name,
-            "content": m.content,
-            "timestamp": (m.timestamp.isoformat() if m.timestamp else datetime.utcnow().isoformat()),
-            "chat_id": chat_id,
-        })
+        sender_id = f"human_{current_user.id}" if m.sender_type == "user" else f"ai_{chat.id}"
+        payload.append(
+            {
+                "id": m.id,
+                "sender_id": sender_id,
+                "sender_name": m.sender_name,
+                "content": m.content,
+                "timestamp": (m.timestamp.isoformat() if m.timestamp else datetime.utcnow().isoformat()),
+                "chat_id": chat_id,
+            }
+        )
     return payload
+
 
 # New: Leave chat (archive)
 @app.post("/api/interface/my/chats/{chat_id}/leave")
-async def leave_chat(chat_id: str, current_user: User = Depends(get_current_user), session: AsyncSession = Depends(get_db_session)):
+async def leave_chat(
+    chat_id: str, current_user: User = Depends(get_current_user), session: AsyncSession = Depends(get_db_session)
+):
     res = await session.execute(select(Chat).where(Chat.id == chat_id, Chat.owner_user_id == current_user.id))
     chat = res.scalar_one_or_none()
     if not chat:
@@ -1419,6 +1556,7 @@ async def leave_chat(chat_id: str, current_user: User = Depends(get_current_user
     chat.is_archived = True
     await session.commit()
     return {"status": "ok"}
+
 
 # ------------------- Character Likes -------------------
 class CharacterLike(Base):
@@ -1431,13 +1569,16 @@ class CharacterLike(Base):
 
     account = relationship("UsageAccount")
 
+
 class LikeToggleRequest(BaseModel):
     character_id: str
     anon_id: Optional[str] = None
 
+
 class LikeStatusResponse(BaseModel):
     likes: Dict[str, int]
     liked_by_me: Dict[str, bool]
+
 
 @app.get("/api/interface/likes/status", response_model=LikeStatusResponse)
 async def likes_status(request: Request, session: AsyncSession = Depends(get_db_session)):
@@ -1445,8 +1586,11 @@ async def likes_status(request: Request, session: AsyncSession = Depends(get_db_
     anon_id = request.headers.get("X-Anon-Id")
     # Build global counts
     res_counts = await session.execute(
-        select(CharacterLike.character_id, func.sum(case((CharacterLike.liked == True, 1), else_=0)))  # type: ignore
-        .group_by(CharacterLike.character_id)
+        select(
+            CharacterLike.character_id, func.sum(case((CharacterLike.liked == True, 1), else_=0))
+        ).group_by(  # type: ignore
+            CharacterLike.character_id
+        )
     )
     counts_map: Dict[str, int] = {row[0]: int(row[1] or 0) for row in res_counts.fetchall()}
     liked_map: Dict[str, bool] = {}
@@ -1456,6 +1600,7 @@ async def likes_status(request: Request, session: AsyncSession = Depends(get_db_
         for like in res_me.scalars().all():
             liked_map[like.character_id] = bool(like.liked)
     return LikeStatusResponse(likes=counts_map, liked_by_me=liked_map)
+
 
 @app.post("/api/interface/likes/toggle")
 async def toggle_like(req: LikeToggleRequest, request: Request, session: AsyncSession = Depends(get_db_session)):
@@ -1483,24 +1628,19 @@ async def toggle_like(req: LikeToggleRequest, request: Request, session: AsyncSe
     count = int(res_count.scalar() or 0)
     return {"character_id": req.character_id, "liked_by_me": bool(row.liked), "likes_count": count}
 
+
 @app.get("/api/players")
 async def get_players():
     """모든 플레이어 조회"""
     return [
-        {
-            "id": p.id,
-            "name": p.name,
-            "type": p.type.value,
-            "is_alive": p.is_alive
-        }
-        for p in game_system.players.values()
+        {"id": p.id, "name": p.name, "type": p.type.value, "is_alive": p.is_alive} for p in game_system.players.values()
     ]
-
 
 
 @app.get("/api/chats")
 async def get_chats():
     return [chat.to_dict() for chat in game_system.chat_rooms.values()]
+
 
 @app.post("/api/chats/private")
 async def create_private_chat(request: PrivateChatRequest):
@@ -1516,41 +1656,46 @@ async def create_private_chat(request: PrivateChatRequest):
     new_chat = game_system.create_chat_room("개인 채팅방", ChatType.PRIVATE, participants)
     return new_chat.to_dict()
 
+
 # Vote APIs removed
+
 
 @app.websocket("/ws/{client_id}")
 async def websocket_endpoint(websocket: WebSocket, client_id: str):
     await manager.connect(websocket, client_id)
-    
+
     try:
         # 연결 시 현재 상태 전송
-        await manager.send_personal_message({
-            "type": "connection",
-            "data": {
-                "client_id": client_id,
-                "game_state": {},  # 게임 로직 제거
-                "players": [{"id": p.id, "name": p.name} for p in game_system.players.values()],
-                "main_chat_id": None
-            }
-        }, client_id)
-        
+        await manager.send_personal_message(
+            {
+                "type": "connection",
+                "data": {
+                    "client_id": client_id,
+                    "game_state": {},  # 게임 로직 제거
+                    "players": [{"id": p.id, "name": p.name} for p in game_system.players.values()],
+                    "main_chat_id": None,
+                },
+            },
+            client_id,
+        )
+
         while True:
             data = await websocket.receive_json()
-            
+
             if data["type"] == "message":
                 # 메시지 처리
                 chat_id = data["chat_id"]
                 content = data["content"]
-                
+
                 if chat_id not in game_system.chat_rooms:
                     continue
-                    
+
                 chat_room = game_system.chat_rooms[chat_id]
                 player = game_system.players.get(client_id)
-                
+
                 if not player or client_id not in chat_room.participants:
                     continue
-                
+
                 # 메시지 저장
                 message = Message(
                     id=str(uuid.uuid4()),
@@ -1558,42 +1703,38 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
                     sender_name=player.name,
                     content=content,
                     timestamp=datetime.now(),
-                    chat_id=chat_id
+                    chat_id=chat_id,
                 )
                 chat_room.messages.append(message)
-                
+
                 # 채팅방 참여자들에게 브로드캐스트
                 payload = message.to_dict()
                 # 채팅 타입 정보 포함
                 payload["chat_type"] = chat_room.type.value
                 if chat_room.type == ChatType.PRIVATE:
                     payload["participants"] = list(chat_room.participants)
-                await manager.broadcast_to_chat({
-                    "type": "new_message",
-                    "data": payload
-                }, chat_room.participants)
-                
+                await manager.broadcast_to_chat({"type": "new_message", "data": payload}, chat_room.participants)
+
                 # AI 응답 트리거 (항상)
                 await asyncio.create_task(trigger_ai_responses(chat_room))
-                    
+
     except WebSocketDisconnect:
         manager.disconnect(client_id)
-        await manager.broadcast({
-            "type": "player_disconnected",
-            "data": {"client_id": client_id}
-        })
+        await manager.broadcast({"type": "player_disconnected", "data": {"client_id": client_id}})
+
 
 async def trigger_ai_responses(chat_room: ChatRoom):
     """AI 플레이어들의 응답 트리거"""
     # 약간의 지연
     await asyncio.sleep(random.uniform(1, 3))
-    
+
     # 채팅방의 AI 플레이어들
     ai_participants = [
-        p for p in game_system.players.values()
+        p
+        for p in game_system.players.values()
         if p.id in chat_room.participants and p.type == PlayerType.AI and p.is_alive
     ]
-    
+
     for ai_player in ai_participants:
         # skip if character controlled by human
         if ai_player.id in game_system.controlled_characters:
@@ -1601,19 +1742,19 @@ async def trigger_ai_responses(chat_room: ChatRoom):
         # 응답 확률 (매번 응답하지 않음)
         if random.random() < 0.6:
             # 타이핑 중 표시
-            await manager.broadcast_to_chat({
-                "type": "typing",
-                "data": {"player_id": ai_player.id, "player_name": ai_player.name}
-            }, chat_room.participants)
-            
+            await manager.broadcast_to_chat(
+                {"type": "typing", "data": {"player_id": ai_player.id, "player_name": ai_player.name}},
+                chat_room.participants,
+            )
+
             # 응답 생성
             response = await game_system.generate_ai_response(ai_player, chat_room)
-            
+
             if response:
                 # 타이핑 시간 시뮬레이션
                 typing_time = min(len(response) * 0.05, 3)
                 await asyncio.sleep(typing_time)
-                
+
                 # AI 메시지 저장 및 전송
                 ai_message = Message(
                     id=str(uuid.uuid4()),
@@ -1621,22 +1762,21 @@ async def trigger_ai_responses(chat_room: ChatRoom):
                     sender_name=ai_player.name,
                     content=response,
                     timestamp=datetime.now(),
-                    chat_id=chat_room.id
+                    chat_id=chat_room.id,
                 )
                 chat_room.messages.append(ai_message)
-                
+
                 payload = ai_message.to_dict()
                 payload["chat_type"] = chat_room.type.value
                 if chat_room.type == ChatType.PRIVATE:
                     payload["participants"] = list(chat_room.participants)
-                await manager.broadcast_to_chat({
-                    "type": "new_message",
-                    "data": payload
-                }, chat_room.participants)
-                
+                await manager.broadcast_to_chat({"type": "new_message", "data": payload}, chat_room.participants)
+
                 # 다음 AI 응답까지 지연
                 await asyncio.sleep(random.uniform(0.5, 2))
 
+
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app, host="0.0.0.0", port=8000)
